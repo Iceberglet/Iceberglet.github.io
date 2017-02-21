@@ -3,10 +3,18 @@
 }
 
 .splash .element {
-  transition: 1s;
+  transition: 1.5s;
   opacity: 0;
 }
 
 .splash .element.appear {
   opacity: 1;
+}
+
+.splash .element.appear.converge {
+  color: white;
+  left: 38%;
+  top: 43%;
+  font-size: 6vw;
+  opacity: 0;
 }
