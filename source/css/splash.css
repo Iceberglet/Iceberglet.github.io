@@ -1,0 +1,12 @@
+.splash {
+  background: #72a50f;
+}
+
+.splash .element {
+  transition: 1s;
+  opacity: 0;
+}
+
+.splash .element.appear {
+  opacity: 1;
+}
