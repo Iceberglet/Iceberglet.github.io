@@ -1,8 +1,36 @@
 <html>
   <head>
     <!-- <link rel="stylesheet" type="text/css" href="index.css"> -->
+    <style>
+      .circle {
+        position: relative;
+        margin: 120px auto;
+        width: 150px;
+      }
+      svg {
+        position: absolute;
+        opacity: .7;
+      }
+      .circle circle{
+        animation: draw 4s infinite ease-in-out;
+        transform-origin: center;
+        transform: rotate(-90deg);
+      }
+      @keyframes draw{
+        50% {
+          stroke-dashoffset: 0;
+        }
+      }
+    </style>
   </head>
   <body>
-    <script type="text/javascript" src="resources/bundled.js"></script>
+    <div class='circle'>
+      <svg>
+        <circle cx='75', cy='75', r='60', fill='transparent' stroke='#F4F519'
+        stroke-width='6' stroke-linecap='round', stroke-dasharray='385',
+        stroke-dashoffset='385'/>
+      </svg>
+    </div>
+    <!-- <script type="text/javascript" src="resources/bundled.js"></script> -->
   </body>
 </html>
