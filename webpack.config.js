@@ -6,8 +6,8 @@ module.exports = {
       path.resolve('./source/modules')
     ],
     alias: {
-        app: path.resolve('./source/app')
-
+      app: path.resolve('./source/app'),
+      css: path.resolve('./source/app')
     },
     extensions: ['', '.js', '.jsx', '.css','.scss']
   },

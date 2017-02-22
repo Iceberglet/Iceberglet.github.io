@@ -1,0 +1,21 @@
+.splash {
+  background: #72a50f;
+}
+
+.splash .element {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  transition: 1.5s;
+  opacity: 1;
+  font-size: 7vw;
+}
+
+.splash .element.disappear {
+  opacity: 0;
+  color: white;
+  text-shadow: 0px 0px 20px;
+}
