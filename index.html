@@ -2,23 +2,39 @@
   <head>
     <!-- <link rel="stylesheet" type="text/css" href="index.css"> -->
     <style>
-      .circle {
-        position: relative;
-        margin: 120px auto;
-        width: 150px;
-      }
       svg {
         position: absolute;
         opacity: .7;
+        width: 150px;
+      }
+      .circle {
+        width: 150px;
+        height: 150px;
+        animation: rotate 10s infinite linear;
+        transform-origin: center;
       }
       .circle circle{
-        animation: draw 4s infinite ease-in-out;
+        animation: draw 2s infinite ease-in-out;
         transform-origin: center;
         transform: rotate(-90deg);
       }
-      @keyframes draw{
+      @keyframes draw {
+        0% {
+          stroke-dashoffset: 360;
+        }
         50% {
           stroke-dashoffset: 0;
+        }
+        100% {
+          stroke-dashoffset: -360;
+        }
+      }
+      @keyframes rotate {
+        50% {
+          transform: rotate(180deg)
+        }
+        100% {
+          transform: rotate(360deg)
         }
       }
     </style>
@@ -26,9 +42,9 @@
   <body>
     <div class='circle'>
       <svg>
-        <circle cx='75', cy='75', r='60', fill='transparent' stroke='#F4F519'
-        stroke-width='6' stroke-linecap='round', stroke-dasharray='385',
-        stroke-dashoffset='385'/>
+        <circle cx='75', cy='75', r='60', fill='transparent' stroke='black'
+        stroke-width='10' stroke-linecap='round', stroke-dasharray='385', stroke-linejoin='round'
+        stroke-dashoffset='360'/>
       </svg>
     </div>
     <!-- <script type="text/javascript" src="resources/bundled.js"></script> -->
