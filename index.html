@@ -2,21 +2,35 @@
   <head>
     <!-- <link rel="stylesheet" type="text/css" href="index.css"> -->
     <style>
-      svg {
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      /*svg {
         position: absolute;
-        opacity: .7;
         width: 150px;
       }
-      .circle {
+      .rotating-icon {
         width: 150px;
         height: 150px;
-        animation: rotate 4s infinite linear;
         transform-origin: center;
       }
-      .circle circle{
+      .rotating-icon .rotate {
+        animation: rotate 4s infinite linear;
+      }
+      .rotating-icon .rotate-inv {
+        animation: rotate 4s infinite linear;
+        animation-direction: reverse;
+      }
+      .rotating-icon .circle-rotate{
         animation: draw 2s infinite ease-in-out;
         transform-origin: center;
         transform: rotate(-90deg);
+      }
+      .rotating-icon .circle-rotate-inv{
+        animation: drawInner 1.2s infinite ease-in-out;
+        transform-origin: center;
+        transform: rotate(90deg);
       }
       @keyframes draw {
         0% {
@@ -37,16 +51,32 @@
           transform: rotate(360deg)
         }
       }
+      @keyframes drawInner {
+        0% {
+          stroke-dashoffset: 255;
+        }
+        50% {
+          stroke-dashoffset: 0;
+        }
+        100% {
+          stroke-dashoffset: -255;
+        }
+      }*/
     </style>
   </head>
   <body>
-    <div class='circle'>
-      <svg>
-        <circle cx='75', cy='75', r='60', fill='transparent' stroke='black'
-        stroke-width='20' stroke-linecap='miter', stroke-dasharray='385', stroke-linejoin='square'
+    <!-- <div class='rotating-icon'>
+      <svg class='rotate-inv'>
+        <circle class='circle-rotate-inv' cx='75', cy='75', r='40', fill='transparent' stroke='gray'
+        stroke-width='5' stroke-linecap='miter', stroke-dasharray='255', stroke-linejoin='square'
+        stroke-dashoffset='255'/>
+      </svg>
+      <svg class='rotate'>
+        <circle class='circle-rotate'cx='75', cy='75', r='60', fill='transparent' stroke='black'
+        stroke-width='5' stroke-linecap='miter', stroke-dasharray='385', stroke-linejoin='square'
         stroke-dashoffset='385'/>
       </svg>
-    </div>
-    <!-- <script type="text/javascript" src="resources/bundled.js"></script> -->
+    </div> -->
+    <script type="text/javascript" src="resources/bundled.js"></script>
   </body>
 </html>

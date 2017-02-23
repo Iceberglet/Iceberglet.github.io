@@ -1,0 +1,28 @@
+.rotating-icon svg {
+  position: absolute;
+}
+.rotating-icon {
+  transform-origin: center;
+}
+.rotating-icon .rotate {
+  animation: rotate 4s infinite linear;
+}
+.rotating-icon .rotate-inv {
+  animation: rotate 4s infinite linear;
+  animation-direction: reverse;
+}
+.rotating-icon .circle-rotate{
+  transform-origin: center;
+}
+.rotating-icon .circle-rotate-inv{
+  transform-origin: center;
+  animation-direction: reverse;
+}
+@keyframes rotate {
+  50% {
+    transform: rotate(180deg)
+  }
+  100% {
+    transform: rotate(360deg)
+  }
+}
