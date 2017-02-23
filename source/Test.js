@@ -1,5 +1,6 @@
 import React from 'react'
 import { RotatingIcon } from 'rotatingIcon'
+import { Buzz } from 'buzz'
 
 const style = {
   display: 'flex',
@@ -13,15 +14,27 @@ const style = {
 export const Test = React.createClass({
   render(){
     return (
-      <div style={{width: '500px', height: '500px'}}>
+      <div style={{width: '100%', height: '100%', background: 'black'}}>
         <div style={style}>
-          <RotatingIcon />
+          <RotatingIcon sizeInPx={600}/>
         </div>
         <div style={style}>
-          <RotatingIcon sizeInPx={120} color='red'/>
+          <RotatingIcon sizeInPx={570} color='red'/>
         </div>
         <div style={style}>
-          <RotatingIcon sizeInPx={90} color='orange'/>
+          <RotatingIcon sizeInPx={540} color='orange'/>
+        </div>
+        <div style={style}>
+          <RotatingIcon sizeInPx={510} color='gray'/>
+        </div>
+        <div style={style}>
+          <RotatingIcon sizeInPx={480} color='cyan'/>
+        </div>
+        <div style={style}>
+          <RotatingIcon sizeInPx={450} color='yellow'/>
+        </div>
+        <div style={style}>
+          <Buzz word={'Loading...'} style={{background: 'black'}}/>
         </div>
       </div>
     )
