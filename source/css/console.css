@@ -1,0 +1,55 @@
+.console {
+  background: #333;
+  position: absolute;
+}
+
+.console::after{
+  content:" ";
+  display:block;
+  position:absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  background: black;
+  opacity: 0.03;
+  z-index:2;
+  pointer-events:none;
+  animation:console-flicker 0.01s infinite;
+}
+.console::before{
+  content:" ";
+  display:block;
+  position:absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  background: linear-gradient(
+                rgba(0, 0, 0, 0.2) 50%,
+                rgba(0, 0, 0, 0.5) 50%
+                ),
+             linear-gradient(
+               90deg,
+               rgba(0, 0, 0, 0),
+               rgba(0, 1, 0, 0.02),
+               rgba(0, 0, 1, 0.06)
+               );
+  z-index:2;
+  background-size:100% 2px, 3px 100%;
+  pointer-events:none;
+}
+
+@keyframes console-flicker{
+  0% {
+    opacity:0.06;
+  }
+  100% {
+    opacity:0.10;
+  }
+}
+
+.console .console-line-div{
+  height: 1vh;
+  font-size: 0.8vh;
+}
