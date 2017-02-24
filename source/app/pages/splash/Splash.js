@@ -1,4 +1,5 @@
 import React from 'react'
+import './splash.css'
 
 const convergeTiming = 2
 
