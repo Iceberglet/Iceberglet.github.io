@@ -1,14 +1,15 @@
 .pointer-navigator {
   background: #333;
+  width: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  cursor: grab;
 }
 
 .pointer-navigator .navigator-item {
   height: 50px;
   position: relative;
-  padding-right: 20%;
   width: 100%;
   font-size: 28px;
   color: white;
@@ -20,7 +21,8 @@
 
 .pointer-navigator .navigator-item .navigator-item-text {
   float: right;
-  padding-right: 20%;
+  padding-right: 24%;
+  cursor: pointer;
 }
 
 .pointer-navigator .navigator-marking {

@@ -15,7 +15,7 @@ export const PointerNavigator = React.createClass({
 
   renderList(){
     let res = this.props.items.map(i=><div className='navigator-item' key={i}>
-                                        <div className='navigator-item-text'>{i}</div>
+                                        <div className='navigator-item-text no-select'>{i}</div>
                                         <Marking />
                                       </div>)
     return res
