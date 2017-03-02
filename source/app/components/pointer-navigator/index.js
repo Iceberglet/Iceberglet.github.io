@@ -42,7 +42,6 @@ export const PointerNavigator = React.createClass({
 
   onScroll(e){
     let offset = this.state.offset + this.scrollMultipler * (e.deltaY > 0? -1 : 1)
-    console.log('Setting Offset to', this.state.offset, offset)
     this.setState({
       offset
     }, ()=>{
@@ -64,7 +63,6 @@ export const PointerNavigator = React.createClass({
 
   setScrollToItem(i){
     let offset = - i * this.props.itemHeight;
-    console.log('Force Offset to', this.state.offset, offset)
     this.setState({
       offset, curr: i
     })
