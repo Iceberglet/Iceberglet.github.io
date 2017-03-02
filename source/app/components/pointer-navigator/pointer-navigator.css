@@ -1,22 +1,50 @@
 .pointer-navigator {
+  position: relative;
   background: #333;
-  width: 300px;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  height: 100%;
+}
+
+.pointer-navigator .navigator-container {
+  position: absolute;
+  width: 100%;
+  align-self: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   cursor: grab;
+  cursor: -webkit-grab;
+  transition: 0.5s;
 }
 
 .pointer-navigator .navigator-item {
-  height: 50px;
+  height: 40px;
   position: relative;
   width: 100%;
-  font-size: 28px;
+  font-size: 20px;
   color: white;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
+  transition: 0.5s;
+}
+
+.pointer-navigator .navigator-item.navigator-current{
+  font-size: 24px;
+}
+
+.pointer-navigator .navigator-pointer{
+  position: absolute;
+  height: 40px;
+  width: 100%;
+  align-self: center;
+  background: orange;
+  clip-path: polygon(15% 0, 5% 50%, 15% 100%, 100% 100%, 100% 0);
 }
 
 .pointer-navigator .navigator-item .navigator-item-text {

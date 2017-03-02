@@ -57,6 +57,7 @@
     "react-input-enhancements": "0.4.9",
     "react-list": "0.7.18",
     "react-notification-system": "0.2.7",
+    "react-resize-detector": "^0.3.3",
     "react-sanfona": "0.0.10",
     "react-select": "^1.0.0-rc.2",
     "react-selectize": "^2.1.0",
