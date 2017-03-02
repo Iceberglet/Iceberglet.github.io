@@ -53,7 +53,6 @@ export const PointerNavigator = React.createClass({
   //Called after scroll finish
   recomputeOffset(){
     let i = Math.round(- this.state.offset / this.props.itemHeight)
-    console.log(i)
     i = Math.max(0, i)
     i = Math.min(i, this.props.items.length - 1)
     this.scrollTimeout = null;
