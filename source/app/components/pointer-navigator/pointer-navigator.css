@@ -31,6 +31,8 @@
   /*cursor: grab;
   cursor: -webkit-grab;*/
   transition: 0.5s;
+  transition-timing-function: linear;
+  -webkit-transition-timing-function: linear;
 }
 
 .pointer-navigator .navigator-item {
@@ -44,6 +46,7 @@
   align-items: center;
   justify-content: flex-end;
   transition: 0.5s;
+  cursor: pointer;
 }
 
 .pointer-navigator .navigator-item.navigator-current{
@@ -62,7 +65,6 @@
 .pointer-navigator .navigator-item .navigator-item-text {
   float: right;
   padding-right: 24%;
-  cursor: pointer;
 }
 
 .pointer-navigator .navigator-marking {

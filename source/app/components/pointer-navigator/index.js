@@ -36,18 +36,21 @@ export const PointerNavigator = React.createClass({
   //   })
   // },
 
-  scrollMultipler: 0.5,
-  scrollDelay: 150,   //If action happens within 100ms, do not recompute place
+  scrollMultipler: 50,
+  scrollDelay: 100,   //If action happens within 100ms, do not recompute place
   scrollTimeout: null,
 
   onScroll(e){
+    let offset = this.state.offset + this.scrollMultipler * (e.deltaY > 0? -1 : 1)
+    console.log('Setting Offset to', this.state.offset, offset)
     this.setState({
-      offset: this.state.offset + this.scrollMultipler * e.deltaY
+      offset
+    }, ()=>{
+      if(this.scrollTimeout){
+        window.clearTimeout(this.scrollTimeout)
+      }
+      this.scrollTimeout = setTimeout(this.recomputeOffset, this.scrollDelay)
     })
-    if(this.scrollTimeout){
-      window.clearTimeout(this.scrollTimeout)
-    }
-    this.scrollTimeout = setTimeout(this.recomputeOffset, this.scrollDelay)
   },
 
   //Called after scroll finish
@@ -61,6 +64,7 @@ export const PointerNavigator = React.createClass({
 
   setScrollToItem(i){
     let offset = - i * this.props.itemHeight;
+    console.log('Force Offset to', this.state.offset, offset)
     this.setState({
       offset, curr: i
     })
