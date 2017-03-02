@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactResizeDetector from 'react-resize-detector'
+// import ReactResizeDetector from 'react-resize-detector'
 import ReactDOM from 'react-dom'
 import { Marking } from './marking'
 import { getTransformStyle } from 'util'
@@ -22,23 +22,48 @@ export const PointerNavigator = React.createClass({
   getInitialState(){
     return {
       curr: 0,
-      containerHeight: null
+      offset: 0
     }
   },
 
-  onSelect(i){
-    this.setState({
-      curr: i
-    })
-  },
-
   componentDidMount(){
-    this.onResize()
+    // this.onResize()
   },
 
-  onResize(){
+  // onResize(){
+  //   this.setState({
+  //     containerHeight: ReactDOM.findDOMNode(this.containerNode).offsetHeight
+  //   })
+  // },
+
+  scrollMultipler: 0.5,
+  scrollDelay: 150,   //If action happens within 100ms, do not recompute place
+  scrollTimeout: null,
+
+  onScroll(e){
     this.setState({
-      containerHeight: ReactDOM.findDOMNode(this.containerNode).offsetHeight
+      offset: this.state.offset + this.scrollMultipler * e.deltaY
+    })
+    if(this.scrollTimeout){
+      window.clearTimeout(this.scrollTimeout)
+    }
+    this.scrollTimeout = setTimeout(this.recomputeOffset, this.scrollDelay)
+  },
+
+  //Called after scroll finish
+  recomputeOffset(){
+    let i = Math.round(- this.state.offset / this.props.itemHeight)
+    console.log(i)
+    i = Math.max(0, i)
+    i = Math.min(i, this.props.items.length - 1)
+    this.scrollTimeout = null;
+    this.setScrollToItem(i)
+  },
+
+  setScrollToItem(i){
+    let offset = - i * this.props.itemHeight;
+    this.setState({
+      offset, curr: i
     })
   },
 
@@ -48,7 +73,7 @@ export const PointerNavigator = React.createClass({
       if(this.state.curr === i){
         name += ' navigator-current'
       }
-      return (<div className={name} key={i} onClick={()=>{this.onSelect(i)}}>
+      return (<div className={name} key={i} onClick={()=>{this.setScrollToItem(i)}}>
                 <div className={'navigator-item-text no-select'}>{n}</div>
                 <Marking />
               </div>)
@@ -67,24 +92,18 @@ export const PointerNavigator = React.createClass({
   },
 
   render(){
-    if(this.state.containerHeight===null){  //Before initialization
-      return (<div className='pointer-navigator' ref={(c)=>{this.containerNode = c}}></div>)
-    }
-    let length = this.props.items.length
-    let H = this.state.containerHeight, h = this.props.itemHeight;
-    let offset = - this.state.curr * h;
-    // let top = Math.max(0, length - 2*this.state.curr - 1) + this.props.paddingDummies
-    // let btm = Math.max(0, 2*this.state.curr + 1 - length) + this.props.paddingDummies
+    let length = this.props.items.length;
     let top = length - 1 + this.props.paddingDummies
     let btm = this.props.paddingDummies
-    return (<div className='pointer-navigator' ref={(c)=>{this.containerNode = c}}>
-        <ReactResizeDetector handleHeight onResize={this.onResize} />
+    return (<div className='pointer-navigator' ref={(c)=>{this.containerNode = c}} onWheel={this.onScroll}>
+        {/*<ReactResizeDetector handleHeight onResize={this.onResize} />*/}
         <div className='navigator-pointer' key='pointer'/>
-        <div className='navigator-container' style={getTransformStyle('translate(0px, '+offset+'px)')}>
+        <div className='navigator-container' style={getTransformStyle('translate(0px, '+this.state.offset+'px)')}>
           {this.renderDummies(top, 'top')}
           {this.renderList()}
           {this.renderDummies(btm, 'btm')}
         </div>
+        <div className='gradient-mask' key='mask'/>
       </div>)
   }
 })
