@@ -30,9 +30,7 @@
   justify-content: center;
   /*cursor: grab;
   cursor: -webkit-grab;*/
-  transition: 0.5s;
-  transition-timing-function: linear;
-  -webkit-transition-timing-function: linear;
+  transition: linear 0.5s;
 }
 
 .pointer-navigator .navigator-item {

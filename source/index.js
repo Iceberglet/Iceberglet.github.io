@@ -8,7 +8,7 @@ import './css/base.css'
 let div = document.createElement('div');
 document.body.appendChild(div);
 ReactDOM.render(
-  // <App />,
-  <Test />,
+  <App />,
+  // <Test />,
   div
 );

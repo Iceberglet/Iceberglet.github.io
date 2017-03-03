@@ -18,7 +18,6 @@ export const Test = React.createClass({
   render(){
     return (
       <div style={{width: '100%', height: '100%', background: 'white'}}>
-        <PointerNavigator items={['Gallery', 'Main Page', 'Story Line', 'Certs and all', 'Contact Me', 'Gallery', 'Main Page', 'Story Line', 'Certs and all', 'Contact Me']}/>
         {/*<Console />*/}
         {/*<div style={style}>
           <RotatingIcon sizeInPx={600}/>

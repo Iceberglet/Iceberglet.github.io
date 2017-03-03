@@ -9,6 +9,7 @@ export const PointerNavigator = React.createClass({
   propTypes: {
     items: React.PropTypes.array.isRequired,
     itemHeight: React.PropTypes.number,
+    onSelect: React.PropTypes.func.isRequired,
     paddingDummies: React.PropTypes.number
   },
 
@@ -63,8 +64,11 @@ export const PointerNavigator = React.createClass({
 
   setScrollToItem(i){
     let offset = - i * this.props.itemHeight;
+    let needToInvoke = this.state.curr !== i
     this.setState({
       offset, curr: i
+    }, ()=>{
+      this.props.onSelect && this.props.onSelect(i)
     })
   },
 
