@@ -58,6 +58,16 @@ $inactive-color: #3c9eff;
       height: 100%;
       width: 100%;
     }
+    .title {
+      position: relative;
+      text-align: center;
+      font-size: 40px;
+      text-shadow: 3px;
+      color: white;
+      z-index: 999;
+      top: 10%;
+      left: 40%;
+    }
   }
   .overlay {
     width: 100%;

@@ -66,6 +66,7 @@ export const SpaceNavigator = React.createClass({
     this.targetable = []
     return (<div className='space-navigator' onMouseEnter={this.mouseIn} onMouseLeave={this.mouseLeave} >
           <div className='background' ref='backdrop'>
+            <div className='title'>Unleash the Unimaginable</div>
             <img src={'resources/space2.jpg'}/>
           </div>
           <div className='overlay' ref='overlay'>
