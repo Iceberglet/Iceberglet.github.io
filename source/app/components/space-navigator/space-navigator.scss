@@ -120,7 +120,7 @@ $inactive-color: #3c9eff;
 
     &.inactive{
       &.rotatable{
-        animation: rotate-clockwise 3s infinite linear;
+        animation: rotate-clockwise 0.6s infinite linear;
       }
       path,circle{
         transition: 1s;
@@ -130,9 +130,9 @@ $inactive-color: #3c9eff;
 
     &.active{
       &.rotatable{
-        animation:  rotate-clockwise 2s infinite ease-out;
+        animation:  rotate-clockwise 1s infinite ease-out;
       }
-      animation: pulse 2s infinite alternate ease-out;
+      animation: pulse 1s infinite alternate ease-out;
       path,circle{
         transition: 0.5s;
         stroke: url(#activeGradient);//
@@ -153,8 +153,8 @@ $inactive-color: #3c9eff;
 }
 
 @keyframes pulse {
-  0%   { transform: scale(1.14)}
-  100% { transform: scale(0.8)}
+  0%   { transform: scale(1.1)}
+  100% { transform: scale(0.9)}
 }
 
 @keyframes rotate-clockwise {
