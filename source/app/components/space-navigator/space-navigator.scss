@@ -44,15 +44,19 @@ $inactive-color: #3c9eff;
   height: 100%;
   width: 100%;
   cursor: none; /* Using our own customized cusor :) */
+  position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: space-around;
 
   .background{
+    position: relative;
+    min-height: 120%;
+    min-width: 120%;
     img {
       height: 100%;
-      width: 120%;
+      width: 100%;
     }
   }
   .overlay {
