@@ -1,0 +1,122 @@
+// @mixin animation($animate...) {
+//     $max: length($animate);
+//     $animations: '';
+//
+//     @for $i from 1 through $max {
+//         $animations: #{$animations + nth($animate, $i)};
+//
+//         @if $i < $max {
+//             $animations: #{$animations + ", "};
+//         }
+//     }
+//     -webkit-animation: $animations;
+//     -moz-animation:    $animations;
+//     -o-animation:      $animations;
+//     animation:         $animations;
+// }
+//
+// @mixin keyframes($animationName) {
+//     @-webkit-keyframes #{$animationName} {
+//         @content;
+//     }
+//     @-moz-keyframes #{$animationName} {
+//         @content;
+//     }
+//     @-o-keyframes #{$animationName} {
+//         @content;
+//     }
+//     @keyframes #{$animationName} {
+//         @content;
+//     }
+// }
+
+$active-color: white;
+$inactive-color: #3c9eff;
+
+.test-box {
+  width: 120px;
+  height: 120px;
+  background: blue;
+}
+
+
+.space-navigator {
+  height: 100%;
+  width: 100%;
+  cursor: none; /* Using our own customized cusor :) */
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  // overflow: hidden;
+
+}
+
+.scope {
+  pointer-events: none;
+  position: fixed;
+  width: 80px;
+  height: 80px;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+
+  .item {
+    position: absolute;
+    shape-rendering: geometricPrecision;
+    height: 100%;
+    width: 100%;
+  }
+
+  .pins{
+    transition: 0.3s;
+    path{
+      fill: $active-color;
+      transition: 0.6s;
+    }
+    &.inactive{
+      opacity: 0;
+    }
+
+    &.active{
+      opacity: 1;
+      animation: pulse 1s infinite alternate-reverse ease-out;
+      path {
+        transform: translate(0,0) !important;
+      }
+    }
+  }
+
+  .outer-wheel {
+
+    &.inactive{
+      &.rotatable{
+        animation: rotate-clockwise 3s infinite linear;
+      }
+      path,circle{
+        transition: 1s;
+        stroke: $inactive-color;
+      }
+    }
+
+    &.active{
+      &.rotatable{
+        animation:  rotate-clockwise 2s infinite ease-out;
+      }
+      animation: pulse 1s infinite alternate ease-out;
+      path,circle{
+        transition: 0.5s;
+        stroke: $active-color;
+      }
+    }
+  }
+}
+
+@keyframes pulse {
+  0%   { transform: scale(1)}
+  100% { transform: scale(0.8)}
+}
+
+@keyframes rotate-clockwise {
+  0%   { transform: rotate(0deg)}
+  100% { transform: rotate(360deg) }
+}

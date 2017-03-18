@@ -3,16 +3,16 @@ import './mascot.scss'
 
 export const Mascot = React.createClass({
   renderBody(){
-    return (
-      <svg width="200" height="200" >
-  			 <defs>
-  				 <mask id="hole">
-  			 		<rect width="100%" height="100%" fill="white"/>
-  				 	<circle r="50" cx="100" cy="100" fill="black" />
-  			 	</mask>
-  			</defs>
-  			<circle r="100" cx="100" cy="100" mask="url(#hole)" fill='red'/>
-  		</svg>
+    return (<div className='mascot'>
+        <div className='mascot-body'>
+          <svg width="100%" height="100%" viewPort="0 0 200 200">
+      			<circle r="100" cx="100" cy="100" fill='red'/>
+            <svg className='mascot-eye' clipPath="">
+
+            </svg>
+      		</svg>
+        </div>
+      </div>
     )
   },
   render(){
