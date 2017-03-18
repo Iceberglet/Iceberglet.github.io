@@ -7,7 +7,7 @@ const sizeOfNormalCursor = 80
 export const Scope = React.createClass({
   propTypes: {
     // motherNode: React.PropTypes.node,
-    targetNode: React.PropTypes.node
+    targetNode: React.PropTypes.object
   },
 
   componentWillReceiveProps(props){
@@ -54,19 +54,20 @@ export const Scope = React.createClass({
         <svg className={'item outer-wheel rotatable ' + inactiveClass} viewBox='-10 -10 120 120'>
           <defs>
             <linearGradient id="activeGradient">
-                <stop offset="0%"  stopColor="rgba(255,255,255,1)"/>
-                <stop offset="100%" stopColor="rgba(255,255,255,0.5)"/>
-            </linearGradient>
-            <linearGradient id="inactiveGradient">
                 <stop offset="0%"  stopColor="rgba(60,158,255,1)"/>
                 <stop offset="100%" stopColor="rgba(60,158,255,0.5)"/>
             </linearGradient>
+            <linearGradient id="inactiveGradient">
+                <stop offset="0%"  stopColor="rgba(60,158,255,1)"/>
+                <stop offset="100%" stopColor="rgba(60,158,255,0.8)"/>
+            </linearGradient>
           </defs>
-          <path d='M 50 2 A 48 48 0 0 1 98 50 ' strokeWidth='4' fill='none'/>
-          <path d='M 2 50 A 48 48 0 0 0 50 98' strokeWidth='4' fill='none'/>
+          <path d='M 50 2 A 48 48 0 0 1 98 50 ' strokeWidth='1' fill='none'/>
+          <path d='M 2 50 A 48 48 0 0 0 50 98' strokeWidth='1' fill='none'/>
         </svg>
         <svg className={'item outer-wheel ' + inactiveClass} viewBox='-10 -10 120 120'>
-           <circle cx="50" cy="50" r="50" fill='none' strokeWidth='2'/>
+           <circle cx="50" cy="50" r={this.props.targetNode? '48' : '25'} fill='none' strokeWidth='1'/>
+           {!this.props.targetNode && <circle cx="50" cy="50" r={'1'} fill='cyan' strokeWidth='0'/>}
         </svg>
         <svg className={'item pins ' + inactiveClass} viewBox='0 0 100 100'>
           <path d='M 49 0 L 51 0 L 50 18 Z' strokeWidth='0' style={{transform: 'translate(0, -200%)'}}/>

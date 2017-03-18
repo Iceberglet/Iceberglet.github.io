@@ -44,12 +44,27 @@ $inactive-color: #3c9eff;
   height: 100%;
   width: 100%;
   cursor: none; /* Using our own customized cusor :) */
-  background: black;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  // overflow: hidden;
 
+  .background{
+    img {
+      height: 100%;
+      width: 120%;
+    }
+  }
+  .overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
 }
 
 .scope {
@@ -62,6 +77,7 @@ $inactive-color: #3c9eff;
 
   .item {
     position: absolute;
+    align-self: center;
     shape-rendering: geometricPrecision;
     height: 100%;
     width: 100%;
@@ -70,7 +86,7 @@ $inactive-color: #3c9eff;
   .pins{
     transition: 0.3s;
     path{
-      fill: $active-color;
+      fill: $inactive-color;
       transition: 0.6s;
     }
     &.inactive{
@@ -102,7 +118,7 @@ $inactive-color: #3c9eff;
       &.rotatable{
         animation:  rotate-clockwise 2s infinite ease-out;
       }
-      animation: pulse 1s infinite alternate ease-out;
+      animation: pulse 2s infinite alternate ease-out;
       path,circle{
         transition: 0.5s;
         stroke: url(#activeGradient);//
@@ -123,7 +139,7 @@ $inactive-color: #3c9eff;
 }
 
 @keyframes pulse {
-  0%   { transform: scale(1)}
+  0%   { transform: scale(1.14)}
   100% { transform: scale(0.8)}
 }
 

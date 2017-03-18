@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Scope } from './scope'
 import './space-navigator.scss'
+import {registerToMouse, unsubFromMouse} from 'util'
 
 const cursorSize = 80
 
@@ -13,8 +14,9 @@ export const SpaceNavigator = React.createClass({
   },
   componentDidMount(){
     let canvas = this
-    Object.keys(this.refs).forEach(r=>{
-      let c = ReactDOM.findDOMNode(this.refs[r])
+    //For targetable items
+    this.targetable.forEach(r=>{
+      let c = ReactDOM.findDOMNode(r)
       c.addEventListener('mouseover', ()=>{
         canvas.setState({
           targetNode: c
@@ -26,6 +28,13 @@ export const SpaceNavigator = React.createClass({
         })
       })
     })
+
+    //For parallax items
+    // let scopeEl = ReactDOM.findDOMNode(this.refs.scope)
+    // this.f = registerToMouse((x, y)=>{
+    //   scopeEl.style.top = y+'px'
+    //   scopeEl.style.left = x+'px'
+    // })
   },
   componentWillUnmount(){
     delete this.canvas
@@ -41,11 +50,17 @@ export const SpaceNavigator = React.createClass({
     })
   },
   render(){
+    this.targetable = []
     return (<div className='space-navigator' onMouseEnter={this.mouseIn} onMouseLeave={this.mouseLeave} >
-          {this.state.mouseIn && <Scope ref='cursor' targetNode={this.state.targetNode}/>}
-          <div className='test-box' ref='testBox' />
-          <div className='test-box' ref='testBox1' />
-          <div className='test-box' ref='testBox2' />
-    </div>)
+          <div className='background' ref='slowest'>
+            <img src={'resources/space2.jpg'}/>
+          </div>
+          <div className='overlay'>
+            {this.state.mouseIn && <Scope ref='cursor' targetNode={this.state.targetNode}/>}
+            <div className='test-box' ref={x=>{this.targetable.push(x)}} />
+            <div className='test-box' ref={x=>{this.targetable.push(x)}} />
+            <div className='test-box' ref={x=>{this.targetable.push(x)}} />
+          </div>
+        </div>)
   }
 })
