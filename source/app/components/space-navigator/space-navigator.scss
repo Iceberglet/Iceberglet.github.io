@@ -70,7 +70,7 @@ $inactive-color: #3c9eff;
   .pins{
     transition: 0.3s;
     path{
-      fill: $active-color;
+      fill: url(#MyGradient);//$active-color;
       transition: 0.6s;
     }
     &.inactive{
@@ -108,6 +108,17 @@ $inactive-color: #3c9eff;
         stroke: $active-color;
       }
     }
+  }
+
+  .shader{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.05);
+    background: -webkit-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1)); /* Standard syntax */
   }
 }
 
