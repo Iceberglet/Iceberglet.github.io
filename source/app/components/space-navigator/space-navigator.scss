@@ -70,7 +70,7 @@ $inactive-color: #3c9eff;
   .pins{
     transition: 0.3s;
     path{
-      fill: url(#MyGradient);//$active-color;
+      fill: $active-color;
       transition: 0.6s;
     }
     &.inactive{
@@ -94,7 +94,7 @@ $inactive-color: #3c9eff;
       }
       path,circle{
         transition: 1s;
-        stroke: $inactive-color;
+        stroke: url(#inactiveGradient);
       }
     }
 
@@ -105,7 +105,7 @@ $inactive-color: #3c9eff;
       animation: pulse 1s infinite alternate ease-out;
       path,circle{
         transition: 0.5s;
-        stroke: $active-color;
+        stroke: url(#activeGradient);//
       }
     }
   }
