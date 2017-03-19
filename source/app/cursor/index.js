@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import {registerToMouse, unsubFromMouse} from 'util'
 import './cursor.scss'
 
-const sizeOfNormalCursor = 48
+const sizeOfNormalCursor = 32
 
 //******* For Outside World to Commnuicate ************
 let registeredCursor = null;
@@ -151,7 +151,7 @@ export const Cursor = React.createClass({
             </linearGradient>
           </defs>
         </svg>
-        {status==='inactive' || <svg className={'item outer-wheel rotatable ' + status} viewBox='-10 -10 120 120'>
+        {/*status==='inactive' ||*/ <svg className={'item outer-wheel rotatable ' + status} viewBox='-10 -10 120 120'>
           <path d='M 50 2 A 48 48 0 0 1 98 50 ' strokeWidth='4' fill='none'/>
           <path d='M 2 50 A 48 48 0 0 0 50 98' strokeWidth='4' fill='none'/>
         </svg>}
