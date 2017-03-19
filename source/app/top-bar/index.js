@@ -10,7 +10,11 @@ const MenuItem = React.createClass({
     onClick: React.PropTypes.func
   },
   render(){
-    return (<div className={'menu-item ' + this.props.active} onClick={()=>this.props.onClick(this.props.name)} onMouseOver={onHover} onMouseLeave={onExit}>
+    let eventListener = !this.props.active ? {
+      onMouseEnter: onHover,
+      onClick: ()=>this.props.onClick(this.props.name)
+    } : {}
+    return (<div className={'menu-item ' + this.props.active} {...eventListener} onMouseLeave={onExit}>
       <div className='text'>{this.props.name}</div>
       <div className='underline' style={{ background:this.props.lineColor }}/>
     </div>)

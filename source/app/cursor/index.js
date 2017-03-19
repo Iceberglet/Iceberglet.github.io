@@ -22,18 +22,10 @@ export const onExit = (e)=>{
   if(currentTarget !== e.target){
     return;
   } else {
+    registeredCursor.setStatus('inactive', null)
     currentTarget = null
-    registeredCursor.setStatus('inactive', currentTarget)
   }
 }
-// export const setColor = (...args)=>{
-//   if(registeredCursor){
-//     registeredCursor.setColor(...args)
-//   } else {
-//     console.error('No registeredCursor')
-//   }
-// }
-
 
 //***************** Cursor Definition *******************
 export const Cursor = React.createClass({
@@ -63,29 +55,8 @@ export const Cursor = React.createClass({
     return {
       status: 'inactive',
       ...this.parseCursorColor(this.props.cursorColor)
-      // inactive: {
-      //   color1: 'black',
-      //   color2: 'cyan'
-      // },
-      // active: {
-      //   color1: 'red',
-      //   color2: 'blue'
-      // },
-      // enlarged: {
-      //   color1: 'yellow',
-      //   color2: 'green'
-      // }
     }
   },
-
-  // setColor(r, g, b, status){
-  //   let color1 = `rgba(${r}, ${g}, ${b}, 1)`, color2 = `rgba(${r}, ${g}, ${b}, 0.8)`
-  //   this.setState({
-  //     [status]: {
-  //       color1, color2
-  //     }
-  //   })
-  // },
 
   setStatus(status, el){
     if(status !== 'enlarged'){
