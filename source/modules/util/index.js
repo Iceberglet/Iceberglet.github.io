@@ -8,4 +8,20 @@ export const getTransformStyle = (str)=>{
   }
 }
 
+const freq = 20 //ms
+export const scrollElement = (el, startTop, endTop, duration) => {
+  let step = (endTop - startTop) / duration * freq, i = 0
+  if(isNaN(step) || step===0){
+    console.log('No need to scroll? ', startTop, endTop, step)
+    return;
+  }
+  let interval = setInterval(()=>{
+    el.scrollTop = i * step + startTop
+    if((endTop - startTop) / step < i){
+      clearInterval(interval)
+    }
+    i = i+1;
+  }, freq)
+}
+
 export { registerToMouse, unsubFromMouse } from './screen-mouse-listener'

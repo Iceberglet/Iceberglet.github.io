@@ -5,6 +5,11 @@
 
   .main {
     position: relative;
+    opacity: 0.5;
+
+    &.enabled {
+      opacity: 1;
+    }
   }
 
   .sidekick {
@@ -14,10 +19,10 @@
   }
 
   &:hover{
-    .main {
+    .main.enabled {
       animation: slow 0.4s infinite alternate linear;
     }
-    .sidekick {
+    .sidekick.enabled {
       animation: moving 0.8s infinite linear;
     }
   }

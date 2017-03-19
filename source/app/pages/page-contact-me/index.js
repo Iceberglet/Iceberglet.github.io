@@ -1,8 +1,8 @@
 import React from 'react'
 
 const style = {
-  background: '#00005f',
-  color: 'white'
+  background: 'white',
+  color: 'black'
 }
 
 //****************** Contact Information ************************

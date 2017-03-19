@@ -11,36 +11,50 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 
 export const MainPage = React.createClass({
+
+  //************************* Scroll Related ********************
   onScroll(e){
     // console.log(e.target.scrollTop, e.target.scrollHeight, e.target.offsetHeight)
     let {scrollTop, scrollHeight, offsetHeight} = e.target
-    // console.log(scrollTop, scrollHeight, offsetHeight)
-    if(scrollTop > 0){
-      //Can scroll up
+    let {up, down} = this.state
+    let newUp = scrollTop > 0, newDown = scrollTop + offsetHeight < scrollHeight
+    if(newUp!==up || newDown!==down){
+      this.setState({
+        up: newUp, down: newDown
+      })
     }
-    if (scrollTop + offsetHeight < scrollHeight){
-      //Can scroll down
-    }
+  },
+
+  scrollToTop(){
+    this.refs.currentPage.scrollToTop()
+  },
+
+  scrollToBottom(){
+    this.refs.currentPage.scrollToBottom()
   },
 
   getInitialState(){
     return {
-      currentPage: Pages.Home
+      currentPage: Pages.Home,
+      up: false,
+      down: true
     }
   },
 
   onSelectPage(page){
     this.setState({
-      currentPage: Pages[Object.keys(Pages).find(p=>Pages[p].title===page)]
+      currentPage: Pages[Object.keys(Pages).find(p=>Pages[p].title===page)],
+      up: false,
+      down: true
     })
   },
 
   render(){
-    let currentPage = this.state.currentPage
+    let {currentPage, up, down} = this.state
     return (<div className='fill vflex'>
       <TopBar menuItems={Object.keys(Pages).map(p=>Pages[p].title)} currentItem={currentPage.title} onSelectPage={this.onSelectPage} style={currentPage.style}/>
-      <div className='go-up'><Arrow fontSize={80}/></div>
-      <div className='go-down'><Arrow fontSize={80} rotation={180}/></div>
+      <div className='go-up'><Arrow onClick={this.scrollToTop} enabled={up}/></div>
+      <div className='go-down'><Arrow rotation={180} onClick={this.scrollToBottom} enabled={down}/></div>
       <div className='page-wrapper'>
         <ReactCSSTransitionGroup transitionName='page-transition' transitionEnterTimeout={1000} transitionLeaveTimeout={1000}>
             <currentPage.page key={currentPage.title} onScroll={this.onScroll} ref='currentPage'/>

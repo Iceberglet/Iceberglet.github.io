@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.scss'
+import { scrollElement } from 'util'
 
 const style = {
   background: 'black',
@@ -20,6 +21,14 @@ const PageHome = React.createClass({
     el.scrollTop += delta
     console.log(el, el.scrollTop)
   },
+  scrollToTop(){
+    let el = ReactDOM.findDOMNode(this.refs.pageDiv)
+    scrollElement(el, el.scrollTop, 0, 300)
+  },
+  scrollToBottom(){
+    let el = ReactDOM.findDOMNode(this.refs.pageDiv)
+    scrollElement(el, el.scrollTop, el.scrollHeight - el.offsetHeight, 510)
+  },
   render(){
     return (<div className='page' style={style} onScroll={this.props.onScroll} ref={'pageDiv'}>
         <img src='resources/space2.jpg' className='backdrop no-select'/>
@@ -32,7 +41,7 @@ const PageHome = React.createClass({
 
 export const Home = {
   title: 'Welcome',
-  page: PageHome,
+  pageConfig: PageHome,
   style,
   cursorColor: {
     active: [0, 255, 200],
