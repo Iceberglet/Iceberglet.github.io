@@ -15,12 +15,12 @@ const PageHome = React.createClass({
   propTypes: {
     onScroll: React.PropTypes.func.isRequired
   },
-  scroll(delta){
-    let el = ReactDOM.findDOMNode(this.refs.pageDiv)
-    console.log(el, el.scrollTop)
-    el.scrollTop += delta
-    console.log(el, el.scrollTop)
-  },
+  // scroll(delta){
+  //   let el = ReactDOM.findDOMNode(this.refs.pageDiv)
+  //   console.log(el, el.scrollTop)
+  //   el.scrollTop += delta
+  //   console.log(el, el.scrollTop)
+  // },
   scrollToTop(){
     let el = ReactDOM.findDOMNode(this.refs.pageDiv)
     scrollElement(el, el.scrollTop, 0, 300)
@@ -41,7 +41,7 @@ const PageHome = React.createClass({
 
 export const Home = {
   title: 'Welcome',
-  pageConfig: PageHome,
+  page: PageHome,
   style,
   cursorColor: {
     active: [0, 255, 200],

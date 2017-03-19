@@ -53,8 +53,8 @@ export const MainPage = React.createClass({
     let {currentPage, up, down} = this.state
     return (<div className='fill vflex'>
       <TopBar menuItems={Object.keys(Pages).map(p=>Pages[p].title)} currentItem={currentPage.title} onSelectPage={this.onSelectPage} style={currentPage.style}/>
-      <div className='go-up'><Arrow onClick={this.scrollToTop} enabled={up}/></div>
-      <div className='go-down'><Arrow rotation={180} onClick={this.scrollToBottom} enabled={down}/></div>
+      <div className='go-up'><Arrow onClick={this.scrollToTop} enabled={up} color={currentPage.style.color}/></div>
+      <div className='go-down'><Arrow rotation={180} onClick={this.scrollToBottom} enabled={down} color={currentPage.style.color}/></div>
       <div className='page-wrapper'>
         <ReactCSSTransitionGroup transitionName='page-transition' transitionEnterTimeout={1000} transitionLeaveTimeout={1000}>
             <currentPage.page key={currentPage.title} onScroll={this.onScroll} ref='currentPage'/>
