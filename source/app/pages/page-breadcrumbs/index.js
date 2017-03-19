@@ -5,19 +5,19 @@ const style = {
   color: 'white'
 }
 
-const PageAboutMe = React.createClass({
+const PageBreadCrumbs = React.createClass({
   render(){
     return (<div className='page' style={style}>
         <div className='page-content'>
-          {'Hello I am another page'}
+        {'Hello I am Bread Crumbs'}
         </div>
       </div>)
   }
 })
 
-export const AboutMe = {
-  title: 'About Me',
-  page: PageAboutMe,
+export const BreadCrumbs = {
+  title: 'Breadcrumbs',
+  page: PageBreadCrumbs,
   style,
   cursorColor: {
     active: [0, 255, 200],

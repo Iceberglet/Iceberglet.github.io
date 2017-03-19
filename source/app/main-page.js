@@ -29,7 +29,7 @@ export const MainPage = React.createClass({
       <TopBar menuItems={Object.keys(Pages).map(p=>Pages[p].title)} currentItem={currentPage.title} onSelectPage={this.onSelectPage} style={currentPage.style}/>
       <div className='page-wrapper'>
         <ReactCSSTransitionGroup transitionName='page-transition' transitionEnterTimeout={1000} transitionLeaveTimeout={1000}>
-          <currentPage.page key={currentPage.title}/>
+            <currentPage.page key={currentPage.title}/>
         </ReactCSSTransitionGroup>
       </div>
       {<Cursor cursorColor={currentPage.cursorColor}/>}

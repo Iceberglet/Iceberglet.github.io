@@ -18,7 +18,7 @@ $inactive-color: #3c9eff;
     shape-rendering: geometricPrecision;
     height: 100%;
     width: 100%;
-    transform: rotate(-32deg);
+    transform: translate(6px, 6px) rotate(-32deg);      /*Rotate and Offsetting the cursor arrow*/
 
     path {
       stroke-width: 2;

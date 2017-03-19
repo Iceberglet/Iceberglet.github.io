@@ -45,7 +45,7 @@ export const Cursor = React.createClass({
     let colorObj = {}
     Object.keys(cursorColor).forEach(status=>{
       let [r, g, b] = cursorColor[status]
-      let color1 = `rgba(${r}, ${g}, ${b}, 1)`, color2 = `rgba(${r}, ${g}, ${b}, 0.8)`
+      let color1 = `rgba(${r}, ${g}, ${b}, 1)`, color2 = `rgba(${r}, ${g}, ${b}, 0.7)`
       colorObj[status] = {color1, color2}
     })
     return colorObj
