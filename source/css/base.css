@@ -2,6 +2,9 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+body * {
   cursor: none;
 }
 
@@ -66,4 +69,18 @@ body {
 .page-transition-leave.page-transition-leave-active {
   opacity: 0.01;
   transition: 0.8s;
+}
+
+.go-up {
+  position: fixed;
+  z-index: 999;
+  top: 40px;
+  left: 20px;
+}
+
+.go-down {
+  position: fixed;
+  z-index: 999;
+  bottom: 40px;
+  left: 20px;
 }
