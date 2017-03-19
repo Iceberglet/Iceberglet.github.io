@@ -29,6 +29,7 @@
       }
       .underline {
         transform: scale(1, 1);
+        opacity: 1;
       }
     }
 
@@ -39,7 +40,8 @@
         text-shadow: 0 0 15px white;
       }
       .underline {
-        transform: scale(1, 1);
+        transform: scale(30, 1);
+        opacity: 0;
       }
     }
 
@@ -53,9 +55,10 @@
       position: absolute;
       width: 80%;
       height: 1px;
-      bottom: 3px;
+      bottom: 1px;
       transition: 0.4s;
       transform: scale(0, 1);
+      opacity: 0;
     }
   }
 }
