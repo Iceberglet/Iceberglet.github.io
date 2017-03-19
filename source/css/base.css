@@ -1,7 +1,8 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, Helvetica, sans-serif
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: none;
 }
 
 .fill {
@@ -16,4 +17,9 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.vflex {
+  display: flex;
+  flex-direction: column;
 }

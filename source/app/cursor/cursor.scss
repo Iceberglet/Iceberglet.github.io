@@ -1,0 +1,86 @@
+
+
+$active-color: white;
+$inactive-color: #3c9eff;
+
+.cursor {
+  pointer-events: none;
+  position: fixed;
+  width: 48px;
+  height: 48px;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+
+  .item {
+    position: absolute;
+    align-self: center;
+    shape-rendering: geometricPrecision;
+    height: 100%;
+    width: 100%;
+  }
+
+  .pins{
+    transition: 0.3s;
+    path{
+      fill: url(#enlargedGradient);
+      transition: 0.6s;
+    }
+    &:not(.active){
+      opacity: 0;
+    }
+
+    &.enlarged{
+      opacity: 1;
+      animation: pulse 1s infinite alternate-reverse ease-out;
+      path {
+        transform: translate(0,0) !important;
+      }
+    }
+  }
+
+  .outer-wheel {
+
+    &.inactive{
+      path,circle{
+        transition: 1s;
+        stroke: url(#inactiveGradient);
+        fill: none;
+      }
+    }
+
+    &.active{
+      &.rotatable{
+        animation: rotate-clockwise 0.6s infinite linear;
+      }
+      path,circle{
+        transition: 1s;
+        stroke: url(#activeGradient);
+      }
+      circle{
+        fill: url(#activeGradient);
+      }
+    }
+
+    &.enlarged{
+      &.rotatable{
+        animation:  rotate-clockwise 1s infinite ease-out;
+      }
+      animation: pulse 1s infinite alternate ease-out;
+      path,circle{
+        transition: 0.5s;
+        fill: none;
+        stroke: url(#enlargedGradient);//
+      }
+    }
+  }
+}
+
+@keyframes pulse {
+  0%   { transform: scale(1.1)}
+  100% { transform: scale(0.9)}
+}
+
+@keyframes rotate-clockwise {
+  0%   { transform: rotate(0deg)}
+  100% { transform: rotate(360deg) }
+}
