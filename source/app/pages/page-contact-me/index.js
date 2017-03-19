@@ -7,15 +7,16 @@ const style = {
 
 const PageContactMe = React.createClass({
   render(){
-    return (<div style={style}>
+    return (<div className='page' style={style}>
         {'Hello I am a page'}
       </div>)
   }
 })
 
 export const ContactMe = {
+  title: 'Contact Me',
   page: PageContactMe,
-  ...style,
+  style,
   cursorColor: {
     active: [255, 0, 0],
     inactive: [0, 255, 200],
