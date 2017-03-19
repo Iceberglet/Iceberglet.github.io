@@ -24,6 +24,7 @@
       .text {
         opacity: 1;
         transform: translate(0, 0);
+        text-shadow: none;
       }
       .underline {
         transform: scale(1, 1);
@@ -34,6 +35,7 @@
       .text {
         opacity: 1;
         transform: translate(0, 8%);
+        text-shadow: 0 0 15px white;
       }
       .underline {
         transform: scale(1, 1);

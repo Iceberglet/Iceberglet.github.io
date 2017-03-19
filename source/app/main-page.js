@@ -13,7 +13,7 @@ export const MainPage = React.createClass({
 
   getInitialState(){
     return {
-      currentPage: Pages.ContactMe
+      currentPage: Pages.Home
     }
   },
 

@@ -17,7 +17,7 @@ const MenuItem = React.createClass({
       }
     } : {}
     return (<div className={'menu-item ' + this.props.active} {...eventListener} onMouseLeave={onExit}>
-      <div className='text'>{this.props.name}</div>
+      <div className='text no-select'>{this.props.name}</div>
       <div className='underline' style={{ background:this.props.lineColor }}/>
     </div>)
   }
