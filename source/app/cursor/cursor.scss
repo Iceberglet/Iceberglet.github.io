@@ -7,17 +7,27 @@ $inactive-color: #3c9eff;
   pointer-events: none;
   z-index: 999;
   position: fixed;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   transform: translate(-50%, -50%);
   transition: width 0.3s, height 0.3s;
 
-  .item {
+  .cursor-arrow {
     position: absolute;
     align-self: center;
     shape-rendering: geometricPrecision;
     height: 100%;
     width: 100%;
+    transform: rotate(-32deg);
+
+    path {
+      stroke-width: 2;
+      stroke: black;
+
+      &.moving {
+        animation: moving 0.8s infinite ease-out;
+      }
+    }
   }
 
   .pins{
@@ -73,6 +83,21 @@ $inactive-color: #3c9eff;
         stroke: url(#enlargedGradient);//
       }
     }
+  }
+}
+
+@keyframes moving {
+  0%   {
+    transform: translate(0, 80%);
+    opacity: 0;
+  }
+  50%   {
+    transform: translate(0, 20%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, -10%);
+    opacity: 0;
   }
 }
 

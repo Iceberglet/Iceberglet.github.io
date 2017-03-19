@@ -102,11 +102,40 @@ export const Cursor = React.createClass({
     this.subscribeToMovement(false)
   },
 
+  renderArrow(status){
+    switch(status){
+      case 'inactive' : return (<svg className='cursor-arrow' viewBox='-10 -10 120 120'>
+              <path d='M 50 0 L 85 100 L 50 76 L 15 100 Z' fill = 'url(#inactiveGradient)'/>
+            </svg>);
+      case 'active' : return (<svg className='cursor-arrow' viewBox='-10 -10 120 120'>
+            <path d='M 50 0 L 85 92 L 50 62 L 15 92 Z' fill = 'url(#activeGradient)'/>
+            <path className='moving' d='M 50 72 L 85 100 L 85 110 L 50 90 L 15 110 L 15 100 Z' fill = 'url(#activeGradient)'/>
+          </svg>)
+      case 'enlarged' : return (<svg>
+        <svg className={'cursor-arrow outer-wheel rotatable ' + status} viewBox='-10 -10 120 120'>
+          <path d='M 50 2 A 48 48 0 0 1 98 50 ' strokeWidth='4' fill='none'/>
+          <path d='M 2 50 A 48 48 0 0 0 50 98' strokeWidth='4' fill='none'/>
+        </svg>}
+        <svg className={'cursor-arrow outer-wheel ' + status} viewBox='-10 -10 120 120'>
+           <circle cx="50" cy="50" r={this.props.targetNode? '48' : '25'} strokeWidth='4'/>
+           {!this.props.targetNode && <circle cx="50" cy="50" r={'4'} strokeWidth='2'/>}
+        </svg>
+        <svg className={'cursor-arrow pins ' + status} viewBox='0 0 100 100'>
+          <path d='M 49 0 L 51 0 L 50 18 Z' strokeWidth='0' style={{transform: 'translate(0, -200%)'}}/>
+          <path d='M 100 49 L 100 51 L 82 50 Z' strokeWidth='0' style={{transform: 'translate(200%, 0)'}}/>
+          <path d='M 49 100 L 51 100 L 50 82 Z' strokeWidth='0' style={{transform: 'translate(0, 200%)'}}/>
+          <path d='M 0 49 L 0 51 L 18 50 Z' strokeWidth='0' style={{transform: 'translate(-200%, 0)'}}/>
+        </svg>
+      </svg>)
+    }
+    console.error('Unknown Status', status)
+  },
+
   render(){
     let {status, style} = this.state     //active, inactive, enlarged
     let {color1, color2} = this.state[status]
     return (<div className={'cursor'} ref='scope' style={style}>
-        <svg className='item'>
+        <svg className='cursor-arrow'>
           <defs>
             <linearGradient id="activeGradient">
                 <stop offset="0%"  stopColor={this.state.active.color1}/>
@@ -122,20 +151,10 @@ export const Cursor = React.createClass({
             </linearGradient>
           </defs>
         </svg>
-        {/*status==='inactive' ||*/ <svg className={'item outer-wheel rotatable ' + status} viewBox='-10 -10 120 120'>
-          <path d='M 50 2 A 48 48 0 0 1 98 50 ' strokeWidth='4' fill='none'/>
-          <path d='M 2 50 A 48 48 0 0 0 50 98' strokeWidth='4' fill='none'/>
-        </svg>}
-        <svg className={'item outer-wheel ' + status} viewBox='-10 -10 120 120'>
-           <circle cx="50" cy="50" r={this.props.targetNode? '48' : '25'} strokeWidth='4'/>
-           {!this.props.targetNode && <circle cx="50" cy="50" r={'4'} strokeWidth='2'/>}
-        </svg>
-        <svg className={'item pins ' + status} viewBox='0 0 100 100'>
-          <path d='M 49 0 L 51 0 L 50 18 Z' strokeWidth='0' style={{transform: 'translate(0, -200%)'}}/>
-          <path d='M 100 49 L 100 51 L 82 50 Z' strokeWidth='0' style={{transform: 'translate(200%, 0)'}}/>
-          <path d='M 49 100 L 51 100 L 50 82 Z' strokeWidth='0' style={{transform: 'translate(0, 200%)'}}/>
-          <path d='M 0 49 L 0 51 L 18 50 Z' strokeWidth='0' style={{transform: 'translate(-200%, 0)'}}/>
-        </svg>
+        {
+            this.renderArrow(status)
+        }
+        {/**/}
     </div>)
   }
 })

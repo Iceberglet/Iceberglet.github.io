@@ -12,7 +12,9 @@ const MenuItem = React.createClass({
   render(){
     let eventListener = !this.props.active ? {
       onMouseEnter: onHover,
-      onClick: ()=>this.props.onClick(this.props.name)
+      onClick: ()=>{
+        this.props.onClick(this.props.name)
+      }
     } : {}
     return (<div className={'menu-item ' + this.props.active} {...eventListener} onMouseLeave={onExit}>
       <div className='text'>{this.props.name}</div>
