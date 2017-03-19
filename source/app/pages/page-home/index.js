@@ -1,4 +1,5 @@
 import React from 'react'
+import './index.scss'
 
 const style = {
   background: 'black',
@@ -11,6 +12,7 @@ const style = {
 const PageHome = React.createClass({
   render(){
     return (<div className='page' style={style}>
+        <img src='resources/space2.jpg' className='backdrop'/>
         <div className='page-content'>
         {'Hello I am Home page'}
         </div>
