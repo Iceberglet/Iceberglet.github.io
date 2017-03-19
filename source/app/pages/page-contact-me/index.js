@@ -1,7 +1,9 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
+import { scrollElement } from 'util'
 
 const style = {
-  background: 'white',
+  background: '#e4e4e4',
   color: 'black'
 }
 

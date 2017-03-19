@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.scss'
 import { scrollElement } from 'util'
+import './index.scss'
 
 const style = {
   background: 'black',
