@@ -26,7 +26,7 @@ export const MainPage = React.createClass({
   render(){
     let currentPage = this.state.currentPage
     return (<div className='fill vflex'>
-      <TopBar menuItems={Object.keys(Pages).map(p=>Pages[p].title)} onSelectPage={this.onSelectPage} style={currentPage.style}/>
+      <TopBar menuItems={Object.keys(Pages).map(p=>Pages[p].title)} currentItem={currentPage.title} onSelectPage={this.onSelectPage} style={currentPage.style}/>
       <div className='page-wrapper'>
         <ReactCSSTransitionGroup transitionName='page-transition' transitionEnterTimeout={1000} transitionLeaveTimeout={1000}>
           <currentPage.page key={currentPage.title}/>
