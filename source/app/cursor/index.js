@@ -19,12 +19,15 @@ export const onEnlarge = (e)=>{
 }
 export const onExit = (e)=>{
   //deactivate cursor
-  if(currentTarget !== e.target){
-    return;
-  } else {
+  // if(currentTarget !== e.target){
+  //   return;
+  // } else {
     registeredCursor.setStatus('inactive', null)
     currentTarget = null
-  }
+  // }
+}
+export const cursorCallback = {
+  onMouseEnter: onHover, onMouseLeave: onExit
 }
 
 //***************** Cursor Definition *******************

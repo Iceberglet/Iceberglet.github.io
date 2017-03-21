@@ -1,0 +1,19 @@
+.timeline {
+  position: relative;
+  width: 100%;
+  display: flex;
+
+
+  .timeline-left {
+    flex: 5;
+  }
+
+  .timeline-center {
+    flex: 1;
+  }
+
+  .timeline-right {
+    flex: 5;
+  }
+
+}

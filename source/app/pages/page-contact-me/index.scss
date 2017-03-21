@@ -1,0 +1,28 @@
+.info-list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  .info-list-item {
+    display: flex;
+    position: relative;
+    padding-bottom: 4px;
+
+    .info-icon {
+      font-size: 18px;
+      margin-right: 5px;
+      color: #22229e;
+    }
+
+    a {
+      text-decoration: none;
+      font-size: 16px;
+      color: black;
+
+      &:hover {
+        text-shadow: 0px 0px 3px black;
+        color: cyan;
+      }
+    }
+  }
+}

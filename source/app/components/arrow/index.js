@@ -26,7 +26,8 @@ export const Arrow = React.createClass({
 
   render(){
     let enabled = this.props.enabled? 'enabled' : '', {color, fontSize, rotation} = this.props
-    return <div onClick={this.onClick} className='arrow' style={{...this.props.style, color, fontSize, transform: `rotate(${rotation}deg)`}} onMouseEnter={onHover} onMouseLeave={onExit}>
+    let cb = this.props.enabled? {onMouseEnter: onHover } : {};
+    return <div onClick={this.onClick} className='arrow' style={{...this.props.style, color, fontSize, transform: `rotate(${rotation}deg)`}} {...cb} onMouseLeave={onExit}>
       <i className={'fa fa-angle-up main ' + enabled} />
       <i className={'fa fa-angle-up sidekick ' + enabled} />
     </div>
