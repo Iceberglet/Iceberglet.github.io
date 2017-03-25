@@ -3,20 +3,42 @@
 
   .backdrop {
     position: absolute;
-    max-width: 120%;
+    width: 120%;
+    height: 100%;
     left: -10%;
     top: 0px;
   }
 
   .page-content {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
 
     .top-title {
-      position: relative;
-      top: 50px;
-      font-size: 36px;
+      position: absolute;
+      bottom: 15%;
+      font-size: 40px;
       animation: float-up 1s normal linear;
+    }
+
+    .four-pinnacle {
+      align-self: center;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      justify-content: space-around;
+
+      .content-box {
+        position: relative;
+        width: 300px;
+        background: transparent;
+      }
     }
   }
 }

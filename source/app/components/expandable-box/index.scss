@@ -1,0 +1,96 @@
+
+.expandable-box-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    .box-label {
+      transform: scale(5, 0);
+      opacity: 0;
+    }
+
+    .box-content {
+      .border {
+        &::before,
+        &::after {
+          width: 80%;
+          height: 10%;
+        }
+
+        &::before {
+          border-top-color: cyan; // Make borders visible
+          border-left-color: cyan;
+          transition:
+            width 0.25s ease-out, // Width expands first
+            height 0.25s ease-out; // And then height
+        }
+
+        &::after {
+          border-bottom-color: cyan; // Make borders visible
+          border-right-color: cyan;
+          transition:
+            width 0.25s ease-out, // And then exanding width
+            height 0.25s ease-out; // And finally height
+        }
+      }
+
+      .content-holder {
+         transform: scale(1, 1);
+      }
+    }
+  }
+
+  .box-label {
+    position: absolute;
+    align-self: center;
+    transform: scale(1, 1);
+    transition: 0.15s;
+    opacity: 1;
+  }
+
+  .box-content {
+    position: relative;
+    align-self: center;
+    padding: 10px;
+
+    .content-holder {
+      transform: scale(1, 0);
+      transition: 0.5s;
+    }
+
+    .border {
+      position: absolute;
+      z-index: 9999;
+      top: 0px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+
+      transition: color 0.25s;
+
+      &::before,
+      &::after {
+        box-sizing: border-box;
+        content: '';
+        position: absolute;
+        width: 0%;
+        height: 0%;
+        border: 2px solid transparent; // Set border to invisible, so we don't see a 4px border on a 0x0 element before the transition starts
+        width: 0;
+        height: 0;
+      }
+      // This covers the top & right borders (expands right, then down)
+      &::before {
+        top: 0;
+        left: 0;
+      }
+      // And this the bottom & left borders (expands left, then up)
+      &::after {
+        bottom: 0;
+        right: 0;
+      }
+    }
+  }
+}

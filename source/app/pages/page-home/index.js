@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { scrollElement } from 'util'
+import { ExpandableBox } from 'app/components/expandable-box'
 import './index.scss'
 
 const style = {
@@ -33,7 +34,33 @@ const PageHome = React.createClass({
     return (<div className='page' style={style} onScroll={this.props.onScroll} ref={'pageDiv'}>
         <img src='resources/space2.jpg' className='backdrop no-select'/>
         <div className='page-content'>
-          <div className='top-title no-select'>&nbsp;&nbsp;&nbsp;Venture into the Unimaginable</div>
+          <div className='top-title no-select'>&nbsp;&nbsp;&nbsp;The Four Pinnacles of Front End Engineering</div>
+          <div className='four-pinnacle'>
+            <ExpandableBox style={{marginTop: '18%'}}>
+              <div>{'Style'}</div>
+              <div className={'content-box'}>
+                {'Clean is the new fashion'}
+              </div>
+            </ExpandableBox>
+            <ExpandableBox style={{marginTop: '12%'}}>
+              <div>{'Resposive'}</div>
+              <div className={'content-box'}>
+                {'Responsiveness, or feedback on controls, is an indispensable element in interactive sites and webapps'}
+              </div>
+            </ExpandableBox>
+            <ExpandableBox style={{marginTop: '12%'}}>
+              <div>{'Swag'}</div>
+              <div className={'content-box'}>
+                {'Swag is always sought after nowadays. It is the same as'}
+              </div>
+            </ExpandableBox>
+            <ExpandableBox style={{marginTop: '18%'}}>
+              <div>{'Content'}</div>
+              <div className={'content-box'}>
+                {'If UI is the outer appearance, then content is the soul of the webapp body. '}
+              </div>
+            </ExpandableBox>
+          </div>
         </div>
       </div>)
   }

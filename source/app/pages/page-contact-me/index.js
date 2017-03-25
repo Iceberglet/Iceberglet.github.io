@@ -25,11 +25,11 @@ const PageContactMe = React.createClass({
     return (<div className='page' style={style} ref={'pageDiv'}>
         <div className='page-content'>
           <div className='info-list'>
-            <div className='info-list-item'><i className='info-icon fa fa-envelope-o fa-fw'/>{'dragoon.cm@hotmail.com'}</div>
-            <div className='info-list-item'><i className='info-icon fa fa-phone-square fa-fw'/>{'+65 82288168'}</div>
-            <div className='info-list-item'><i className='info-icon fa fa-linkedin-square fa-fw'/><a href='https://www.linkedin.com/in/chen-min-nus-paristech' {...cursorCallback}>{'My Linkedin'}</a></div>
-            <div className='info-list-item'><i className='info-icon fa fa-facebook-square fa-fw'/><a href='https://www.facebook.com/min.chen.7146' {...cursorCallback}>{'My Facebook'}</a></div>
-            <div className='info-list-item'><i className='info-icon fa fa-github fa-fw'/><a href='https://github.com/Iceberglet' {...cursorCallback}>{'My Github'}</a></div>
+            <div className='info-list-item' {...cursorCallback}><i className='info-icon fa fa-envelope-o fa-fw'/>{'dragoon.cm@hotmail.com'}</div>
+            <div className='info-list-item' {...cursorCallback}><i className='info-icon fa fa-phone-square fa-fw'/>{'+65 82288168'}</div>
+            <div className='info-list-item' {...cursorCallback}><i className='info-icon fa fa-linkedin-square fa-fw'/><a href='https://www.linkedin.com/in/chen-min-nus-paristech'>{'My Linkedin'}</a></div>
+            <div className='info-list-item' {...cursorCallback}><i className='info-icon fa fa-facebook-square fa-fw'/><a href='https://www.facebook.com/min.chen.7146'>{'My Facebook'}</a></div>
+            <div className='info-list-item' {...cursorCallback}><i className='info-icon fa fa-github fa-fw'/><a href='https://github.com/Iceberglet'>{'My Github'}</a></div>
           </div>
         </div>
       </div>)
