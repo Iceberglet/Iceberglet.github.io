@@ -69,7 +69,7 @@ $labelBorderColor: #46a2ff;
       position: absolute;
       opacity: 1;
       transition: 0.4s;
-      height: 1px;
+      height: 3px;
       width: 100%;
       background: $labelBorderColor;
     }
@@ -115,7 +115,7 @@ $labelBorderColor: #46a2ff;
         position: absolute;
         width: 0%;
         height: 0%;
-        border: 2px solid transparent; // Set border to invisible, so we don't see a 4px border on a 0x0 element before the transition starts
+        border: 3px solid transparent; // Set border to invisible, so we don't see a 4px border on a 0x0 element before the transition starts
         width: 0;
         height: 0;
       }

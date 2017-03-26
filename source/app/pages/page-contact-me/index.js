@@ -32,7 +32,9 @@ const PageContactMe = React.createClass({
             <div className='info-list-item' {...cursorCallback}><i className='info-icon fa fa-facebook-square fa-fw'/><a href='https://www.facebook.com/min.chen.7146'>{'My Facebook'}</a><i className='hyperlink fa fa-angle-right fa-fw'/></div>
             <div className='info-list-item' {...cursorCallback}><i className='info-icon fa fa-github fa-fw'/><a href='https://github.com/Iceberglet'>{'My Github'}</a><i className='hyperlink fa fa-angle-right fa-fw'/></div>
           </div>
-          <RandomBezierCurveArrow />
+          {/*<div className='info-arrow'>
+            <RandomBezierCurveArrow />
+          </div>*/}
         </div>
       </div>)
   }

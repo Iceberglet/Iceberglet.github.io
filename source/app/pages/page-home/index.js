@@ -34,7 +34,7 @@ const PageHome = React.createClass({
     return (<div className='page' style={style} onScroll={this.props.onScroll} ref={'pageDiv'}>
         <img src='resources/space2.jpg' className='backdrop no-select'/>
         <div className='page-content'>
-          <div className='top-title no-select'>&nbsp;&nbsp;&nbsp;The Four Pinnacles of Front End Engineering</div>
+          <div className='top-title no-select'>&nbsp;&nbsp;&nbsp;The Four Bases of Front End Engineering</div>
           <div className='four-pinnacle'>
             <ExpandableBox style={{marginTop: '60px'}}>
               <div className={'content-title'}>{'Style'}</div>
