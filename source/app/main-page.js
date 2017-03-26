@@ -7,10 +7,16 @@ import { Cursor } from './cursor'
 import { Pages } from './pages'
 import { Arrow } from './components/arrow'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-
+import LocalStorageMixin from 'react-localstorage'
 
 
 export const MainPage = React.createClass({
+  mixins: [LocalStorageMixin],
+  getDefaultProps: function() {
+    return {
+      stateFilterKeys: ['currentPage']
+    };
+  },
 
   //************************* Scroll Related ********************
   onScroll(e){
@@ -35,15 +41,15 @@ export const MainPage = React.createClass({
 
   getInitialState(){
     return {
-      currentPage: Pages.Home,
+      currentPage: 0,
       up: false,
       down: true
     }
   },
 
-  onSelectPage(page){
+  onSelectPage(idx){
     this.setState({
-      currentPage: Pages[Object.keys(Pages).find(p=>Pages[p].title===page)],
+      currentPage: idx,
       up: false,
       down: true
     })
@@ -51,16 +57,17 @@ export const MainPage = React.createClass({
 
   render(){
     let {currentPage, up, down} = this.state
+    let page = Pages[currentPage]
     return (<div className='fill vflex'>
-      <TopBar menuItems={Object.keys(Pages).map(p=>Pages[p].title)} currentItem={currentPage.title} onSelectPage={this.onSelectPage} style={currentPage.style}/>
-      <div className='go-up'><Arrow onClick={this.scrollToTop} enabled={up} color={currentPage.style.color}/></div>
-      <div className='go-down'><Arrow rotation={180} onClick={this.scrollToBottom} enabled={down} color={currentPage.style.color}/></div>
+      <TopBar menuItems={Object.keys(Pages).map(p=>Pages[p].title)} currentItem={page.title} onSelectPage={this.onSelectPage} style={page.style}/>
+      <div className='go-up'><Arrow onClick={this.scrollToTop} enabled={up} color={page.style.color}/></div>
+      <div className='go-down'><Arrow rotation={180} onClick={this.scrollToBottom} enabled={down} color={page.style.color}/></div>
       <div className='page-wrapper'>
         <ReactCSSTransitionGroup transitionName='page-transition' transitionEnterTimeout={1000} transitionLeaveTimeout={1000}>
-            <currentPage.page key={currentPage.title} onScroll={this.onScroll} ref='currentPage'/>
+            <page.page key={page.title} onScroll={this.onScroll} ref='currentPage'/>
         </ReactCSSTransitionGroup>
       </div>
-      {<Cursor cursorColor={currentPage.cursorColor}/>}
+      {<Cursor cursorColor={page.cursorColor}/>}
     </div>)
   }
 })

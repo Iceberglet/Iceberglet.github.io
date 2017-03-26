@@ -4,7 +4,7 @@ import { BreadCrumbs } from './page-breadcrumbs'
 import { Home } from './page-home'
 import ReactDOM from 'react-dom'
 
-export const Pages = {Home, BreadCrumbs, AboutMe, ContactMe}
+export const Pages = [Home, BreadCrumbs, AboutMe, ContactMe]
 
 // Object.keys(Pages).forEach(pg=>{
 //   let p =Pages[pg]

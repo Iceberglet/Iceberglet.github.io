@@ -2,17 +2,26 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  border: 1px solid gray;
+  padding: 16px;
+  padding-top: 28px;
 
   .info-list-item {
     display: flex;
     position: relative;
-    padding-bottom: 4px;
+    padding-bottom: 12px;
 
     .info-icon {
       font-size: 18px;
       margin-right: 5px;
       color: #22229e;
       transition: 0.3s;
+    }
+
+    .hyperlink {
+      transition: 0.3s;
+      opacity: 0;
+      font-size: 18px;
     }
 
     a {
@@ -26,6 +35,11 @@
   .info-list-item:hover{
     .info-icon {
       transform: translate(-3px, 0px);
+    }
+
+    .hyperlink {
+      opacity: 1;
+      transform: translate(30%, 0px);
     }
 
     a {

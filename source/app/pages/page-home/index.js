@@ -43,7 +43,7 @@ const PageHome = React.createClass({
               </div>
             </ExpandableBox>
             <ExpandableBox style={{marginTop: '-60px'}}>
-              <div className={'content-title'}>{'Resposive'}</div>
+              <div className={'content-title'}>{'Response'}</div>
               <div className={'content-box'}>
                 {'Responsiveness, or feedback on controls, is an indispensable element in interactive sites and webapps, just like this box appears when your cursor moves over it, letting you know that your action, whether intended or not, is listened to by the browser'}
               </div>

@@ -5,6 +5,7 @@ import { onHover, onExit } from 'app/cursor'
 const MenuItem = React.createClass({
   propTypes: {
     name: React.PropTypes.string,
+    idx: React.PropTypes.number,
     lineColor: React.PropTypes.string,
     active: React.PropTypes.node,
     onClick: React.PropTypes.func
@@ -13,7 +14,7 @@ const MenuItem = React.createClass({
     let eventListener = !this.props.active ? {
       onMouseEnter: onHover,
       onClick: ()=>{
-        this.props.onClick(this.props.name)
+        this.props.onClick(this.props.idx)
       }
     } : {}
     return (<div className={'menu-item ' + this.props.active} {...eventListener} onMouseLeave={onExit}>
@@ -34,7 +35,7 @@ export const TopBar = React.createClass({
   render(){
     return (<div className='top-bar' style={this.props.style}>
       {this.props.menuItems.map((str, i)=>{
-        return <MenuItem name={str} onClick={this.props.onSelectPage} key={str} ref={str}
+        return <MenuItem name={str} idx={i} onClick={this.props.onSelectPage} key={str} ref={str}
                 lineColor={this.props.style.color} active={str===this.props.currentItem && 'active'}/>
       })}
     </div>)
