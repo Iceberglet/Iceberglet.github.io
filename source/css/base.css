@@ -4,6 +4,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.bradley {
+  font-family: BradleyHand-Bold;
+}
+
 body * {
   cursor: none;
   -ms-overflow-style: none;
