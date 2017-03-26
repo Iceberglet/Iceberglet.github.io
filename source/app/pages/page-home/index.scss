@@ -35,7 +35,7 @@
       align-items: center;
       width: 100%;
       justify-content: space-around;
-      top: 20%;
+      top: 14%;
 
       .content-title {
         font-size: 32px;
@@ -52,6 +52,7 @@
         align-items: center;
         padding-left: 30px;
         padding-right: 30px;
+        background: radial-gradient(ellipse at center, black 0%, transparentize(black, 0.2) 50%, transparent 80%);
       }
     }
   }

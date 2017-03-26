@@ -49,15 +49,15 @@ const PageHome = React.createClass({
               </div>
             </ExpandableBox>
             <ExpandableBox style={{marginTop: '-60px'}}>
-              <div className={'content-title'}>{'Swag'}</div>
+              <div className={'content-title'}>{'Zazziness'}</div>
               <div className={'content-box'}>
-                {'Swag is always sought after. Whether you want it futuristic science-y, the 1930s old classy, or downright minimalist, you always need a fixed throughout your product that catches the intended audiences. '}
+                {'Swag is the WOW! factor that is hightly sought after. Whether you want it futuristic science-y, the 1930s old classy, or downright minimalist, you always need a fixed element running throughout your product that catches the intended audiences. '}
               </div>
             </ExpandableBox>
             <ExpandableBox style={{marginTop: '60px'}}>
               <div className={'content-title'}>{'Content'}</div>
               <div className={'content-box'}>
-                {'If UI is the outer appearance, then content is the soul of the webapp body. After all, nobody will come to your site just to admire your UI (well, maybe front-end engineers do). Also, good content is the best way to achieve SEO as well.'}
+                {'If UI is the outer appearance, then content is the soul of the webapp body. After all, nobody will come to your site just to admire your UI (well, maybe front-end engineers do). Also, good content is the best way to achieve SEO as well. Also, never decouple content with UI. The two must be form a symbiotic duo in order for the site to be consistent and enjoyable to use'}
               </div>
             </ExpandableBox>
           </div>

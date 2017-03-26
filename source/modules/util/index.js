@@ -24,4 +24,8 @@ export const scrollElement = (el, startTop, endTop, duration) => {
   }, freq)
 }
 
+export const randomBetween = (l, h) => {
+  return Math.random() * (h - l) + l
+}
+
 export { registerToMouse, unsubFromMouse } from './screen-mouse-listener'
