@@ -1,3 +1,5 @@
+$borderColor: #46a2ff; //cyan;
+$labelBorderColor: #46a2ff;
 
 .expandable-box-container {
   display: flex;
@@ -7,8 +9,16 @@
 
   &:hover {
     .box-label {
-      transform: scale(5, 0);
+      // transform: scale(5, 0);
       opacity: 0;
+
+      .box-label-top {
+        transform: translate(100%, 0%);
+      }
+
+      .box-label-btm {
+        transform: translate(-100%, 0%);
+      }
     }
 
     .box-content {
@@ -20,24 +30,29 @@
         }
 
         &::before {
-          border-top-color: cyan; // Make borders visible
-          border-left-color: cyan;
+          border-top-color: $borderColor; // Make borders visible
+          border-left-color: $borderColor;
+          -webkit-mask-image: -webkit-gradient(linear, left top, right bottom,
+              from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
           transition:
-            width 0.25s ease-out, // Width expands first
-            height 0.25s ease-out; // And then height
+            width 0.35s ease-out, // Width expands first
+            height 0.35s ease-out; // And then height
         }
 
         &::after {
-          border-bottom-color: cyan; // Make borders visible
-          border-right-color: cyan;
+          border-bottom-color: $borderColor; // Make borders visible
+          border-right-color: $borderColor;
+          -webkit-mask-image: -webkit-gradient(linear, right bottom, left top,
+              from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
           transition:
-            width 0.25s ease-out, // And then exanding width
-            height 0.25s ease-out; // And finally height
+            width 0.35s ease-out, // And then exanding width
+            height 0.35s ease-out; // And finally height
         }
       }
 
       .content-holder {
-         transform: scale(1, 1);
+        //  transform: scale(1, 1);
+        opacity: 1;
       }
     }
   }
@@ -45,9 +60,31 @@
   .box-label {
     position: absolute;
     align-self: center;
-    transform: scale(1, 1);
-    transition: 0.15s;
+    // transform: scale(1, 1);
+    transition: 0.35s;
+    padding: 15px;
     opacity: 1;
+
+    .box-label-top,.box-label-btm{
+      position: absolute;
+      opacity: 1;
+      transition: 0.4s;
+      height: 1px;
+      width: 100%;
+      background: $labelBorderColor;
+    }
+
+    .box-label-top {
+      top: 0px;
+      right: 0px;
+      background: linear-gradient(to right, transparent 0%, transparentize($labelBorderColor, 0.5) 30%, $labelBorderColor 100%);
+    }
+
+    .box-label-btm {
+      bottom: 0px;
+      left: 0px;
+      background: linear-gradient(to left, transparent 0%, transparentize($labelBorderColor, 0.5) 30%, $labelBorderColor 100%);
+    }
   }
 
   .box-content {
@@ -56,7 +93,8 @@
     padding: 10px;
 
     .content-holder {
-      transform: scale(1, 0);
+      // transform: scale(1, 0);
+      opacity: 0;
       transition: 0.5s;
     }
 
@@ -68,7 +106,7 @@
       width: 100%;
       height: 100%;
 
-      transition: color 0.25s;
+      transition: color 0.4s;
 
       &::before,
       &::after {

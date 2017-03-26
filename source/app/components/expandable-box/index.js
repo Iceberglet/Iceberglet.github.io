@@ -15,6 +15,8 @@ export const ExpandableBox=React.createClass({
   render(){
     return <div className='expandable-box-container' style={this.props.style}>
       <div className='box-label'>
+        <div className='box-label-top' />
+        <div className='box-label-btm' />
         {this.props.children[0]  /* The first children is the one shown by default */}
       </div>
       <div className='box-content'>
