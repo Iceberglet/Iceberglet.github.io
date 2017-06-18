@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { scrollElement } from 'util'
 import './index.scss'
-import { cursorCallback } from 'app/cursor'
+import { cursorCallback } from 'fancy-cursor'
 import { RandomBezierCurveArrow } from 'app/components/random-bezier-curve-arrow'
 
 const style = {

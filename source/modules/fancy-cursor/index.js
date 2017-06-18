@@ -8,23 +8,18 @@ const sizeOfNormalCursor = 32
 //******* For Outside World to Commnuicate ************
 let registeredCursor = null;
 let currentTarget = null;
-export const onHover = (e)=>{
+const onHover = (e)=>{
   //activate cursor
   currentTarget = e.target
-  registeredCursor.setStatus('active', currentTarget)
+  registeredCursor && registeredCursor.setStatus('active', currentTarget)
 }
-export const onEnlarge = (e)=>{
+const onEnlarge = (e)=>{
   currentTarget = e.target
-  registeredCursor.setStatus('enlarged', currentTarget)
+  registeredCursor && registeredCursor.setStatus('enlarged', currentTarget)
 }
-export const onExit = (e)=>{
-  //deactivate cursor
-  // if(currentTarget !== e.target){
-  //   return;
-  // } else {
-    registeredCursor.setStatus('inactive', null)
-    currentTarget = null
-  // }
+const onExit = (e)=>{
+  registeredCursor && registeredCursor.setStatus('inactive', null)
+  currentTarget = null
 }
 export const cursorCallback = {
   onMouseEnter: onHover, onMouseLeave: onExit

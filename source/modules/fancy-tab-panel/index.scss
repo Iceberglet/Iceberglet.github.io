@@ -1,0 +1,83 @@
+//Overall dimensions
+// $panel-height: 40px;
+$panel-width-min: 500px;
+$panel-height-min: 400px;
+
+//tab-dimensions
+$tab-text-font-size: 16px;
+
+//colors:
+$top-bar-background-color: darkgray;
+$tab-border-color: gray;
+$tab-color: lightgray;
+$tab-delete-color: #7c7c7c;
+$tab-delete-hover-color: black;
+$tab-selected-color: lime;
+$tab-text-color: black;
+
+//transition time
+$tab-transition-time: 0.3s;
+$tab-selection-time: 0.15s;
+
+.fancy-tab-panel {
+  .top-panel {
+    position: relative;
+    width: 100%;
+    // height: $panel-height;
+    background-color: $top-bar-background-color;
+    border-bottom: 3px solid $tab-selected-color;
+
+    .tab {  //svg element
+      transition: $tab-transition-time;
+      position: absolute;
+      bottom: 0px;
+
+      .tab-content {
+        position: absolute;
+        align-items: center;
+        display: flex;
+        text-indent: 5px;
+        overflow: hidden;
+        transition: $tab-selection-time;
+
+        .tab-delete-icon {
+          position: absolute;
+          right: 0px;
+          bottom: 0px;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+
+          i {
+            font-size: $tab-text-font-size;
+            color: $tab-delete-color;
+            transition: 0.2s;
+          }
+
+          &:hover{
+            i {
+              color: $tab-delete-hover-color;
+            }
+          }
+        }
+      }
+
+      svg {
+        position: absolute;
+        font-size: $tab-text-font-size;
+        fill: $tab-color;
+        stroke: $tab-border-color;
+        transition: $tab-selection-time;
+      }
+
+      &.selected {
+        .tab-content {
+          bottom: -2px;
+        }
+        svg {
+          fill: $tab-selected-color;
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 import './index.scss'
-import { onHover, onExit } from 'app/cursor'
+import { onHover, onExit } from 'fancy-cursor'
 
 export const Arrow = React.createClass({
   propTypes: {

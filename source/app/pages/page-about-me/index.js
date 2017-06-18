@@ -32,6 +32,6 @@ export const AboutMe = {
   cursorColor: {
     active: [0, 255, 200],
     inactive: [0, 255, 200],
-    enlarged: [0, 255, 0]
+    enlarged: [255, 0, 0]
   }
 }

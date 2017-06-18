@@ -24,6 +24,17 @@ export const scrollElement = (el, startTop, endTop, duration) => {
   }, freq)
 }
 
+//NOTE: func should be parameter-less.
+export const postpone = (func, graceTime=1000)=>{
+  let timer;
+  return ()=>{
+    if(timer){
+      clearTimeout(timer)
+    }
+    let timer = setTimeout(()=>func(), graceTime)
+  }
+}
+
 export const randomBetween = (l, h) => {
   return Math.random() * (h - l) + l
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 // import { Splash } from './pages/splash/Splash.js'
 import { TopBar } from './top-bar'
-import { Cursor } from './cursor'
+import { Cursor } from 'fancy-cursor'
 // import { ContactMe } from './pages/page-contact-me'
 // import { AboutMe } from './pages/page-about-me'
 import { Pages } from './pages'
@@ -67,7 +67,7 @@ export const MainPage = React.createClass({
             <page.page key={page.title} onScroll={this.onScroll} ref='currentPage'/>
         </ReactCSSTransitionGroup>
       </div>
-      {<Cursor cursorColor={page.cursorColor}/>}
+      {/*<Cursor cursorColor={page.cursorColor}/>*/}
     </div>)
   }
 })

@@ -1,6 +1,6 @@
 import React from 'react'
 import './top-bar.scss'
-import { onHover, onExit } from 'app/cursor'
+import { onHover, onExit } from 'fancy-cursor'
 
 const MenuItem = React.createClass({
   propTypes: {
