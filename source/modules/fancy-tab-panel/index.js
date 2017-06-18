@@ -50,6 +50,11 @@ export const FancyTabPanel = React.createClass({
     }, this.recalculateTabStates)
   },
 
+  onClickRemove(e, idx, title){
+    e.stopPropagation();
+    this.props.onRemoveTab(idx, title)
+  },
+
   //Required: calculatedTabState
   renderTab(title, idx){
     if(this.state.totalWidth > 0 && this.state.tabStates){
@@ -74,8 +79,9 @@ export const FancyTabPanel = React.createClass({
         <svg viewBox={`0 0 ${width} ${TAB_HEIGHT}`}>
           <path d={pathD}/>
         </svg>
-        <div className='tab-content' style={tabContentStyle}>{title}
-          {this.props.onRemoveTab? <div className='tab-delete-icon' style={{...iconStyle, height: TAB_HEIGHT+'px'}} onClick={(e)=>this.props.onRemoveTab(idx, title)}>
+        <div className='tab-content' style={tabContentStyle}>
+          <div className='no-select'>{title}</div>
+          {this.props.onRemoveTab? <div className='tab-delete-icon' style={{...iconStyle, height: TAB_HEIGHT+'px'}} onClick={(e)=>this.onClickRemove(e, idx, title)}>
             <i className='fa fa-times'/>
           </div> : null}
         </div>

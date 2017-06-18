@@ -24,7 +24,8 @@ const TabPanel = React.createClass({
   onRemoveTab(idx, title){
     this.setState(s=>{
       s.items.splice(idx, 1)
-      s.selected = Math.max(s.selected, s.items.length - 1)
+      s.selected = Math.min(s.selected, s.items.length - 1)
+      return s;
     })
   },
 
