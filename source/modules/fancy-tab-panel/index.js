@@ -25,9 +25,7 @@ export const FancyTabPanel = React.createClass({
   },
 
   componentWillReceiveProps(props){
-    this.setState({
-      items: props.items
-    }, this.recalculateTabStates)
+    this.recalculateTabStates(null, props.items)
   },
 
   getInitialState(){
@@ -38,9 +36,12 @@ export const FancyTabPanel = React.createClass({
     }
   },
 
-  recalculateTabStates(){
-    let res = calculate(this.state.totalWidth, this.state.items.length, this.props.onRemoveTab, MAX_TAB_WIDTH)
+  recalculateTabStates(totalWidth, items){
+    totalWidth = totalWidth || this.state.totalWidth
+    items = items || this.state.items
+    let res = calculate(totalWidth, items.length, this.props.onRemoveTab, MAX_TAB_WIDTH)
     this.setState({
+      totalWidth, items,
       tabStates: res
     })
   },
@@ -51,9 +52,7 @@ export const FancyTabPanel = React.createClass({
     if(this.props.onAddTab){
       width -= ADD_WIDTH
     }
-    this.setState({
-      totalWidth: width
-    }, this.recalculateTabStates)
+    this.recalculateTabStates(width)
   },
 
   onClickRemove(e, id){
@@ -83,11 +82,11 @@ export const FancyTabPanel = React.createClass({
         tabStyle.zIndex = 999
       }
       return <div style={tabStyle} key={id} className={'tab ' + (id===this.props.selected && 'selected')} onClick={(e)=>this.props.onSelectTab(id)}>
-        <svg viewBox={`0 0 ${width} ${TAB_HEIGHT}`}>
+        <svg>
           <path d={pathD}/>
         </svg>
         <div className='tab-content' style={tabContentStyle}>
-          <div className='no-select' style={{width: tabTitleWidth}}>{content}</div>
+          <div className='tab-title no-select' style={{width: tabTitleWidth}}>{content}</div>
           {this.props.onRemoveTab? <div className='tab-delete-icon' style={{...iconStyle, height: TAB_HEIGHT+'px'}} onClick={(e)=>this.onClickRemove(e, id)}>
             <i className='fa fa-times'/>
           </div> : null}
@@ -101,7 +100,7 @@ export const FancyTabPanel = React.createClass({
       let toLeft = 0;
       if(this.state.tabStates){
         let lastTab = this.state.tabStates.max(s=>s.left)
-        toLeft = lastTab.left + lastTab.width - lastTab.wedgeWidth / 2
+        toLeft = lastTab.left + lastTab.width
       }
       return <div className='tab-add-button' style={{left: toLeft+'px', height: TAB_HEIGHT+'px', width: ADD_WIDTH +'px'}}>
         <svg viewBox='0 0 100 100' onClick={this.props.onAddTab}>

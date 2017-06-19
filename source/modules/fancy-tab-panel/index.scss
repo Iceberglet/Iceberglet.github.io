@@ -1,5 +1,4 @@
 //Overall dimensions
-// $panel-height: 40px;
 $panel-width-min: 500px;
 $panel-height-min: 400px;
 
@@ -23,9 +22,9 @@ $tab-selection-time: 0.15s;
   .top-panel {
     position: relative;
     width: 100%;
-    // height: $panel-height;
     background-color: $top-bar-background-color;
     border-bottom: 3px solid $tab-selected-color;
+    overflow: hidden;
 
     .tab-add-button {
       position: absolute;
@@ -58,6 +57,13 @@ $tab-selection-time: 0.15s;
         overflow: hidden;
         transition: $tab-selection-time;
 
+        .tab-title {
+          white-space: nowrap;
+          overflow: hidden;
+          font-size: 14px;
+          text-overflow: ellipsis;
+        }
+
         .tab-delete-icon {
           position: absolute;
           right: 0px;
@@ -82,6 +88,7 @@ $tab-selection-time: 0.15s;
 
       svg {
         position: absolute;
+        pointer-events: none;
         font-size: $tab-text-font-size;
         fill: $tab-color;
         stroke: $tab-border-color;
