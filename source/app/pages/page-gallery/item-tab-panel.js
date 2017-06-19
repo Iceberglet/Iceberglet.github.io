@@ -5,26 +5,35 @@ const TabPanel = React.createClass({
 
   getInitialState(){
     return {
-      items: ['Intro', 'Tab 1', 'Tab 2', 'Tab 3'],
-      selected: 0
+      items: [{id: 1, content: 'Intro'},
+              {id: 2, content: 'Tab 1'},
+              {id: 3, content: 'Tab 2'},
+              {id: 4, content: 'Tab 3'}],
+      selected: 1,
+      idCounter: 5
     }
   },
 
-  onSelectTab(idx){
-    this.setState({selected: idx})
+  onSelectTab(id){
+    this.setState({selected: id})
   },
 
   onAddTab(){
     this.setState(s=>{
-      s.items.push('New Tab');
-      s.selected = s.items.length - 1
+      s.items.push({id: s.idCounter, content: 'New Tab'});
+      s.selected = s.idCounter
+      s.idCounter += 1
+      return s;
     })
   },
 
-  onRemoveTab(idx, title){
+  onRemoveTab(id){
     this.setState(s=>{
-      s.items.splice(idx, 1)
-      s.selected = Math.min(s.selected, s.items.length - 1)
+      let deleted = s.items.findIndex(item=>item.id === id)
+      s.items.splice(deleted, 1)
+      if(id === s.selected){
+        s.selected = s.items[s.items.length - 1].id
+      }
       return s;
     })
   },
@@ -37,7 +46,7 @@ const TabPanel = React.createClass({
                        selected = {this.state.selected}
                        items = {this.state.items}
           />
-        <div>{'You Just Selected ' + this.state.items[this.state.selected]}</div>
+        <div>{'You Just Selected ' + this.state.items.find(item=>item.id === this.state.selected).content}</div>
       </div>)
   }
 })

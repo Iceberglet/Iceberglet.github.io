@@ -27,6 +27,24 @@ $tab-selection-time: 0.15s;
     background-color: $top-bar-background-color;
     border-bottom: 3px solid $tab-selected-color;
 
+    .tab-add-button {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      bottom: 0px;
+      transition: $tab-transition-time;
+
+      svg {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        fill: $tab-color;
+        stroke: $tab-border-color;
+        transition: $tab-selection-time;
+      }
+    }
+
     .tab {  //svg element
       transition: $tab-transition-time;
       position: absolute;

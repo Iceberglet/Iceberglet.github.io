@@ -21,22 +21,25 @@ export const FancyTabPanel = React.createClass({
     onAddTab: React.PropTypes.func,
     onRemoveTab: React.PropTypes.func,
     allowRemoveAll: React.PropTypes.bool,
-    items: React.PropTypes.array    //array of strings
+    items: React.PropTypes.array    //map of tabId to tabContent
   },
 
   componentWillReceiveProps(props){
-
+    this.setState({
+      items: props.items
+    }, this.recalculateTabStates)
   },
 
   getInitialState(){
     return {
       totalWidth: 0,
-      tabStates: null
+      tabStates: null,
+      items: this.props.items
     }
   },
 
   recalculateTabStates(){
-    let res = calculate(this.state.totalWidth, this.props.items.length, this.props.onRemoveTab, MAX_TAB_WIDTH)
+    let res = calculate(this.state.totalWidth, this.state.items.length, this.props.onRemoveTab, MAX_TAB_WIDTH)
     this.setState({
       tabStates: res
     })
@@ -45,20 +48,24 @@ export const FancyTabPanel = React.createClass({
   onContainerResize(contentRect){
     let {width, height} = contentRect.bounds
     console.log('Panel Container ReSize: ', width, height)
+    if(this.props.onAddTab){
+      width -= ADD_WIDTH
+    }
     this.setState({
       totalWidth: width
     }, this.recalculateTabStates)
   },
 
-  onClickRemove(e, idx, title){
+  onClickRemove(e, id){
     e.stopPropagation();
-    this.props.onRemoveTab(idx, title)
+    this.props.onRemoveTab(id)
   },
 
   //Required: calculatedTabState
-  renderTab(title, idx){
+  renderTab({id, content}, idx){
     if(this.state.totalWidth > 0 && this.state.tabStates){
       let {width, left, wedgeWidth, contentWidth} = this.state.tabStates[idx]
+      let tabTitleWidth = this.props.onRemoveTab? contentWidth - CROSS_WIDTH : contentWidth;
       let tabStyle = {
         height: TAB_HEIGHT + 'px',
         left: left+'px',
@@ -70,18 +77,18 @@ export const FancyTabPanel = React.createClass({
         width: contentWidth + 'px'
       }
       let pathD = `M ${width} ${TAB_HEIGHT} L ${width - wedgeWidth} 1 L ${wedgeWidth} 1 L 0 ${TAB_HEIGHT}`
-      if(idx !== this.props.selected) {
+      if(id !== this.props.selected) {
         pathD += ' Z'
       } else {
         tabStyle.zIndex = 999
       }
-      return <div style={tabStyle} key={title} className={'tab ' + (idx===this.props.selected && 'selected')} onClick={(e)=>this.props.onSelectTab(idx, title)}>
+      return <div style={tabStyle} key={id} className={'tab ' + (id===this.props.selected && 'selected')} onClick={(e)=>this.props.onSelectTab(id)}>
         <svg viewBox={`0 0 ${width} ${TAB_HEIGHT}`}>
           <path d={pathD}/>
         </svg>
         <div className='tab-content' style={tabContentStyle}>
-          <div className='no-select'>{title}</div>
-          {this.props.onRemoveTab? <div className='tab-delete-icon' style={{...iconStyle, height: TAB_HEIGHT+'px'}} onClick={(e)=>this.onClickRemove(e, idx, title)}>
+          <div className='no-select' style={{width: tabTitleWidth}}>{content}</div>
+          {this.props.onRemoveTab? <div className='tab-delete-icon' style={{...iconStyle, height: TAB_HEIGHT+'px'}} onClick={(e)=>this.onClickRemove(e, id)}>
             <i className='fa fa-times'/>
           </div> : null}
         </div>
@@ -90,12 +97,27 @@ export const FancyTabPanel = React.createClass({
     return null
   },
 
+  renderAddIcon(){
+      let toLeft = 0;
+      if(this.state.tabStates){
+        let lastTab = this.state.tabStates.max(s=>s.left)
+        toLeft = lastTab.left + lastTab.width - lastTab.wedgeWidth / 2
+      }
+      return <div className='tab-add-button' style={{left: toLeft+'px', height: TAB_HEIGHT+'px', width: ADD_WIDTH +'px'}}>
+        <svg viewBox='0 0 100 100' onClick={this.props.onAddTab}>
+          <path d='M 5 22 L 70 22 L 100 78 L 35 78 Z'/>
+        </svg>
+      </div>
+  },
+
   render(){
     return (
       <div className='fancy-tab-panel'>
         <Measure bounds onResize={this.onContainerResize}>
-          {({ measureRef }) => <div className='top-panel' ref={measureRef} style={{height: PANEL_HEIGHT+'px'}}>
-              {this.props.items.map(this.renderTab)}
+          {({ measureRef }) =>
+            <div className='top-panel' ref={measureRef} style={{height: PANEL_HEIGHT+'px'}}>
+              {this.state.items.map(this.renderTab)}
+              {this.props.onAddTab? this.renderAddIcon() : null}
             </div>
           }
         </Measure>
