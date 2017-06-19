@@ -70,19 +70,19 @@ $tab-selection-time: 0.15s;
           bottom: 0px;
           display: flex;
           align-items: center;
-          cursor: pointer;
 
           i {
             font-size: $tab-text-font-size;
             color: $tab-delete-color;
             transition: 0.2s;
+            cursor: pointer;
           }
 
-          &:hover{
-            i {
+          // &:hover{
+            i:hover {
               color: $tab-delete-hover-color;
             }
-          }
+          // }
         }
       }
 
