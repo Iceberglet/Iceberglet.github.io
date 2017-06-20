@@ -9,12 +9,6 @@ export const TabGhostHandle = React.createClass({
     children: React.PropTypes.node
   },
 
-  getInitialState(){
-    return {
-      left: this.props.left
-    }
-  },
-
   componentDidMount(){
     this.props.tabDragState.setGhost(this)
     this.ghostEl = ReactDOM.findDOMNode(this.refs.ghost)
@@ -26,8 +20,7 @@ export const TabGhostHandle = React.createClass({
   },
 
   render(){
-    let tabStyle = {...this.props.tabStyle, left: this.state.left}
-    return <div className='tab-ghost-handle' style={tabStyle} ref={'ghost'}>
+    return <div className='tab-ghost-handle' style={this.props.tabStyle} ref={'ghost'}>
         {this.props.children}
     </div>
   }
