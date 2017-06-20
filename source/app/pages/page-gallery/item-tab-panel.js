@@ -4,12 +4,12 @@ import { FancyTabPanel, Tab } from 'fancy-tab-panel';
 const TabPanel = React.createClass({
 
   getInitialState(){
+    let items = [new Tab('Intro'),
+            new Tab('Tab 1'),
+            new Tab('Tab 2'),
+            new Tab('Tab 3')]
     return {
-      items: [new Tab('Intro'),
-              new Tab('Tab 1'),
-              new Tab('Tab 2'),
-              new Tab('Tab 3')],
-      selected: 1
+      items, selected: items[0].id
     }
   },
 

@@ -5,8 +5,10 @@ import { scrollElement } from 'util'
 import './index.scss'
 
 const style = {
-  background: '#1f0050',
-  color: 'white'
+//   background: '#1f0050',
+//   color: 'white'
+  background: '#e4e4e4',
+  color: '#333'
 }
 
 const PageGallery = React.createClass({
