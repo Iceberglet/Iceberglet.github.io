@@ -70,7 +70,7 @@ const updatePosition = function(e){
     this.ghostHandle.updateLeft(ghostLeft)
     //See if need to swap position of ghost placeholder
     //Find the tab for which left <= ghostHandleLeft <= nextTabLeft
-    let newIdx = this._tabStates.findIndex(t=>t.left + this._moveBuffer < ghostLeft && ghostLeft< t.left + this._tabWidth - this._moveBuffer)
+    let newIdx = this._tabStates.findIndex(t=>t.left + this._moveBuffer - this._tabWidth / 2  < ghostLeft && ghostLeft< t.left + this._tabWidth / 2 - this._moveBuffer)
     if(newIdx >= 0 && newIdx !== this.currentGhostIdx){
       if(this._lock){
         console.log('Unable to swap now. status is locked')

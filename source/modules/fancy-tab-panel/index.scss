@@ -51,6 +51,7 @@ $tab-selection-time: 0.15s;
       transition: $tab-transition-time;
       position: absolute;
       bottom: 0px;
+      transform-origin: left;
 
       .tab-content {
         position: absolute;
@@ -103,6 +104,14 @@ $tab-selection-time: 0.15s;
         transition: $tab-selection-time;
       }
 
+      &.entering {
+        animation: expand $tab-transition-time 1;
+      }
+
+      &.exiting {
+        animation: expand $tab-transition-time 1 reverse;
+      }
+
       &.selected {
         z-index: 999;
         .tab-content {
@@ -150,5 +159,14 @@ $tab-selection-time: 0.15s;
         stroke: $tab-border-color;
       }
     }
+  }
+}
+
+@keyframes expand {
+  0%   {
+    transform: scale(0, 1);
+  }
+  100% {
+    transform: scale(1, 1);
   }
 }

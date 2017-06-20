@@ -29,24 +29,43 @@ export const FancyTabPanel = React.createClass({
   },
 
   componentWillReceiveProps(props){
-    this.recalculateTabPositions(null, props.items)
+    //compare with existing items and decide which ones are new, which ones are to be deleted
+    let newOnes = props.items.filter(i => !this.state.items.find(ii=>ii.id===i.id))
+    console.log('Detected new tabs', newOnes)
+    let toDelete = this.state.items.filter(i => !props.items.find(ii=>ii.id===i.id))
+    console.log('Detected deleted tabs', toDelete)
+
+    newOnes.forEach(o=>o.type='entering')
+    //combine the two lists of tabs
+    this.recalculateTabPositions(null, props.items.slice(0), toDelete)
   },
 
   getInitialState(){
     return {
       totalWidth: 0,
       tabPositions: null,
-      items: this.props.items     // all supposed to be normal
+      items: this.props.items.slice(0)   //copy into another array
     }
   },
 
-  recalculateTabPositions(totalWidth, items){
+  recalculateTabPositions(totalWidth, items, toDelete = []){
     totalWidth = totalWidth || this.state.totalWidth
     items = items || this.state.items
     let res = calculate(totalWidth, items.length, this.props.onRemoveTab, MAX_TAB_WIDTH)
     this.setState({
       totalWidth, items,
+      toDelete,
       tabPositions: res
+    }, ()=>{
+      setTimeout(()=>{
+        this.setState(s=>{
+          s.items.forEach(o=>{
+            if(o.type==='entering')
+              o.type='normal'
+          })
+          s.toDelete = []
+        })
+      }, TAB_ANIMATION_DURATION)
     })
   },
 
@@ -110,7 +129,7 @@ export const FancyTabPanel = React.createClass({
         pathD += ' Z'
       }
 
-      if(tab.type != 'normal'){
+      if(tab.type === 'ghostPlaceholder'){
         //A free moving, semi transparent ghost that does not interfere with other tabs
         //Its position depends on the mouse position
         if(!this.state.tabDragState || !this.state.tabPositions)
@@ -126,8 +145,10 @@ export const FancyTabPanel = React.createClass({
         </TabGhostHandle>
       }
 
-      return <div style={tabStyle} key={id}
-                  className={'tab ' + (id===this.props.selected && 'selected')}>
+      //set transform scale for newly entered
+      let tabClass = 'tab ' + (id===this.props.selected && ' selected ') + (tab.type === 'entering' && ' entering ')
+
+      return <div style={tabStyle} key={id} className={tabClass}>
         <svg>
           <path d={pathD}/>
         </svg>
