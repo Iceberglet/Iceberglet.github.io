@@ -1,6 +1,7 @@
 //Overall dimensions
 $panel-width-min: 500px;
 $panel-height-min: 400px;
+$panel-buffer-height: 3px;
 
 //tab-dimensions
 $tab-text-font-size: 16px;
@@ -9,6 +10,8 @@ $tab-text-font-size: 16px;
 $top-bar-background-color: darkgray;
 $tab-border-color: gray;
 $tab-color: lightgray;
+// $tab-ghost-color: rgbs(0.5, 0.5, 0.5, 0.5);
+
 $tab-delete-color: #7c7c7c;
 $tab-delete-hover-color: black;
 $tab-selected-color: lime;
@@ -23,7 +26,7 @@ $tab-selection-time: 0.15s;
     position: relative;
     width: 100%;
     background-color: $top-bar-background-color;
-    border-bottom: 3px solid $tab-selected-color;
+    border-bottom: $panel-buffer-height solid $tab-selected-color;
     overflow: hidden;
 
     .tab-add-button {
@@ -51,17 +54,20 @@ $tab-selection-time: 0.15s;
 
       .tab-content {
         position: absolute;
-        align-items: center;
-        display: flex;
-        text-indent: 5px;
         overflow: hidden;
         transition: $tab-selection-time;
+        // pointer-events: none;
 
         .tab-title {
           white-space: nowrap;
           overflow: hidden;
           font-size: 14px;
           text-overflow: ellipsis;
+          align-items: center;
+          display: flex;
+          text-indent: 5px;
+          height: 100%;
+          pointer-events: none;
         }
 
         .tab-delete-icon {
@@ -96,12 +102,48 @@ $tab-selection-time: 0.15s;
       }
 
       &.selected {
+        z-index: 999;
         .tab-content {
           bottom: -2px;
         }
         svg {
           fill: $tab-selected-color;
         }
+      }
+    }
+
+    .tab-ghost-handle {
+      position: absolute;
+      bottom: 0px;
+      z-index: 9999;
+      opacity: 0.3;
+
+      .tab-content {
+        position: absolute;
+        overflow: hidden;
+        transition: $tab-selection-time;
+        // pointer-events: none;
+
+        .tab-title {
+          white-space: nowrap;
+          overflow: hidden;
+          font-size: 14px;
+          text-overflow: ellipsis;
+          align-items: center;
+          display: flex;
+          text-indent: 5px;
+          height: 100%;
+          pointer-events: none;
+          // cursor: move;
+        }
+      }
+
+      svg {
+        position: absolute;
+        // pointer-events: none;
+        // font-size: $tab-text-font-size;
+        fill: $tab-selected-color;
+        stroke: $tab-border-color;
       }
     }
   }

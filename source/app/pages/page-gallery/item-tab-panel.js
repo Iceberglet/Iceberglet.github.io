@@ -1,16 +1,15 @@
 import React from 'react';
-import { FancyTabPanel } from 'fancy-tab-panel';
+import { FancyTabPanel, Tab } from 'fancy-tab-panel';
 
 const TabPanel = React.createClass({
 
   getInitialState(){
     return {
-      items: [{id: 1, content: 'Intro'},
-              {id: 2, content: 'Tab 1'},
-              {id: 3, content: 'Tab 2'},
-              {id: 4, content: 'Tab 3'}],
-      selected: 1,
-      idCounter: 5
+      items: [new Tab('Intro'),
+              new Tab('Tab 1'),
+              new Tab('Tab 2'),
+              new Tab('Tab 3')],
+      selected: 1
     }
   },
 
@@ -20,9 +19,9 @@ const TabPanel = React.createClass({
 
   onAddTab(){
     this.setState(s=>{
-      s.items.push({id: s.idCounter, content: 'New Tab'});
-      s.selected = s.idCounter
-      s.idCounter += 1
+      let tab = new Tab('New Tab')
+      s.items.push(tab);
+      s.selected = tab.id
       return s;
     })
   },
@@ -46,7 +45,7 @@ const TabPanel = React.createClass({
                        selected = {this.state.selected}
                        items = {this.state.items}
           />
-        <div>{'You Just Selected ' + this.state.items.find(item=>item.id === this.state.selected).content}</div>
+        <div>{'You Just Selected ' + this.state.items.find(item=>item.id === this.state.selected).title}</div>
       </div>)
   }
 })

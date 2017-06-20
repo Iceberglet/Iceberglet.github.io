@@ -3,7 +3,11 @@ import Measure from 'react-measure'
 import './index.scss'
 import {postpone} from 'util'
 import {calculate} from './calculator'
-import {TAB_HEIGHT, PANEL_HEIGHT, MAX_TAB_WIDTH, CROSS_WIDTH, ADD_WIDTH, PANEL_BUFFER_HEIGHT} from './constants'
+import {TAB_HEIGHT, PANEL_HEIGHT, MAX_TAB_WIDTH, CROSS_WIDTH, ADD_WIDTH, TAB_ANIMATION_DURATION} from './constants'
+import {TabGhostHandle} from './tab-ghost-handle'
+import {TabDragState, Tab} from './tab'
+
+export {Tab}
 
 //Logic
 //1. Use measure to get individual tab size
@@ -25,34 +29,33 @@ export const FancyTabPanel = React.createClass({
   },
 
   componentWillReceiveProps(props){
-    this.recalculateTabStates(null, props.items)
+    this.recalculateTabPositions(null, props.items)
   },
 
   getInitialState(){
     return {
       totalWidth: 0,
-      tabStates: null,
-      items: this.props.items
+      tabPositions: null,
+      items: this.props.items     // all supposed to be normal
     }
   },
 
-  recalculateTabStates(totalWidth, items){
+  recalculateTabPositions(totalWidth, items){
     totalWidth = totalWidth || this.state.totalWidth
     items = items || this.state.items
     let res = calculate(totalWidth, items.length, this.props.onRemoveTab, MAX_TAB_WIDTH)
     this.setState({
       totalWidth, items,
-      tabStates: res
+      tabPositions: res
     })
   },
 
   onContainerResize(contentRect){
     let {width, height} = contentRect.bounds
-    console.log('Panel Container ReSize: ', width, height)
     if(this.props.onAddTab){
       width -= ADD_WIDTH
     }
-    this.recalculateTabStates(width)
+    this.recalculateTabPositions(width)
   },
 
   onClickRemove(e, id){
@@ -60,10 +63,37 @@ export const FancyTabPanel = React.createClass({
     this.props.onRemoveTab(id)
   },
 
+  updateDrag(oldIdx, newIdx, callback){
+    this.setState(s=>{
+      //swap
+      let replacedTab = s.items[newIdx]
+      s.items[newIdx] = s.items[oldIdx]
+      s.items[oldIdx] = replacedTab
+    }, callback)
+  },
+
+  startDrag(e, idx, id){
+    this.props.onSelectTab(id)
+    // Remove all existing selections on document, since they mess up the drag and drop effect
+    let selObj = window.getSelection()
+    selObj.removeAllRanges()
+    this.setState({
+      tabDragState: new TabDragState(e, this.state.tabPositions, this.state.items, idx, this.endDrag, this.updateDrag)
+    })
+  },
+
+  endDrag(){
+    delete this.state.tabDragState
+    this.setState({
+      tabDragState: null
+    })
+  },
+
   //Required: calculatedTabState
-  renderTab({id, content}, idx){
-    if(this.state.totalWidth > 0 && this.state.tabStates){
-      let {width, left, wedgeWidth, contentWidth} = this.state.tabStates[idx]
+  renderTab(tab, idx){
+    let {id, title} = tab
+    if(this.state.totalWidth > 0 && this.state.tabPositions){
+      let {width, left, wedgeWidth, contentWidth} = this.state.tabPositions[idx]
       let tabTitleWidth = this.props.onRemoveTab? contentWidth - CROSS_WIDTH : contentWidth;
       let tabStyle = {
         height: TAB_HEIGHT + 'px',
@@ -78,15 +108,33 @@ export const FancyTabPanel = React.createClass({
       let pathD = `M ${width} ${TAB_HEIGHT} L ${width - wedgeWidth} 1 L ${wedgeWidth} 1 L 0 ${TAB_HEIGHT}`
       if(id !== this.props.selected) {
         pathD += ' Z'
-      } else {
-        tabStyle.zIndex = 999
       }
-      return <div style={tabStyle} key={id} className={'tab ' + (id===this.props.selected && 'selected')} onClick={(e)=>this.props.onSelectTab(id)}>
+
+      if(tab.type != 'normal'){
+        //A free moving, semi transparent ghost that does not interfere with other tabs
+        //Its position depends on the mouse position
+        if(!this.state.tabDragState || !this.state.tabPositions)
+          return null;
+        let pathD = `M ${width} ${TAB_HEIGHT} L ${width - wedgeWidth} 1 L ${wedgeWidth} 1 L 0 ${TAB_HEIGHT}`
+        return <TabGhostHandle tabDragState={this.state.tabDragState} key={id} tabStyle={tabStyle} title={title}>
+          <svg>
+            <path d={pathD}/>
+          </svg>
+          <div className='tab-content' style={tabContentStyle}>
+            <div className='tab-title no-select' style={{width: tabTitleWidth}}>{title}</div>
+          </div>
+        </TabGhostHandle>
+      }
+
+      return <div style={tabStyle} key={id}
+                  className={'tab ' + (id===this.props.selected && 'selected')}
+                  onClick={(e)=>this.props.onSelectTab(id)}
+                  onMouseDown={(e)=>this.startDrag(e, idx, id)}>
         <svg>
           <path d={pathD}/>
         </svg>
         <div className='tab-content' style={tabContentStyle}>
-          <div className='tab-title no-select' style={{width: tabTitleWidth}}>{content}</div>
+          <div className='tab-title no-select' style={{width: tabTitleWidth}}>{title}</div>
           {this.props.onRemoveTab? <div className='tab-delete-icon' style={{...iconStyle, height: TAB_HEIGHT+'px'}}>
             <i className='fa fa-times' onClick={(e)=>this.onClickRemove(e, id)}/>
           </div> : null}
@@ -98,8 +146,8 @@ export const FancyTabPanel = React.createClass({
 
   renderAddIcon(){
       let toLeft = 0;
-      if(this.state.tabStates){
-        let lastTab = this.state.tabStates.max(s=>s.left)
+      if(this.state.tabPositions){
+        let lastTab = this.state.tabPositions.max(s=>s.left)
         toLeft = lastTab.left + lastTab.width
       }
       return <div className='tab-add-button' style={{left: toLeft+'px', height: TAB_HEIGHT+'px', width: ADD_WIDTH +'px'}}>
