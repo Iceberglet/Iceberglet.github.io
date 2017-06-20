@@ -121,7 +121,7 @@ export const FancyTabPanel = React.createClass({
             <path d={pathD}/>
           </svg>
           <div className='tab-content' style={tabContentStyle}>
-            <div className='tab-title no-select' style={{width: tabTitleWidth}}>{title}</div>
+            <div className='tab-title no-select' style={{width: tabTitleWidth, lineHeight: TAB_HEIGHT+'px'}}>{title}</div>
           </div>
         </TabGhostHandle>
       }
@@ -132,7 +132,7 @@ export const FancyTabPanel = React.createClass({
           <path d={pathD}/>
         </svg>
         <div className='tab-content' style={tabContentStyle}>
-          <div className='tab-title no-select' style={{width: tabTitleWidth}} onMouseDown={(e)=>this.startDrag(e, idx, id)}>{title}</div>
+          <div className='tab-title no-select' style={{width: tabTitleWidth, lineHeight: TAB_HEIGHT+'px'}} onMouseDown={(e)=>this.startDrag(e, idx, id)}>{title}</div>
           {this.props.onRemoveTab? <div className='tab-delete-icon' style={{...iconStyle, height: TAB_HEIGHT+'px'}}>
             <i className='fa fa-times' onClick={(e)=>this.onClickRemove(e, id)}/>
           </div> : null}

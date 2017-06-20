@@ -63,8 +63,10 @@ $tab-selection-time: 0.15s;
           overflow: hidden;
           font-size: 14px;
           text-overflow: ellipsis;
-          align-items: center;
-          display: flex;
+          // align-items: center;
+          // display: flex;
+          vertical-align: middle;
+
           text-indent: 5px;
           height: 100%;
           // pointer-events: none;
@@ -129,8 +131,10 @@ $tab-selection-time: 0.15s;
           overflow: hidden;
           font-size: 14px;
           text-overflow: ellipsis;
-          align-items: center;
-          display: flex;
+          // align-items: center;
+          // display: flex;
+          vertical-align: middle;
+
           text-indent: 5px;
           height: 100%;
           pointer-events: none;
