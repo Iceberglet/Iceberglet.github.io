@@ -5,6 +5,7 @@
   border: 1px solid gray;
   padding: 16px;
   padding-top: 28px;
+  color: #484a56;
 
   .info-list-item {
     display: flex;
@@ -14,7 +15,7 @@
     .info-icon {
       font-size: 18px;
       margin-right: 5px;
-      color: #22229e;
+      color: #50506b;
       transition: 0.3s;
     }
 
@@ -27,7 +28,7 @@
     a {
       text-decoration: none;
       font-size: 16px;
-      color: black;
+      color: #484a56;
       transition: 0.3s;
     }
   }

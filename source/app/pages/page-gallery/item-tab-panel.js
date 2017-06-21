@@ -31,7 +31,8 @@ const TabPanel = React.createClass({
       let deleted = s.items.findIndex(item=>item.id === id)
       s.items.splice(deleted, 1)
       if(id === s.selected){
-        s.selected = s.items[s.items.length - 1].id
+        if(s.items.length > 0)
+          s.selected = s.items[s.items.length - 1].id
       }
       return s;
     })
@@ -44,6 +45,7 @@ const TabPanel = React.createClass({
   },
 
   render(){
+    let item = this.state.items.find(item=>item.id === this.state.selected) || {};
     return (<div>
         <FancyTabPanel onSelectTab = {this.onSelectTab}
                        onAddTab = {this.onAddTab}
@@ -52,7 +54,7 @@ const TabPanel = React.createClass({
                        selected = {this.state.selected}
                        items = {this.state.items}
           />
-        <div>{'You Just Selected ' + this.state.items.find(item=>item.id === this.state.selected).title}</div>
+        <div>{'You Just Selected ' + item.title}</div>
       </div>)
   }
 })
@@ -60,5 +62,10 @@ const TabPanel = React.createClass({
 export const ItemTabPanel = {
   title: 'Fancy Tab Panel',
   boxItem: TabPanel,
-  description: 'Fancy Tab Panel Description'
+  description: ['A Dynamic Tab Panel mimicking the chrome\'s design.',
+    'This is just a crude version, but it has everything a tab panel can ask for:',
+    '- Dynamically add and delete tabs',
+    '- Drag and Drop for tab re-arrangement',
+    'Does not use HTML DnD, so it may even be polyfilled for use in IE8!',
+    'Leaves the entire freedom (Tab transition, naming, etc.) to further design']
 }

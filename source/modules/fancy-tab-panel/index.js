@@ -32,9 +32,9 @@ export const FancyTabPanel = React.createClass({
   componentWillReceiveProps(props){
     //compare with existing items and decide which ones are new, which ones are to be deleted
     let newOnes = props.items.filter(i => !this.state.items.find(ii=>ii.id===i.id))
-    console.log('Detected new tabs', newOnes)
+    // console.log('Detected new tabs', newOnes)
     let toDelete = this.state.items.filter(i => !props.items.find(ii=>ii.id===i.id))
-    console.log('Detected deleted tabs', toDelete)
+    // console.log('Detected deleted tabs', toDelete)
 
     newOnes.forEach(o=>o.type='entering')
     //combine the two lists of tabs
@@ -166,7 +166,7 @@ export const FancyTabPanel = React.createClass({
 
   renderAddIcon(){
       let toLeft = 0;
-      if(this.state.tabPositions){
+      if(this.state.tabPositions && this.state.tabPositions.length > 0){
         let lastTab = this.state.tabPositions.max(s=>s.left)
         toLeft = lastTab.left + lastTab.width
       }

@@ -23,7 +23,8 @@
       margin-right: 30px;
       width: 30%;
       height: 2px;
-      background: linear-gradient(to right, rgba(0.1, 0.1, 0.1, 0), #757575, rgba(0.1, 0.1, 0.1, 0))
+      background: radial-gradient(#757575, rgba(0.1, 0.1, 0.1, 0))
+      // background: linear-gradient(to right, rgba(0.1, 0.1, 0.1, 0), #757575, rgba(0.1, 0.1, 0.1, 0))
     }
   }
 
@@ -46,6 +47,7 @@
       flex: 1;
       margin-left: 15px;
       margin-right: 45px;
+      line-height: 23px;
     }
   }
 }

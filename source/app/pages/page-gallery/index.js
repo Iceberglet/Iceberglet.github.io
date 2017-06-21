@@ -7,7 +7,7 @@ import './index.scss'
 const style = {
 //   background: '#1f0050',
 //   color: 'white'
-  background: '#e4e4e4',
+  background: '#e4e4e4 url("./resources/textures/1.jpg")',
   color: '#333'
 }
 
@@ -30,7 +30,9 @@ const PageGallery = React.createClass({
         </div>
         <div className='itemRow'>
           <div className='itemBox'><I/></div>
-          <div className='itemDescription'>{item.description}</div>
+          <div className='itemDescription'>{
+            item.description.map((line, idx)=><div key={idx}>{line}</div>)
+          }</div>
         </div>
       </div>)
   },

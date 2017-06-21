@@ -22,5 +22,5 @@ const FancyFormContainer = React.createClass({
 export const ItemFancyForm = {
   title: 'Fancy Form',
   boxItem: FancyFormContainer,
-  description: 'Fancy Form Description'
+  description: ['Fancy Form Description']
 }

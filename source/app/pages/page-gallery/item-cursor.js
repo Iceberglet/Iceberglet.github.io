@@ -36,5 +36,5 @@ const CursorContainer = React.createClass({
 export const ItemCursor = {
   title: 'Fancy Cursor',
   boxItem: CursorContainer,
-  description: 'Fancy Cursor'
+  description: ['Fancy Cursor']
 }

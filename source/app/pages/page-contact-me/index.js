@@ -25,7 +25,7 @@ const PageContactMe = React.createClass({
   render(){
     return (<div className='page' style={style} ref={'pageDiv'}>
         <div className='page-content'>
-          <div className='info-list'>
+          <div className='info-list' style={{background: 'url("./resources/textures/2.jpg")'}}>
             <div className='info-list-item' {...cursorCallback}><i className='info-icon fa fa-envelope-o fa-fw'/>{'dragoon.cm@hotmail.com'}</div>
             <div className='info-list-item' {...cursorCallback}><i className='info-icon fa fa-phone-square fa-fw'/>{'+65 82288168'}</div>
             <div className='info-list-item' {...cursorCallback}><i className='info-icon fa fa-linkedin-square fa-fw'/><a href='https://www.linkedin.com/in/chen-min-nus-paristech'>{'My Linkedin'}</a><i className='hyperlink fa fa-angle-right fa-fw'/></div>

@@ -33,7 +33,7 @@ export const TopBar = React.createClass({
     style: React.PropTypes.object
   },
   render(){
-    return (<div className='top-bar' style={this.props.style}>
+    return (<div className='top-bar' style={{...this.props.style}}>
       {this.props.menuItems.map((str, i)=>{
         return <MenuItem name={str} idx={i} onClick={this.props.onSelectPage} key={str} ref={str}
                 lineColor={this.props.style.color} active={str===this.props.currentItem && 'active'}/>
