@@ -42,7 +42,7 @@ export const FancySelect = React.createClass({
     this.setState({
       value: v
     }, ()=>{
-      this.props.onConfirmChange && this.props.onConfirmChange(this.getObj(this.props.valueKey, this.state.value))
+      this.props.onConfirmChange && this.props.onConfirmChange({[this.props.valueKey]: this.state.value})
     })
   },
 
@@ -60,7 +60,7 @@ export const FancySelect = React.createClass({
       selected: false,
       selectableValues: filter(this.props.values, token)
     }, ()=>{
-      this.props.onConfirmChange && this.props.onConfirmChange(this.getObj(this.props.valueKey, this.state.value))
+      this.props.onConfirmChange && this.props.onConfirmChange({[this.props.valueKey]: this.state.value})
       this.input.value = token
     })
   },
@@ -147,13 +147,6 @@ export const FancySelect = React.createClass({
     throw Error('Unknown Protocol: ' + this.props.invalidProtocol)
   },
 
-  getObj(k, v){
-    let obj = {}
-    v = v===undefined? '' : v
-    obj[k] = v
-    return obj
-  },
-
   //on select a value
   onSelectItem(keyLabel){
     this.setState({
@@ -185,14 +178,15 @@ export const FancySelect = React.createClass({
   },
 
   render(){
-    let activeClass = ( this.state.selected && 'active' )
-    let placeHolderClass = 'place-holder ' + (( this.state.value || this.state.selected ) && 'minimal')
+    let {value, selected, selectableValues} = this.state
+    let activeClass = ( selected && 'active' )
+    let placeHolderClass = 'place-holder ' + (( (value && value.label && value.label !== '') || selected ) && 'minimal')
     return <div className='fancy'>
 
       <div className={'fancy-select-menu-wrapper ' + activeClass}>
         <div className={'fancy-select-menu ' + activeClass} ref={m=>{this.menu = m}}>
-          {this.state.selectableValues && this.state.selectableValues.length > 0 ?
-              this.state.selectableValues.map(this.renderOption) : this.renderNullOption()
+          {selectableValues && selectableValues.length > 0 ?
+              selectableValues.map(this.renderOption) : this.renderNullOption()
           }
         </div>
       </div>
@@ -200,7 +194,7 @@ export const FancySelect = React.createClass({
       <div className={placeHolderClass} onClick={this.onClickLabel}>{this.props.label}</div>
       <div className={'fancy-input-wrapper'}>
         <input className='fancy-input' ref={i=>{this.input=i}} onFocus={this.onFocus} onBlur={this.onBlur}
-                  onKeyDown={this.onKeyDown} onChange={(e)=>{this.onChangeInput(e.target.value)}} defaultValue = {this.state.value}/>
+                  onKeyDown={this.onKeyDown} onChange={(e)=>{this.onChangeInput(e.target.value)}} defaultValue = {value}/>
         <span className='underline' />
       </div>
       <i className={'fancy-select-arrow fa fa-caret-left fa-lg ' + activeClass}/>
