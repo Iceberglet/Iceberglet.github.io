@@ -37,11 +37,18 @@ const TabPanel = React.createClass({
     })
   },
 
+  onFinishDrag(items){
+    this.setState({
+      items
+    })
+  },
+
   render(){
     return (<div>
         <FancyTabPanel onSelectTab = {this.onSelectTab}
                        onAddTab = {this.onAddTab}
                        onRemoveTab = {this.onRemoveTab}
+                       onFinishDrag = {this.onFinishDrag}
                        selected = {this.state.selected}
                        items = {this.state.items}
           />

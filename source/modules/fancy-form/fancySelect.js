@@ -187,7 +187,7 @@ export const FancySelect = React.createClass({
   render(){
     let activeClass = ( this.state.selected && 'active' )
     let placeHolderClass = 'place-holder ' + (( this.state.value || this.state.selected ) && 'minimal')
-    return <div className='fancy' style={{width: '200px'}}>
+    return <div className='fancy'>
 
       <div className={'fancy-select-menu-wrapper ' + activeClass}>
         <div className={'fancy-select-menu ' + activeClass} ref={m=>{this.menu = m}}>

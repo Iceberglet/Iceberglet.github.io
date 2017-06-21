@@ -23,7 +23,11 @@ const PageGallery = React.createClass({
   renderItem(item){
     let I = item.boxItem
     return (<div className='item' key={item.title}>
-        <div className='itemTitle'>{item.title}</div>
+        <div className='itemTitle bradley'>
+          <div className='horizontal-bar'/>
+          {item.title}
+          <div className='horizontal-bar'/>
+        </div>
         <div className='itemRow'>
           <div className='itemBox'><I/></div>
           <div className='itemDescription'>{item.description}</div>

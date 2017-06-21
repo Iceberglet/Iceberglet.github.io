@@ -33,7 +33,13 @@ body * {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  cursor: default;
+  /*cursor: default;*/
+}
+
+.center-children {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .vflex {
@@ -101,4 +107,8 @@ body * {
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+.no-pointer {
+  cursor: none;
 }

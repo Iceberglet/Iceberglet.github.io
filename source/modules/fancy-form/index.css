@@ -1,6 +1,8 @@
 .fancy {
   position: relative;
   margin-left: 6px;
+  margin-top: 10px;
+  width: 200px;
   background: inherit;
   border-bottom: 1px solid gray;
 }
@@ -32,7 +34,7 @@
   height: 16px;
   font-size: 16px;
   text-indent: 5px;
-  padding-bottom: 2px;
+  padding-bottom: 10px;
   padding-top: 30px;
   color: rgb(34, 34, 34);
   background: inherit;
@@ -119,7 +121,7 @@
   background-color: dodgerblue;
   height: 2px;
   left: 0px;
-  bottom: 0px;
+  bottom: -1px;
   position: absolute;
   -webkit-transform: scale(0, 1);
   transform: scale(0, 1);

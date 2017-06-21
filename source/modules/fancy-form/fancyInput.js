@@ -56,7 +56,7 @@ export const FancyInput = React.createClass({
 
   render(){
     let placeHolderClass = 'place-holder ' + (( this.state.value || this.state.selected ) && 'minimal')
-    return <div className='fancy' style={{width: '200px'}}>
+    return <div className='fancy'>
       <div className={placeHolderClass} onClick={this.onClickLabel}>{this.props.label}</div>
       <div className={'fancy-input-wrapper'}>
         <input className='fancy-input' ref={i=>{this.input=i}} onKeyPress={this.validate} onFocus={this.onFocus}

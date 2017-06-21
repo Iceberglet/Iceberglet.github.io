@@ -1,11 +1,10 @@
 import React from 'react'
 import Measure from 'react-measure'
-import './index.scss'
-import {postpone} from 'util'
+import './fancy-tab-panel.scss'
 import {calculate} from './calculator'
-import {TAB_HEIGHT, PANEL_HEIGHT, MAX_TAB_WIDTH, CROSS_WIDTH, ADD_WIDTH, TAB_ANIMATION_DURATION} from './constants'
-import {TabGhostHandle} from './tab-ghost-handle'
-import {TabDragState, Tab} from './tab'
+import {TAB_HEIGHT, PANEL_HEIGHT, MAX_TAB_WIDTH, CROSS_WIDTH, ADD_WIDTH, TAB_ANIMATION_DURATION, TAB_STATUS} from './constants'
+// import {TabGhostHandle} from './tab-ghost-handle'
+import {TabDragState, Tab, TabMeta} from './TabObject'
 
 export {Tab}
 
@@ -24,7 +23,6 @@ export const FancyTabPanel = React.createClass({
     selected: React.PropTypes.number,
     onAddTab: React.PropTypes.func,
     onRemoveTab: React.PropTypes.func,
-    onFinishDrag: React.PropTypes.func,
     allowRemoveAll: React.PropTypes.bool,
     items: React.PropTypes.array    //map of tabId to tabContent
   },
@@ -36,7 +34,7 @@ export const FancyTabPanel = React.createClass({
     let toDelete = this.state.items.filter(i => !props.items.find(ii=>ii.id===i.id))
     console.log('Detected deleted tabs', toDelete)
 
-    newOnes.forEach(o=>o.type='entering')
+    newOnes.forEach(o=>o.status=TAB_STATUS.ENTERING)
     //combine the two lists of tabs
     this.recalculateTabPositions(null, props.items.slice(0), toDelete)
   },
@@ -106,7 +104,7 @@ export const FancyTabPanel = React.createClass({
     delete this.state.tabDragState
     this.setState({
       tabDragState: null
-    }, ()=>this.props.onFinishDrag(this.state.items))
+    })
   },
 
   //Required: calculatedTabState

@@ -1,7 +1,7 @@
 .item{
   position: relative;
   width: 100%;
-  min-width: 500px;
+  min-width: 800px;
 
   *{
     color: black;
@@ -17,6 +17,14 @@
     font-size: 23px;
     padding-top: 20px;
     padding-bottom: 20px;
+
+    .horizontal-bar {
+      margin-left: 30px;
+      margin-right: 30px;
+      width: 30%;
+      height: 2px;
+      background: linear-gradient(to right, rgba(0.1, 0.1, 0.1, 0), #757575, rgba(0.1, 0.1, 0.1, 0))
+    }
   }
 
   .itemRow{
@@ -25,6 +33,7 @@
 
     .itemBox{
       flex: 1;
+      position: relative;
       border: 2px solid #888;
       background: white;
       margin-left: 45px;

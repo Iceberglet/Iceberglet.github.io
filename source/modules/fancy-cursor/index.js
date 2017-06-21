@@ -97,6 +97,7 @@ export const Cursor = React.createClass({
   },
 
   componentWillUnmount(){
+    registeredCursor = null
     this.subscribeToMovement(false)
   },
 
