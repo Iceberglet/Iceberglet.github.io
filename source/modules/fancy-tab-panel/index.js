@@ -1,7 +1,7 @@
 import React from 'react'
 import Measure from 'react-measure'
 import './index.scss'
-import {postpone} from 'util'
+import {postpone, arrayToMap} from 'util'
 import {calculate} from './calculator'
 import {TAB_HEIGHT, PANEL_HEIGHT, MAX_TAB_WIDTH, CROSS_WIDTH, ADD_WIDTH, TAB_ANIMATION_DURATION} from './constants'
 import {TabGhostHandle} from './tab-ghost-handle'
@@ -42,10 +42,12 @@ export const FancyTabPanel = React.createClass({
   },
 
   getInitialState(){
+    let stateItems = this.props.items.slice(0)
     return {
       totalWidth: 0,
       tabPositions: null,
-      items: this.props.items.slice(0)   //copy into another array
+      itemsMap: arrayToMap(stateItems, tab=>tab.id.toString()),
+      items: stateItems   //copy into another array
     }
   },
 
@@ -56,7 +58,8 @@ export const FancyTabPanel = React.createClass({
     this.setState({
       totalWidth, items,
       toDelete,
-      tabPositions: res
+      tabPositions: res,
+      itemsMap: arrayToMap(items, tab=>tab.id.toString())
     }, ()=>{
       setTimeout(()=>{
         this.setState(s=>{
@@ -183,7 +186,11 @@ export const FancyTabPanel = React.createClass({
         <Measure bounds onResize={this.onContainerResize}>
           {({ measureRef }) =>
             <div className='top-panel' ref={measureRef} style={{height: PANEL_HEIGHT+'px'}}>
-              {this.state.items.map(this.renderTab)}
+              {Object.keys(this.state.itemsMap).map(id=>{
+                let tab = this.state.itemsMap[id]
+                let idx = this.state.items.indexOf(tab)
+                return this.renderTab(tab, idx)
+              })}
               {this.props.onAddTab? this.renderAddIcon() : null}
             </div>
           }

@@ -39,4 +39,16 @@ export const randomBetween = (l, h) => {
   return Math.random() * (h - l) + l
 }
 
+export const arrayToMap = (arr, keyProvider) => {
+  let res = {}
+  if(!arr || !(arr instanceof Array)){
+    throw new Error('Received non array: ', arr)
+  }
+  if(!keyProvider || !(typeof keyProvider === 'function')){
+    throw new Error('Received non function: ', keyProvider)
+  }
+  arr.forEach(item=>res[keyProvider(item)] = item)
+  return res;
+}
+
 export { registerToMouse, unsubFromMouse } from './screen-mouse-listener'
