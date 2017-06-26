@@ -86,9 +86,9 @@ export const FancyTabPanel = React.createClass({
   updateDrag(oldIdx, newIdx, callback){
     this.setState(s=>{
       //swap
-      let replacedTab = s.items[newIdx]
-      s.items[newIdx] = s.items[oldIdx]
-      s.items[oldIdx] = replacedTab
+      let replacedTab = s.items[oldIdx]
+      s.items[oldIdx] = s.items[newIdx]
+      s.items[newIdx] = replacedTab
     }, callback)
   },
 

@@ -1,10 +1,10 @@
 import { ContactMe } from './page-contact-me'
-import { AboutMe } from './page-about-me'
+import { Timeline } from './page-timeline'
 import { Gallery } from './page-gallery'
 import { Home } from './page-home'
 import ReactDOM from 'react-dom'
 
-export const Pages = [Home, Gallery, AboutMe, ContactMe]
+export const Pages = [Home, Gallery, Timeline, ContactMe]
 
 // Object.keys(Pages).forEach(pg=>{
 //   let p =Pages[pg]

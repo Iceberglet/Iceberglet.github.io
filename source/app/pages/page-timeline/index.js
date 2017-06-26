@@ -7,7 +7,7 @@ const style = {
   color: 'white'
 }
 
-const PageAboutMe = React.createClass({
+const PageTimeline = React.createClass({
   scrollToTop(){
     let el = ReactDOM.findDOMNode(this.refs.pageDiv)
     scrollElement(el, el.scrollTop, 0, 300)
@@ -25,9 +25,9 @@ const PageAboutMe = React.createClass({
   }
 })
 
-export const AboutMe = {
+export const Timeline = {
   title: 'Timeline',
-  page: PageAboutMe,
+  page: PageTimeline,
   style,
   cursorColor: {
     active: [0, 255, 200],
