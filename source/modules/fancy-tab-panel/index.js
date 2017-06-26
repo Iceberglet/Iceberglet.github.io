@@ -100,6 +100,8 @@ export const FancyTabPanel = React.createClass({
     // Remove all existing selections on document, since they mess up the drag and drop effect
     let selObj = window.getSelection()
     selObj.removeAllRanges()
+    document.onselectstart = ()=>false  //prevent select start
+
     this.setState({
       tabDragState: new TabDragState(e, this.state.tabPositions, this.state.items, idx, this.endDrag, this.updateDrag)
     })
@@ -107,6 +109,7 @@ export const FancyTabPanel = React.createClass({
 
   endDrag(){
     delete this.state.tabDragState
+    document.onselectstart = null  //enable select start
     this.setState({
       tabDragState: null
     }, ()=>this.props.onFinishDrag(this.state.items))

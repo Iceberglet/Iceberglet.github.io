@@ -3,17 +3,34 @@
   width: 100%;
   display: flex;
 
+  .timeline-item{
 
-  .timeline-left {
-    flex: 5;
-  }
+    .timeline-item-title {
+      * {
+        transition: 0.5s;
+      }
 
-  .timeline-center {
-    flex: 1;
-  }
+      .left {
+        opacity: 0.5;
+        transform: translate(-10px, 0px);
+      }
 
-  .timeline-right {
-    flex: 5;
+      .right {
+        opacity: 0.5;
+        transform: translate(10px, 0px);
+      }
+
+      .enabled {
+        .left {
+          opacity: 1;
+          transform: translate(0px, 0px);
+        }
+        .right {
+          opacity: 1;
+          transform: translate(0px, 0px);
+        }
+      }
+    }
   }
 
 }

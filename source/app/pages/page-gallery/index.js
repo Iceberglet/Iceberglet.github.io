@@ -8,6 +8,7 @@ const style = {
 //   background: '#1f0050',
 //   color: 'white'
   background: '#e4e4e4 url("./resources/textures/1.jpg")',
+  // filter: 'hue-rotate(180deg)',
   color: '#333'
 }
 
