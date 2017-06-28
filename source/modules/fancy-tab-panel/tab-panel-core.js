@@ -24,13 +24,15 @@ export const FancyTabPanel = React.createClass({
     selected: React.PropTypes.number.isRequired,
     onAddTab: React.PropTypes.func,
     onRemoveTab: React.PropTypes.func,
-    onFinishDrag: React.PropTypes.func.isRequired,
     allowRemoveAll: React.PropTypes.bool,
+    allowDnD: React.PropTypes.bool,
+    onFinishDrag: React.PropTypes.func.isRequired,
     items: React.PropTypes.array    //map of tabId to tabContent
   },
 
   getDefaultProps(){
     return {
+      allowDnD: true,
       allowRemoveAll: false
     }
   },
@@ -103,14 +105,17 @@ export const FancyTabPanel = React.createClass({
 
   startDrag(e, idx, id){
     this.props.onSelectTab(id)
-    // Remove all existing selections on document, since they mess up the drag and drop effect
-    let selObj = window.getSelection()
-    selObj.removeAllRanges()
-    document.onselectstart = ()=>false  //prevent select start
 
-    this.setState({
-      tabDragState: new TabDragState(e, this.state.tabPositions, this.state.items, idx, this.endDrag, this.updateDrag)
-    })
+    if(this.props.allowDnD){
+      // Remove all existing selections on document, since they mess up the drag and drop effect
+      let selObj = window.getSelection()
+      selObj.removeAllRanges()
+      document.onselectstart = ()=>false  //prevent select start
+
+      this.setState({
+        tabDragState: new TabDragState(e, this.state.tabPositions, this.state.items, idx, this.endDrag, this.updateDrag)
+      })
+    }
   },
 
   endDrag(){
@@ -184,8 +189,10 @@ export const FancyTabPanel = React.createClass({
       }
       return <div className='tab-add-button' style={{left: toLeft+'px', height: TAB_HEIGHT+'px', width: ADD_WIDTH +'px'}}>
         <svg viewBox='0 0 100 100' onClick={this.props.onAddTab}>
-          <path d='M 5 22 L 70 22 L 100 78 L 35 78 Z'/>
+          {/*<path d='M 5 22 L 70 22 L 100 78 L 35 78 Z'/>*/}
+          <path d='M 20 20 L 80 20 L 80 80 L 20 80 Z'/>
         </svg>
+        <i className='fa fa-plus'/>
       </div>
   },
 
