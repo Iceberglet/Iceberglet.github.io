@@ -6,6 +6,7 @@ Fancy Tab Panel
 * If a callback is optional, and not provided, tab panel will assume that you forbid such action. (e.g. not providing onAddTab will prevent the add tab button from showing up)
 
 **Important Props:**
+-------------------------
 Property Name | Value needed | Is Required | Default | Note
 --------------|--------------|-------------|------
 items         | an array of `Tab` objects that are expected to be shown | yes | undefined | the order of items is the order of the tabs
