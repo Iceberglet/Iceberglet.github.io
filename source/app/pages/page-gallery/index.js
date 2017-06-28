@@ -31,9 +31,10 @@ const PageGallery = React.createClass({
         </div>
         <div className='itemRow'>
           <div className='itemBox'><I/></div>
-          <div className='itemDescription'>{
-            item.description.map((line, idx)=><div key={idx}>{line}</div>)
-          }</div>
+          <div className='itemDescription'>
+            { item.description.map((line, idx)=><div key={idx}>{line}</div>) }
+            <div className='itemBottomLine'>{item.bottomLine}</div>
+          </div>
         </div>
       </div>)
   },

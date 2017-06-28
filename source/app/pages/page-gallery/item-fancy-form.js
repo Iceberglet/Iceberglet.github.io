@@ -22,5 +22,10 @@ const FancyFormContainer = React.createClass({
 export const ItemFancyForm = {
   title: 'Fancy Form',
   boxItem: FancyFormContainer,
-  description: ['Fancy Form Description']
+  description: ['Fancy Form Description'],
+  bottomLine: <div>
+    <a href = 'https://github.com/Iceberglet/Iceberglet.github.io/tree/master/source/modules/fancy-form'>
+      <i className='fa fa-github fa-fw'/>
+    </a>
+  </div>
 }

@@ -36,5 +36,10 @@ const CursorContainer = React.createClass({
 export const ItemCursor = {
   title: 'Fancy Cursor',
   boxItem: CursorContainer,
-  description: ['Fancy Cursor']
+  description: ['Fancy Cursor'],
+  bottomLine: <div>
+    <a href = 'https://github.com/Iceberglet/Iceberglet.github.io/tree/master/source/modules/fancy-cursor'>
+      <i className='fa fa-github fa-fw'/>
+    </a>
+  </div>
 }
