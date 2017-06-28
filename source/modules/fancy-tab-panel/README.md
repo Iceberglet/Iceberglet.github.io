@@ -3,8 +3,13 @@ Fancy Tab Panel
 
 **Basic Idea:**   
 * This Tab Panel is designed to be **behaviour-agnostic**. That is to say, it hooks the user action to callbacks provided, and processes tabs mutations uniquely from change of props. E.g. when user clicks *add tab** button, the tab panel will simply call the onAddTab function and does nothing else. Therefore the behaviour is left completely open to the higher level. (e.g. one may initiate a dialogue in this callback to ask for the new tab name, then add the tab by modifying the `items` prop of the tab panel)
-* If a callback is optional, and not provided, tab panel will assume that you forbid such action. (e.g. not providing onAddTab will prevent the add tab button from showing up)
+* If a callback is optional, and not provided, tab panel will assume that you forbid such action. (e.g. not providing onAddTab will prevent the add tab button from showing up)  
 
+First Header | Second Header
+------------ | -------------
+Content from cell 1 | Content from cell 2
+Content in the first column | Content in the second column
+   
 **Important Props:**   
 Property Name | Value needed | Is Required | Default | Note   
 ------------- | ------------ | ----------- | -----   
