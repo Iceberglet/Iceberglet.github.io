@@ -1,6 +1,14 @@
 import React from 'react';
 import { Cursor, cursorCallback } from 'fancy-cursor';
 
+const centerStyle = {
+  background: 'blue',
+  color: 'white',
+  fontSize: '22px',
+  width: '200px',
+  height: '200px'
+}
+
 const CursorContainer = React.createClass({
 
   getInitialState(){
@@ -22,12 +30,11 @@ const CursorContainer = React.createClass({
   },
 
   render(){
-    return <div className='no-pointer occupy' onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
-
+    return <div className='no-pointer occupy center-children' onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
+      <div className='center-children' style={centerStyle} {...cursorCallback}>{'I need cursor!'}</div>
       {this.state.show && <Cursor cursorColor={{
           active: [0, 255, 200],
-          inactive: [0, 255, 200],
-          enlarged: [255, 0, 0]
+          inactive: [0, 255, 200]
         }}/>}
     </div>
   }
@@ -36,7 +43,14 @@ const CursorContainer = React.createClass({
 export const ItemCursor = {
   title: 'Fancy Cursor',
   boxItem: CursorContainer,
-  description: ['Fancy Cursor'],
+  description: ['When the dull default cursor just won\'t cut it, we need a more drastic measure',
+      'Until a new HTML/CSS standard implements animated gifs for cursor, we have to resort to the dark side of the force:',
+      '- Remove the cursor from document by setting: "cursor: none;" in CSS',
+      '- Add an animated cursor element',
+      '- Hook up the mouse move event over the document, and update the cursor position in real time',
+      '- Add necessary hooks for mouse event (e.g. animation on hover)',
+      'And Voila!'
+    ],
   bottomLine: <div>
     <a href = 'https://github.com/Iceberglet/Iceberglet.github.io/tree/master/source/modules/fancy-cursor'>
       <i className='fa fa-github fa-fw'/>

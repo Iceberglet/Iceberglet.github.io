@@ -1,30 +1,23 @@
-Fancy Form Elements
+Fancy Cursor
 ==============================================
 
-API Example:
-------------
-```jsx
-<FancySelect valueKey={'ccy1'} invalidProtocol='keep' label='Currency'
-             values={[{key: 'usdinr', label: 'USDINR'}, {key: 'eurusd', label: 'EURUSD'}, {key: 'usdjpy', label: 'USDJPY'},
-                      {key: 'usdcny', label: 'USDCNY'}, {key: 'audsgd', label: 'AUDSGD'}, {key: 'gbpusd', label: 'GBPUSD'},
-                      {key: 'INREUR', label: 'INREUR'}, {key: 'CNYJPY', label: 'CNYJPY'}, {key: 'usdjpy', label: 'USDJPY'}]}
-                      />
-<FancyInput valueKey={'cpty'} label='Counterparty' />
-<FancyInput valueKey={'risk'} label='Risk Analysis' />
-<FancyInputNumber valueKey={'number'} label='Number'/>
+While this cursor is not perfect, if you really want to use it, here are some tips:
+
+* Cursor states:
+currently there are two cursor states: `active` and `inactive`. (The `enlarged` state is removed since I deemed it ugly)
+
+* **Props**
+cursorColor: a js object with three values:
+```javascript
+{
+  active: [0, 255, 200],
+  inactive: [0, 255, 200]
+}
 ```
+each value is an array of RGB values for the color of cursor in two states
 
-1. Using props `onConfirmChange`, the updated value will be passed into the `onConfirmChange`, together with `valueKey` to facilitate form processing.
-  e.g.
-  ```javascript
-  onConfirmChange: function({valueKey, value}){
-    //process valueKey and value pair
-  }
-  ```
-
-2. For **FancySelect**, the value is `{key: label:}` object that is part of props values array
-  In case of invalid choices, the value can be undefined, an empty string, previous good value, or raw input value, depending on the `invalidProtocol` passed (`'keep'`, `'discard'` or `'empty'`)
-
-3. `onConfirmChange` is called when
-  (For **FancyInput**, it is called when input value is CHANGED)
-  (For **FancySelect**, it is called when user - 1.Click on a value to select it. 2.Remove focus. 3.Press enter )
+* Callbacks:
+Use `cursorCallback` on elements which you wish to have a hover effect. Hovering triggers `active` state, while leaving will restore `inactive` state:
+```jsx
+<div {...cursorCallback} />
+```

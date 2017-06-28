@@ -13,10 +13,10 @@ const onHover = (e)=>{
   currentTarget = e.target
   registeredCursor && registeredCursor.setStatus('active', currentTarget)
 }
-const onEnlarge = (e)=>{
-  currentTarget = e.target
-  registeredCursor && registeredCursor.setStatus('enlarged', currentTarget)
-}
+// const onEnlarge = (e)=>{
+//   currentTarget = e.target
+//   registeredCursor && registeredCursor.setStatus('enlarged', currentTarget)
+// }
 const onExit = (e)=>{
   registeredCursor && registeredCursor.setStatus('inactive', null)
   currentTarget = null
@@ -61,19 +61,20 @@ export const Cursor = React.createClass({
       this.setState({
         status, style: null
       }, ()=>{this.subscribeToMovement(true)})
-    } else {
-      let rect = el.getBoundingClientRect()
-      let y = (rect.top + rect.bottom) / 2, x = (rect.left + rect.right) / 2
-      let size = Math.max(Math.sqrt(rect.height * rect.height + rect.width * rect.width), sizeOfNormalCursor) * 1.2+ 'px'
-      this.setState({
-        status,
-        style: {
-          top: y, left: x, width: size, height: size
-        }
-      }, ()=>{
-        this.subscribeToMovement(false)
-      })
     }
+    // else {
+    //   let rect = el.getBoundingClientRect()
+    //   let y = (rect.top + rect.bottom) / 2, x = (rect.left + rect.right) / 2
+    //   let size = Math.max(Math.sqrt(rect.height * rect.height + rect.width * rect.width), sizeOfNormalCursor) * 1.2+ 'px'
+    //   this.setState({
+    //     status,
+    //     style: {
+    //       top: y, left: x, width: size, height: size
+    //     }
+    //   }, ()=>{
+    //     this.subscribeToMovement(false)
+    //   })
+    // }
   },
 
   subscribeToMovement(flag){
@@ -110,22 +111,22 @@ export const Cursor = React.createClass({
             <path d='M 50 0 L 85 92 L 50 62 L 15 92 Z' fill = 'url(#activeGradient)'/>
             <path className='moving' d='M 50 72 L 85 100 L 85 110 L 50 90 L 15 110 L 15 100 Z' fill = 'url(#activeGradient)'/>
           </svg>)
-      case 'enlarged' : return (<svg>
-        <svg className={'cursor-arrow outer-wheel rotatable ' + status} viewBox='-10 -10 120 120'>
-          <path d='M 50 2 A 48 48 0 0 1 98 50 ' strokeWidth='4' fill='none'/>
-          <path d='M 2 50 A 48 48 0 0 0 50 98' strokeWidth='4' fill='none'/>
-        </svg>}
-        <svg className={'cursor-arrow outer-wheel ' + status} viewBox='-10 -10 120 120'>
-           <circle cx="50" cy="50" r={this.props.targetNode? '48' : '25'} strokeWidth='4'/>
-           {!this.props.targetNode && <circle cx="50" cy="50" r={'4'} strokeWidth='2'/>}
-        </svg>
-        <svg className={'cursor-arrow pins ' + status} viewBox='0 0 100 100'>
-          <path d='M 49 0 L 51 0 L 50 18 Z' strokeWidth='0' style={{transform: 'translate(0, -200%)'}}/>
-          <path d='M 100 49 L 100 51 L 82 50 Z' strokeWidth='0' style={{transform: 'translate(200%, 0)'}}/>
-          <path d='M 49 100 L 51 100 L 50 82 Z' strokeWidth='0' style={{transform: 'translate(0, 200%)'}}/>
-          <path d='M 0 49 L 0 51 L 18 50 Z' strokeWidth='0' style={{transform: 'translate(-200%, 0)'}}/>
-        </svg>
-      </svg>)
+      // case 'enlarged' : return (<svg>
+      //   <svg className={'cursor-arrow outer-wheel rotatable ' + status} viewBox='-10 -10 120 120'>
+      //     <path d='M 50 2 A 48 48 0 0 1 98 50 ' strokeWidth='4' fill='none'/>
+      //     <path d='M 2 50 A 48 48 0 0 0 50 98' strokeWidth='4' fill='none'/>
+      //   </svg>}
+      //   <svg className={'cursor-arrow outer-wheel ' + status} viewBox='-10 -10 120 120'>
+      //      <circle cx="50" cy="50" r={this.props.targetNode? '48' : '25'} strokeWidth='4'/>
+      //      {!this.props.targetNode && <circle cx="50" cy="50" r={'4'} strokeWidth='2'/>}
+      //   </svg>
+      //   <svg className={'cursor-arrow pins ' + status} viewBox='0 0 100 100'>
+      //     <path d='M 49 0 L 51 0 L 50 18 Z' strokeWidth='0' style={{transform: 'translate(0, -200%)'}}/>
+      //     <path d='M 100 49 L 100 51 L 82 50 Z' strokeWidth='0' style={{transform: 'translate(200%, 0)'}}/>
+      //     <path d='M 49 100 L 51 100 L 50 82 Z' strokeWidth='0' style={{transform: 'translate(0, 200%)'}}/>
+      //     <path d='M 0 49 L 0 51 L 18 50 Z' strokeWidth='0' style={{transform: 'translate(-200%, 0)'}}/>
+      //   </svg>
+      // </svg>)
     }
     console.error('Unknown Status', status)
   },
@@ -144,10 +145,10 @@ export const Cursor = React.createClass({
                 <stop offset="0%"  stopColor={this.state.inactive.color1}/>
                 <stop offset="100%" stopColor={this.state.inactive.color2}/>
             </linearGradient>
-            <linearGradient id="enlargedGradient">
+            {/*<linearGradient id="enlargedGradient">
                 <stop offset="0%"  stopColor={this.state.enlarged.color1}/>
                 <stop offset="100%" stopColor={this.state.enlarged.color2}/>
-            </linearGradient>
+            </linearGradient>*/}
           </defs>
         </svg>
         {
