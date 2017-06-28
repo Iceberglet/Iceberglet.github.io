@@ -6,15 +6,15 @@ Fancy Tab Panel
 * If a callback is optional, and not provided, tab panel will assume that you forbid such action. (e.g. not providing onAddTab will prevent the add tab button from showing up)
 
 **Important Props:**   
-Property Name | Value needed | Is Required | Default | Note
-------------- | ------------ | ----------- | -----
-items         | an array of `Tab` objects that are expected to be shown | yes | undefined | the order of items is the order of the tabs
-selected      | the `id` of the item selected. | yes | undefined | It is **YOUR** responsibility to make sure the `items` do contain a tab with such ID!
-onSelectTab   | a function that takes in the `id` of the tab, which can then mutate the state | no | undefined | here you can mutate `selected` to update the tabs
-onAddTab      | a function hooked when user clicks on the button to add a tab. | no | undefined | see **Basic Idea** on its logic
-onRemoveTab   | a function hooked when user removes a tab. takes in the `id` of the tab| undefined | see **Basic Idea** on its logic
-onFinishDrag  | a function hooked when user finishes dragging. takes in the array of tabs of the new order | yes | undefined | user is advised to update the newly ordered array of tabs, since tab-panel does not do anything
-allowRemoveAll | a boolean to tell if user can remove all tabs | no | false | if onRemoveTab is not given, then this bool is moot.
+Property Name | Value needed | Is Required | Default | Note   
+------------- | ------------ | ----------- | -----   
+items         | an array of `Tab` objects that are expected to be shown | yes | undefined | the order of items is the order of the tabs   
+selected      | the `id` of the item selected. | yes | undefined | It is **YOUR** responsibility to make sure the `items` do contain a tab with such ID!   
+onSelectTab   | a function that takes in the `id` of the tab, which can then mutate the state | no | undefined | here you can mutate `selected` to update the tabs   
+onAddTab      | a function hooked when user clicks on the button to add a tab. | no | undefined | see **Basic Idea** on its logic   
+onRemoveTab   | a function hooked when user removes a tab. takes in the `id` of the tab| undefined | see **Basic Idea** on its logic   
+onFinishDrag  | a function hooked when user finishes dragging. takes in the array of tabs of the new order | yes | undefined | user is advised to update the newly ordered array of tabs, since tab-panel does not do anything   
+allowRemoveAll | a boolean to tell if user can remove all tabs | no | false | if onRemoveTab is not given, then this bool is moot.   
 
 **API Example:**   
 (Base Usage, same as in `tab-panel-base.js`)
