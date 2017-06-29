@@ -12,6 +12,7 @@ const ensureOneIsTrue = (obj, key)=>{
 export const FancyCheckBoxes = React.createClass({
   propTypes: {
     valueKey: React.PropTypes.string.isRequired,
+    label: React.PropTypes.string,        //An optional label
     checkedStatus: React.PropTypes.object,    //{key1: true/false, key2: true/false, ...}
     values: React.PropTypes.array.isRequired, //[{key: , value: }, {key: , value: }]
     isMultiple: React.PropTypes.bool,     //Allow checking multiple boxes?
@@ -68,6 +69,10 @@ export const FancyCheckBoxes = React.createClass({
     }
   },
 
+  renderLabel(){
+    return <div className='checkboxes-label'>{this.props.label}</div>
+  },
+
   renderCheckBox({key, value}, idx){
     return <FancyCheckBox key={key} label={value} value={key} isEnabled={this.props.isEnabled}
                 isChecked={this.state.checkedStatus[key]}
@@ -75,6 +80,9 @@ export const FancyCheckBoxes = React.createClass({
   },
 
   render(){
-    return <div className='fancy-checkboxes-sample'>{this.props.values.map(this.renderCheckBox)}</div>;
+    return <div className='fancy-checkboxes-sample'>
+      {this.props.label && this.renderLabel()}
+      {this.props.values.map(this.renderCheckBox)}
+    </div>;
   }
 })

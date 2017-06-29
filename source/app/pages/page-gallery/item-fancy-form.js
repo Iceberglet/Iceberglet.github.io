@@ -16,7 +16,7 @@ const FancyFormContainer = React.createClass({
     <div>
       <FancyInput valueKey={'bb'} label='Another Input Field' />
       <FancyInputNumber valueKey={'number'} label='Input Number Here'/>
-      <FancyCheckBoxes valueKey={'CheckBox2'} values={[{key: 'check-me', value: 'Check Me!'}, {key: 'check-me2', value: 'No, Check Me!'}]}/>
+      <FancyCheckBoxes valueKey={'CheckBox2'} label={'A Label'} values={[{key: 'check-me', value: 'Check Me!'}, {key: 'check-me2', value: 'No, Check Me!'}]}/>
     </div>
   </div>}
 })

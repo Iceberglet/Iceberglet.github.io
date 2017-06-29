@@ -139,9 +139,19 @@
   position: relative;
   padding: 10px;
   margin: 6px;
-  margin-top: 12px;
+  margin-top: 20px;
   border: 1px solid lightgray;
   border-radius: 15px;
+
+  .checkboxes-label {
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    color: gray;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: white;
+  }
 }
 
 .fancy.fancy-checkbox {
