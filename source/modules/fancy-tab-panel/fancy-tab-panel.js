@@ -54,7 +54,6 @@ export const FancyTabPanel = React.createClass({
     return {
       totalWidth: 0,
       tabPositions: null,
-      itemsMap: arrayToMap(stateItems, tab=>tab.id.toString()),
       items: stateItems   //copy into another array
     }
   },
@@ -66,8 +65,7 @@ export const FancyTabPanel = React.createClass({
     this.setState({
       totalWidth, items,
       toDelete,
-      tabPositions: res,
-      itemsMap: arrayToMap(items, tab=>tab.id.toString())
+      tabPositions: res
     }, ()=>{
       setTimeout(()=>{
         this.setState(s=>{
@@ -197,13 +195,15 @@ export const FancyTabPanel = React.createClass({
   },
 
   render(){
+    // a trick to make sure tabs are rendered in a FIXED order, because re-arranging DOM elements has undefined behaviour in browsers
+    let map = arrayToMap(this.state.items, tab=>tab.id.toString())
     return (
       <div className='fancy-tab-panel'>
         <Measure bounds onResize={this.onContainerResize}>
           {({ measureRef }) =>
             <div className='top-panel' ref={measureRef} style={{height: PANEL_HEIGHT+'px'}}>
-              {Object.keys(this.state.itemsMap).map(id=>{
-                let tab = this.state.itemsMap[id]
+              {Object.keys( map ).map(id=>{
+                let tab = map[id]
                 let idx = this.state.items.indexOf(tab)
                 return this.renderTab(tab, idx)
               })}

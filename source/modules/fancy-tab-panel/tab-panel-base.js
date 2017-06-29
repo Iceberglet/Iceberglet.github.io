@@ -1,6 +1,6 @@
 import React from 'react'
 import { Tab } from './tab';
-import { FancyTabPanel } from './tab-panel-core'
+import { FancyTabPanel } from './fancy-tab-panel'
 
 export const TabPanelBase = React.createClass({
 
