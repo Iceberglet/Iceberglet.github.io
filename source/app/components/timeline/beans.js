@@ -1,19 +1,15 @@
 import moment from 'moment'
+import { idGenerator } from 'util'
 
-const EventType = function(name, thumbnail){
-
+const EventType = function(thumbnail, pinColor){
+  this.thumbnail = thumbnail;
+  this.pinColor = pinColor;
 }
 
-const EventTypes = {
-  Professional: {
-
-  },
-  Education: {
-
-  },
-  Personal: {
-
-  }
+export const EventTypes = {
+  Professional: new EventType('fa fa-handshake-o', 'blue'),
+  Education: new EventType('fa fa-graduation-cap-fw', 'red'),
+  Personal: new EventType('fa fa-puzzle-piece', 'yellow')
 }
 
 export const Day = function(year, month, day) {
@@ -46,13 +42,16 @@ Day.prototype.compareTo = function(another){
   }
 }
 
+const idGen = idGenerator()
+
 export const Event = function(title, type, aday) {
-  if(EventTypes.keys().indexOf(type) < 0){
+  if(Object.values(EventTypes).indexOf(type) < 0){
     throw new Error('No Such Event Type: ', type)
   }
   if(!(aday instanceof Day)){
     throw new Error('Invalid Param (Not of type "Day"): ', aday)
   }
+  this.id = idGen()
   this.title = title;
   this.type = type;
   this.day = aday;

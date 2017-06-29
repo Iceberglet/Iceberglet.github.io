@@ -1,10 +1,4 @@
-const idGenerator = function(){
-  let counter = 0;
-  return function(){
-    counter++;
-    return counter;
-  }
-}
+import {idGenerator} from 'util'
 
 const idGen = idGenerator();
 
