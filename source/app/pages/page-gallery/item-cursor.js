@@ -2,11 +2,11 @@ import React from 'react';
 import { Cursor, cursorCallback } from 'fancy-cursor';
 
 const centerStyle = {
-  background: 'blue',
+  background: '#5555d4',
   color: 'white',
   fontSize: '22px',
-  width: '200px',
-  height: '200px'
+  width: '120px',
+  height: '120px'
 }
 
 const CursorContainer = React.createClass({
@@ -31,7 +31,7 @@ const CursorContainer = React.createClass({
 
   render(){
     return <div className='no-pointer occupy center-children' onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
-      <div className='center-children' style={centerStyle} {...cursorCallback}>{'I need cursor!'}</div>
+      <div className='center-children' style={centerStyle} {...cursorCallback}>{'Hover Me~'}</div>
       {this.state.show && <Cursor cursorColor={{
           active: [0, 255, 200],
           inactive: [0, 255, 200]
