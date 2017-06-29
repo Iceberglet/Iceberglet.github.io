@@ -1,10 +1,7 @@
 .fancy {
   position: relative;
-  margin-left: 6px;
-  margin-top: 10px;
   width: 200px;
   background: inherit;
-  border-bottom: 1px solid gray;
 }
 
 .fancy .place-holder {
@@ -25,6 +22,7 @@
 
 .fancy .fancy-input-wrapper {
   padding-right: 20px;
+  border-bottom: 1px solid gray;
 }
 
 .fancy .fancy-input{
@@ -34,12 +32,15 @@
   height: 16px;
   font-size: 16px;
   text-indent: 5px;
+  // margin-left: 6px;
+  margin-top: 10px;
   padding-bottom: 10px;
   padding-top: 30px;
   color: rgb(34, 34, 34);
   background: inherit;
   font-weight: 600;
   text-overflow: ellipsis;
+  caret-color: transparent;
 }
 
 .fancy .fancy-select-menu-wrapper.active {
@@ -132,4 +133,91 @@
 
 .fancy .fancy-input:focus+.underline {
   transform: scale(1);
+}
+
+.fancy-checkboxes-sample {
+  position: relative;
+  padding: 10px;
+  margin: 6px;
+  margin-top: 12px;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+}
+
+.fancy.fancy-checkbox {
+  display: flex;
+  position: relative;
+  align-items: center;
+  cursor: default;
+  width: auto;
+
+  .fancy-checkbox-label {
+    position: relative;
+    left: 0px;
+    transition: 0.3s;
+    color: gray;
+  }
+
+  .fancy-checkbox-container {
+    position: relative;
+    width: 40px;
+    height: 40px;
+
+    svg {
+      position: absolute;
+
+      //Unchecked, disabled
+      circle {
+        stroke: lightgray;
+        transition: 0.3s;
+        transform-origin: center;
+        fill: transparent;
+      }
+
+      circle.fancy-checkbox-ring {
+        transform: scale(1, 1);
+      }
+      circle.fancy-checkbox-circle {
+        transform: scale(0, 0);
+        fill: darkgray;
+      }
+      circle.fancy-checkbox-circle2 {
+        transform: scale(0, 0);
+      }
+    }
+  }
+
+  &.enabled {
+    cursor: pointer;
+
+    .fancy-checkbox-label {
+      color: black;
+    }
+
+    svg circle {
+      stroke: darkgray;
+
+      &.fancy-checkbox-circle {
+        fill: #484848;
+      }
+    }
+
+    &:hover {
+      .fancy-checkbox-label {
+        left: 6px;
+      }
+    }
+  }
+
+  &.checked {
+    svg circle.fancy-checkbox-ring {
+      transform: scale(0, 0);
+    }
+    svg circle.fancy-checkbox-circle {
+      transform: scale(1, 1);
+    }
+    svg circle.fancy-checkbox-circle2 {
+      transform: scale(1, 1);
+    }
+  }
 }

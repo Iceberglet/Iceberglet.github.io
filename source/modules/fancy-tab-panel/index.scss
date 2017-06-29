@@ -47,6 +47,14 @@ $tab-selection-time: 0.15s;
         fill: $tab-color;
         stroke: $tab-border-color;
         transition: $tab-selection-time;
+
+        path {
+          transform-origin: center;
+          transition: 0.4s;
+          &:hover {
+              transform: rotate(90deg);
+          }
+        }
       }
 
       i {
