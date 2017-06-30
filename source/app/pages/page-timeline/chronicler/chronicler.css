@@ -1,15 +1,20 @@
-.pointer-navigator {
-  position: relative;
-  background: #333;
-  width: 240px;
+.chronicler {
+  position: absolute;
+  /*background: #333;*/
+  width: 150px;
+  left: 0px;
+  top: 0px;
+  /*top: -50%; /* Offsetting the chronicler to start at top */
   display: flex;
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
   height: 100%;
+
+  animation: enter-from-left 0.8s 1 linear;
 }
 
-.pointer-navigator .gradient-mask{
+.chronicler .gradient-mask {
   z-index: 999;
   width: 100%;
   height: 100%;
@@ -21,7 +26,7 @@
   background: linear-gradient(rgba(0,0,0,1), rgba(0,0,0,0), rgba(0,0,0,1)); /* Standard syntax */
 }
 
-.pointer-navigator .navigator-container {
+.chronicler .navigator-container {
   position: absolute;
   width: 100%;
   align-self: center;
@@ -33,25 +38,43 @@
   transition: linear 0.5s;
 }
 
-.pointer-navigator .navigator-item {
+.chronicler .navigator-item {
   height: 40px;
   position: relative;
   width: 100%;
-  font-size: 20px;
-  color: white;
+  font-size: 16px;
+  /*color: white;*/
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   transition: 0.5s;
   cursor: pointer;
 }
 
-.pointer-navigator .navigator-item.navigator-current{
-  font-size: 24px;
+/* Using top to adjust its position*/
+.chronicler .navigator-item .event-pin {
+  margin-top: -5px; /* Using margin-top to offset its height by 50% */
+  height: 10px;
+  width: 20px;
+  position: absolute;
+  left: 0px;
+  transition: 0.3s;
+  clip-path: polygon(15% 0, 5% 50%, 15% 100%, 100% 100%, 100% 0);
 }
 
-.pointer-navigator .navigator-pointer{
+/* Enlarge on hover */
+.chronicler .navigator-item .event-pin:hover {
+  transform-origin: left;
+  transform: scale(1.4, 1.2);
+  z-index: 999;
+}
+
+.chronicler .navigator-item.navigator-current{
+  font-size: 20px;
+}
+
+.chronicler .navigator-pointer{
   position: absolute;
   height: 40px;
   width: 100%;
@@ -60,16 +83,30 @@
   clip-path: polygon(15% 0, 5% 50%, 15% 100%, 100% 100%, 100% 0);
 }
 
-.pointer-navigator .navigator-item .navigator-item-text {
+.chronicler .navigator-item .navigator-item-text {
   /*float: left;*/
-  padding-right: 24%;
+  padding-left: 54%;
 }
 
-.pointer-navigator .navigator-marking {
+.chronicler .navigator-marking {
   position: absolute;
-  right: 0px;
-  width: 20%;
+  left: 0px;
+  width: 50%;
   height: 100%;
   display: flex;
   flex-direction: column;
+  z-index: -1;
+}
+
+.chronicler .navigator-marking path {
+  stroke: black;
+}
+
+@keyframes enter-from-left {
+  0% {
+    left: -150px;
+  }
+  100% {
+    left: 0px;
+  }
 }

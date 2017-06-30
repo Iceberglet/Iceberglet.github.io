@@ -3,13 +3,14 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Marking } from './marking'
 import { getTransformStyle } from 'util'
-import './pointer-navigator.css'
+import './chronicler.css'
 
-export default class PointerNavigator extends React.Component {
+export default class Chronicler extends React.Component {
   static propTypes = {
-    items: React.PropTypes.array.isRequired,
+    events: React.PropTypes.array.isRequired,
     itemHeight: React.PropTypes.number,
-    onSelect: React.PropTypes.func.isRequired,
+    onSelect: React.PropTypes.func,
+    onSelectEvent: React.PropTypes.func.isRequired,
     paddingDummies: React.PropTypes.number
   }
 
@@ -18,9 +19,23 @@ export default class PointerNavigator extends React.Component {
     itemHeight: 40
   }
 
-  state = {
-    curr: 0,
-    offset: 0
+  constructor(props){
+    super(props);
+    //Compute years
+    let sortedByYear = {}
+    props.events.forEach((e)=>{
+      let y = e.day.year
+      if(sortedByYear[y]){
+        sortedByYear[y].push(e)
+      } else {
+        sortedByYear[y] = [e]
+      }
+    })
+    this.state = {
+      curr: 0,
+      offset: 0,
+      eventsMap: sortedByYear
+    }
   }
 
   componentDidMount(){
@@ -54,14 +69,14 @@ export default class PointerNavigator extends React.Component {
   recomputeOffset=()=>{
     let i = Math.round(- this.state.offset / this.props.itemHeight)
     i = Math.max(0, i)
-    i = Math.min(i, this.props.items.length - 1)
+    i = Math.min(i, Object.keys(this.state.eventsMap).length - 1)
     this.scrollTimeout = null;
     this.setScrollToItem(i)
   }
 
   setScrollToItem=(i)=>{
     let offset = - i * this.props.itemHeight;
-    let needToInvoke = this.state.curr !== i
+    // let needToInvoke = this.state.curr !== i
     this.setState({
       offset, curr: i
     }, ()=>{
@@ -69,14 +84,23 @@ export default class PointerNavigator extends React.Component {
     })
   }
 
+  renderEventsInYear=(eventsThisYear)=>{
+    return eventsThisYear.map(e=>{
+      let eType =e.type, eday = e.day
+      let perc = eday.getPercentageInYear()
+      return <div key={e.id} className={'event-pin'} onClick={()=>this.props.onSelectEvent(e.id)} style={{background: eType.pinColor, top: perc+'%'}}/>
+    })
+  }
+
   renderList=()=>{
-    let res = this.props.items.map((n,i)=>{
-      let name = 'navigator-item'
+    let res = Object.keys(this.state.eventsMap).sort().map((year,i)=>{
+      let name = 'navigator-item', eventsThisYear = this.state.eventsMap[year]
       if(this.state.curr === i){
         name += ' navigator-current'
       }
       return (<div className={name} key={i} onClick={()=>{this.setScrollToItem(i)}}>
-                <div className={'navigator-item-text no-select'}>{n}</div>
+                <div className={'navigator-item-text no-select'}>{year}</div>
+                {this.renderEventsInYear(eventsThisYear)}
                 <Marking />
               </div>)
     })
@@ -94,10 +118,11 @@ export default class PointerNavigator extends React.Component {
   }
 
   render=()=>{
-    let length = this.props.items.length;
+    let length = Object.keys(this.state.eventsMap).length;
     let top = length - 1 + this.props.paddingDummies
+    // let top = 0;  //no pad items at top
     let btm = this.props.paddingDummies
-    return (<div className='pointer-navigator' ref={(c)=>{this.containerNode = c}} onWheel={this.onScroll}>
+    return (<div className='chronicler' ref={(c)=>{this.containerNode = c}} onWheel={this.onScroll} style={{marginTop: this.props.itemHeight / 2 + 'px'}}>
         {/*<ReactResizeDetector handleHeight onResize={this.onResize} />*/}
         <div className='navigator-pointer' key='pointer'/>
         <div className='navigator-container' style={getTransformStyle('translate(0px, '+this.state.offset+'px)')}>
@@ -105,7 +130,7 @@ export default class PointerNavigator extends React.Component {
           {this.renderList()}
           {this.renderDummies(btm, 'btm')}
         </div>
-        <div className='gradient-mask' key='mask'/>
+        {/*<div className='gradient-mask' key='mask'/>*/}
       </div>)
   }
 }

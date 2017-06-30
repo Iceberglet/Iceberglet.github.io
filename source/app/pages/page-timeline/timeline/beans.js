@@ -8,7 +8,7 @@ const EventType = function(thumbnail, pinColor){
 
 export const EventTypes = {
   Professional: new EventType('fa fa-handshake-o', 'blue'),
-  Education: new EventType('fa fa-graduation-cap-fw', 'red'),
+  Educational: new EventType('fa fa-graduation-cap-fw', 'red'),
   Personal: new EventType('fa fa-puzzle-piece', 'yellow')
 }
 
@@ -21,6 +21,10 @@ export const Day = function(year, month, day) {
   if(!this._momentObj.isValid()){
     throw new Error('Unable to construct moment: ', year, month, day)
   }
+}
+
+Day.prototype.getPercentageInYear = function(){
+  return this._momentObj.dayOfYear() / (this._momentObj.isLeapYear()? 366 : 365) * 100
 }
 
 Day.prototype.getDayStr = function(){
