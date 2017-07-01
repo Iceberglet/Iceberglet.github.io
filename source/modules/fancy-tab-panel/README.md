@@ -7,7 +7,7 @@ Fancy Tab Panel
   - Sample Program:  
   ```javascript
     import ReactFancyTabPanel from 'react-fancy-tab-panel'
-    const TabPanelBase = ReactFancyTabPanel.TabPanelBase
+    const TabPanelExample = ReactFancyTabPanel.TabPanelExample
     ...
       render(){
         return <TabPanelBase />
@@ -18,7 +18,7 @@ Fancy Tab Panel
     - Webpack, Sass loaders
     - React, React-Measure, etc. (installed by npm)
 
-- **Demo:**
+- **Demo:**  
   See https://iceberglet.github.io/ under page "Gallery->Fancy Tab Panel"
 
 - **Basic Idea:**   
@@ -28,16 +28,16 @@ Fancy Tab Panel
 
 - **TabPanelCore Props:**   
 
-Property Name | Value needed | Is Required | Default | Note
-------------- | ------------ | ----------- | ------- | ----
-items         | an array of `Tab` objects that are expected to be shown | yes | `undefined` | the order of items is the order of the tabs
-selected      | the `id` of the item selected. | yes | `undefined` | It is **YOUR** responsibility to make sure the `items` do contain a tab with such ID!
-onSelectTab   | a function that takes in the `id` of the tab, which can then mutate the state | no | `undefined` | here you can mutate `selected` to update the tabs
-onAddTab      | a function hooked when user clicks on the button to add a tab. | no | `undefined` | see **Basic Idea** on its logic
-onRemoveTab   | a function hooked when user removes a tab. takes in the `id` of the tab | no | `undefined` | see **Basic Idea** on its logic
-onFinishDrag  | a function hooked when user finishes dragging. takes in the array of tabs of the new order | yes | `undefined` | user is advised to update the newly ordered array of tabs, since tab-panel does not do anything
-allowRemoveAll | a boolean to tell if user can remove all tabs | no | `false` | if `onRemoveTab` is not given, then this bool is moot.
-allowDnD      | a boolean to tell if user can drag and drop to re-arrange tabs | no | `true` | setting this to false will make `onFinishDrag` moot.
+  Property Name | Value needed | Is Required | Default | Note
+  ------------- | ------------ | ----------- | ------- | ----
+  items         | an array of `Tab` objects that are expected to be shown | yes | `undefined` | the order of items is the order of the tabs
+  selected      | the `id` of the item selected. | yes | `undefined` | It is **YOUR** responsibility to make sure the `items` do contain a tab with such ID!
+  onSelectTab   | a function that takes in the `id` of the tab, which can then mutate the state | no | `undefined` | here you can mutate `selected` to update the tabs
+  onAddTab      | a function hooked when user clicks on the button to add a tab. | no | `undefined` | see **Basic Idea** on its logic
+  onRemoveTab   | a function hooked when user removes a tab. takes in the `id` of the tab | no | `undefined` | see **Basic Idea** on its logic
+  onFinishDrag  | a function hooked when user finishes dragging. takes in the array of tabs of the new order | yes | `undefined` | user is advised to update the newly ordered array of tabs, since tab-panel does not do anything
+  allowRemoveAll | a boolean to tell if user can remove all tabs | no | `false` | if `onRemoveTab` is not given, then this bool is moot.
+  allowDnD      | a boolean to tell if user can drag and drop to re-arrange tabs | no | `true` | setting this to false will make `onFinishDrag` moot.
 
 - **API Example:**   
 (Base Usage, same as in `tab-panel-base.js`)  
