@@ -18,6 +18,9 @@ Fancy Tab Panel
     - Webpack, Sass loaders
     - React, React-Measure, etc. (installed by npm)
 
+- **Demo:**
+  See https://iceberglet.github.io/ under page "Gallery->Fancy Tab Panel"
+
 - **Basic Idea:**   
   - The `TabPanelCore` is designed to be **behaviour-agnostic**. That is to say, it hooks the user action to callbacks provided, and processes tabs mutations uniquely from change of props. E.g. when user clicks *add tab* button, the tab panel will simply call the `onAddTab` function and does nothing else. Therefore the behaviour is left completely open to the higher level. (e.g. one may initiate a dialogue in this callback to ask for the new tab name, then add the tab by modifying the `items` prop of the tab panel)
   - To Use a TabPanel, either use a `TabPanelBase` or modify it to suit your needs. Specifically, you need to consider the behaviours you need. (See below the relevant props to understand which props are relevant and how they are supposed to work)
