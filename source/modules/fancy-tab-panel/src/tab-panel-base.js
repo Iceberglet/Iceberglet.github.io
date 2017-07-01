@@ -1,14 +1,15 @@
 import React from 'react'
 import { Tab } from './tab';
-import { FancyTabPanel } from './fancy-tab-panel'
+import { TabPanelCore } from './tab-panel-core'
 
 export const TabPanelBase = React.createClass({
 
+  propTypes: {
+    items: React.PropTypes.array.isRequired
+  },
+
   getInitialState(){
-    let items = [new Tab('Intro'),
-            new Tab('Tab 1'),
-            new Tab('Tab 2'),
-            new Tab('Tab 3')]
+    let items = this.props.items
     return {
       items, selected: items[0].id
     }
@@ -48,7 +49,7 @@ export const TabPanelBase = React.createClass({
   render(){
     let item = this.state.items.find(item=>item.id === this.state.selected) || {};
     return (<div>
-        <FancyTabPanel onSelectTab = {this.onSelectTab}
+        <TabPanelCore onSelectTab = {this.onSelectTab}
                        onAddTab = {this.onAddTab}
                        onRemoveTab = {this.onRemoveTab}
                        onFinishDrag = {this.onFinishDrag}

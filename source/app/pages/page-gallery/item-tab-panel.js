@@ -1,12 +1,12 @@
 import React from 'react';
-// import ReactFancyTabPanel from 'fancy-tab-panel/src'
-import ReactFancyTabPanel from 'react-fancy-tab-panel'
+import ReactFancyTabPanel from 'fancy-tab-panel'
+// import ReactFancyTabPanel from 'react-fancy-tab-panel'
 
-const TabPanelBase = ReactFancyTabPanel.TabPanelBase
+const TabPanelExample = ReactFancyTabPanel.TabPanelExample
 
 export const ItemTabPanel = {
   title: 'Fancy Tab Panel',
-  boxItem: TabPanelBase,
+  boxItem: TabPanelExample,
   description: ['A Dynamic Tab Panel mimicking the chrome\'s design.',
     'This is just a crude version, but it has everything a tab panel can ask for:',
     '- Dynamically add and delete tabs',

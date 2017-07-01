@@ -6,9 +6,13 @@ Object.defineProperty(exports, "__esModule", {
 
 var _tabPanelBase = require('./tab-panel-base');
 
-var _fancyTabPanel = require('./fancy-tab-panel');
+var _tabPanelCore = require('./tab-panel-core');
+
+var _tabPanelExample = require('./tab-panel-example');
+
+var _tab = require('./tab');
 
 exports.default = {
-  TabPanelBase: _tabPanelBase.TabPanelBase, FancyTabPanel: _fancyTabPanel.FancyTabPanel
+  Tab: _tab.Tab, TabPanelBase: _tabPanelBase.TabPanelBase, TabPanelCore: _tabPanelCore.TabPanelCore, TabPanelExample: _tabPanelExample.TabPanelExample
 };
 //# sourceMappingURL=index.js.map

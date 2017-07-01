@@ -11,14 +11,20 @@ var _react2 = _interopRequireDefault(_react);
 
 var _tab = require('./tab');
 
-var _fancyTabPanel = require('./fancy-tab-panel');
+var _tabPanelCore = require('./tab-panel-core');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var TabPanelBase = exports.TabPanelBase = _react2.default.createClass({
   displayName: 'TabPanelBase',
+
+
+  propTypes: {
+    items: _react2.default.PropTypes.array.isRequired
+  },
+
   getInitialState: function getInitialState() {
-    var items = [new _tab.Tab('Intro'), new _tab.Tab('Tab 1'), new _tab.Tab('Tab 2'), new _tab.Tab('Tab 3')];
+    var items = this.props.items;
     return {
       items: items, selected: items[0].id
     };
@@ -60,7 +66,7 @@ var TabPanelBase = exports.TabPanelBase = _react2.default.createClass({
     return _react2.default.createElement(
       'div',
       null,
-      _react2.default.createElement(_fancyTabPanel.FancyTabPanel, { onSelectTab: this.onSelectTab,
+      _react2.default.createElement(_tabPanelCore.TabPanelCore, { onSelectTab: this.onSelectTab,
         onAddTab: this.onAddTab,
         onRemoveTab: this.onRemoveTab,
         onFinishDrag: this.onFinishDrag,

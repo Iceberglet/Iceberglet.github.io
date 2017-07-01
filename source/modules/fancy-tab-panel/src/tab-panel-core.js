@@ -18,7 +18,7 @@ const iconStyle = {
   width: CROSS_WIDTH+'px'
 }
 
-export const FancyTabPanel = React.createClass({
+export const TabPanelCore = React.createClass({
   propTypes: {
     onSelectTab: React.PropTypes.func.isRequired,
     selected: React.PropTypes.number.isRequired,
