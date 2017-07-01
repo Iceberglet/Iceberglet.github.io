@@ -11,11 +11,14 @@ export default class Chronicler extends React.Component {
     itemHeight: React.PropTypes.number,
     onSelect: React.PropTypes.func,
     onSelectEvent: React.PropTypes.func.isRequired,
-    paddingDummies: React.PropTypes.number
+
+    dummiesTop: React.PropTypes.number,
+    dummiesBottom: React.PropTypes.number
   }
 
   static defaultProps = {
-    paddingDummies: 20,
+    dummiesTop: 4,
+    dummiesBottom: 10,
     itemHeight: 40
   }
 
@@ -33,7 +36,7 @@ export default class Chronicler extends React.Component {
     })
     this.state = {
       curr: 0,
-      offset: 0,
+      offset: - props.dummiesTop * props.itemHeight,
       eventsMap: sortedByYear
     }
   }
@@ -54,6 +57,7 @@ export default class Chronicler extends React.Component {
 
   onScroll = (e)=>{
     let offset = this.state.offset + this.scrollMultipler * (e.deltaY > 0? -1 : 1)
+    console.log('New Offset', offset)
     this.setState({
       offset
     }, ()=>{
@@ -67,7 +71,8 @@ export default class Chronicler extends React.Component {
 
   //Called after scroll finish
   recomputeOffset=()=>{
-    let i = Math.round(- this.state.offset / this.props.itemHeight)
+    // i is the target item index
+    let i = Math.round( - this.state.offset / this.props.itemHeight - this.props.dummiesTop)
     i = Math.max(0, i)
     i = Math.min(i, Object.keys(this.state.eventsMap).length - 1)
     this.scrollTimeout = null;
@@ -75,7 +80,7 @@ export default class Chronicler extends React.Component {
   }
 
   setScrollToItem=(i)=>{
-    let offset = - i * this.props.itemHeight;
+    let offset = - ( i + this.props.dummiesTop) * this.props.itemHeight;
     // let needToInvoke = this.state.curr !== i
     this.setState({
       offset, curr: i
@@ -119,10 +124,11 @@ export default class Chronicler extends React.Component {
 
   render=()=>{
     let length = Object.keys(this.state.eventsMap).length;
-    let top = length - 1 + this.props.paddingDummies
-    // let top = 0;  //no pad items at top
-    let btm = this.props.paddingDummies
-    return (<div className='chronicler' ref={(c)=>{this.containerNode = c}} onWheel={this.onScroll} style={{marginTop: this.props.itemHeight / 2 + 'px'}}>
+    // let top = length - 1 + this.props.paddingDummies
+    // let btm = this.props.paddingDummies
+
+    let top = this.props.dummiesTop, btm = this.props.dummiesBottom
+    return (<div className='chronicler' ref={(c)=>{this.containerNode = c}} onWheel={this.onScroll} style={{paddingTop: this.props.itemHeight / 2 + 'px'}}>
         {/*<ReactResizeDetector handleHeight onResize={this.onResize} />*/}
         <div className='navigator-pointer' key='pointer'/>
         <div className='navigator-container' style={getTransformStyle('translate(0px, '+this.state.offset+'px)')}>
