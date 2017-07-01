@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { scrollElement } from 'util'
-import { Event, EventTypes, Day } from './timeline/beans'
+import { Event, EventTypes, Day } from './beans'
 import Chronicler from './chronicler'
 
 const style = {
@@ -18,8 +18,9 @@ class PageTimeline extends React.Component {
       new Event('Hi', EventTypes.Professional, new Day(2011,11,5)),
       new Event('Hi', EventTypes.Professional, new Day(2011,1,1)),
       new Event('Hi', EventTypes.Personal, new Day(2012,3,5)),
-      new Event('Hi', EventTypes.Educational, new Day(2014,3,1))
-    ]
+      new Event('Hi', EventTypes.Educational, new Day(2020,3,1))
+    ],
+    selectedEventTypes: [EventTypes.Professional, EventTypes.Educational]
   };
 
   constructor(props){
@@ -33,7 +34,7 @@ class PageTimeline extends React.Component {
 
   render(){
     return (<div className='page' style={style} ref={'pageDiv'}>
-      <Chronicler onSelectEvent={this.onChooseEvent} events={this.props.events}/>
+      <Chronicler onSelectEvent={this.onChooseEvent} selectedEventTypes={this.props.selectedEventTypes} events={this.props.events}/>
       <div className='page-content' style={{marginLeft: '150px'}}>
         {'Hello I am another page '}
       </div>

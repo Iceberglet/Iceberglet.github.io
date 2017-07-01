@@ -8,6 +8,7 @@ import './chronicler.css'
 export default class Chronicler extends React.Component {
   static propTypes = {
     events: React.PropTypes.array.isRequired,
+    selectedEventTypes: React.PropTypes.array.isRequired,
     itemHeight: React.PropTypes.number,
     onSelect: React.PropTypes.func,
     onSelectEvent: React.PropTypes.func.isRequired,
@@ -34,6 +35,14 @@ export default class Chronicler extends React.Component {
         sortedByYear[y] = [e]
       }
     })
+    //Pad intermittent years
+    let minY = Math.min(...Object.keys(sortedByYear)), maxY = Math.max(...Object.keys(sortedByYear))
+    for(let yy = minY; yy < maxY; yy = yy + 1) {
+      if(!sortedByYear[yy]){
+        sortedByYear[yy] = []
+      }
+    }
+
     this.state = {
       curr: 0,
       offset: - props.dummiesTop * props.itemHeight,
@@ -56,10 +65,10 @@ export default class Chronicler extends React.Component {
   scrollTimeout = null
 
   onScroll = (e)=>{
-    let offset = this.state.offset + this.scrollMultipler * (e.deltaY > 0? -1 : 1)
-    console.log('New Offset', offset)
+    let scrollDirection = e.deltaY > 0? -1 : 1
+    let offset = this.state.offset + this.scrollMultipler * scrollDirection
     this.setState({
-      offset
+      offset, scrollDirection
     }, ()=>{
       if(this.scrollTimeout){
         window.clearTimeout(this.scrollTimeout)
@@ -79,9 +88,25 @@ export default class Chronicler extends React.Component {
     this.setScrollToItem(i)
   }
 
+  yearIsDisabled=(year)=>{
+    let evts = this.state.eventsMap[year]
+    return evts.length === 0 || evts.every(e=>this.props.selectedEventTypes.indexOf(e.type) < 0)
+  }
+
   setScrollToItem=(i)=>{
+    //prevent scroll to years with no events:
+    let year = Object.keys(this.state.eventsMap).sort()[i]
+    while(this.yearIsDisabled(year)){
+      i -= this.state.scrollDirection
+      year = Object.keys(this.state.eventsMap).sort()[i]
+      if(!year){
+        i += this.state.scrollDirection  //backtrace
+        year = Object.keys(this.state.eventsMap).sort()[i]
+        break;
+      }
+    }
+
     let offset = - ( i + this.props.dummiesTop) * this.props.itemHeight;
-    // let needToInvoke = this.state.curr !== i
     this.setState({
       offset, curr: i
     }, ()=>{
@@ -91,19 +116,25 @@ export default class Chronicler extends React.Component {
 
   renderEventsInYear=(eventsThisYear)=>{
     return eventsThisYear.map(e=>{
-      let eType =e.type, eday = e.day
+      let eType =e.type, eday = e.day, className='event-pin'
       let perc = eday.getPercentageInYear()
-      return <div key={e.id} className={'event-pin'} onClick={()=>this.props.onSelectEvent(e.id)} style={{background: eType.pinColor, top: perc+'%'}}/>
+      if(this.props.selectedEventTypes.indexOf(eType) < 0){
+        className+=' disabled'
+      }
+      return <div key={e.id} className={className} onClick={()=>this.props.onSelectEvent(e.id)} style={{background: eType.pinColor, top: perc+'%'}}/>
     })
   }
 
   renderList=()=>{
     let res = Object.keys(this.state.eventsMap).sort().map((year,i)=>{
-      let name = 'navigator-item', eventsThisYear = this.state.eventsMap[year]
+      let name = 'navigator-item', eventsThisYear = this.state.eventsMap[year], yearIsDisabled = this.yearIsDisabled(year);
       if(this.state.curr === i){
         name += ' navigator-current'
       }
-      return (<div className={name} key={i} onClick={()=>{this.setScrollToItem(i)}}>
+      if(yearIsDisabled){
+        name += ' no-events'
+      }
+      return (<div className={name} key={i} onClick={()=>{!yearIsDisabled && this.setScrollToItem(i)}}>
                 <div className={'navigator-item-text no-select'}>{year}</div>
                 {this.renderEventsInYear(eventsThisYear)}
                 <Marking />

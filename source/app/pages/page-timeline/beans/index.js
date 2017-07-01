@@ -7,9 +7,9 @@ const EventType = function(thumbnail, pinColor){
 }
 
 export const EventTypes = {
-  Professional: new EventType('fa fa-handshake-o', 'blue'),
-  Educational: new EventType('fa fa-graduation-cap-fw', 'red'),
-  Personal: new EventType('fa fa-puzzle-piece', 'yellow')
+  Professional: new EventType('fa fa-handshake-o', '#59599b'),
+  Educational: new EventType('fa fa-graduation-cap-fw', '#b76d6d'),
+  Personal: new EventType('fa fa-puzzle-piece', '#8ec299')
 }
 
 export const Day = function(year, month, day) {

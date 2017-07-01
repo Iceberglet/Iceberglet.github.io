@@ -52,21 +52,31 @@
   cursor: pointer;
 }
 
+.chronicler .navigator-item.no-events {
+  opacity: 0.5;
+  cursor: default;
+}
+
 /* Using top to adjust its position*/
 .chronicler .navigator-item .event-pin {
-  margin-top: -5px; /* Using margin-top to offset its height by 50% */
-  height: 10px;
-  width: 20px;
+  margin-top: -9px; /* Using margin-top to offset its height by 50% */
+  height: 18px;
+  width: 30%;
   position: absolute;
-  left: 0px;
-  transition: 0.3s;
-  clip-path: polygon(15% 0, 5% 50%, 15% 100%, 100% 100%, 100% 0);
+  left: 20%;
+  transition: 0.1s;
+  clip-path: polygon(75% 0, 5% 50%, 75% 100%, 100% 50%);
+}
+
+.chronicler .navigator-item .event-pin.disabled {
+  opacity: 50%;
+  background: lightgray !important;
 }
 
 /* Enlarge on hover */
-.chronicler .navigator-item .event-pin:hover {
+.chronicler .navigator-item .event-pin:hover:not(.disabled) {
   transform-origin: left;
-  transform: scale(1.4, 1.2);
+  transform: scale(1.2, 1.2);
   z-index: 999;
 }
 
