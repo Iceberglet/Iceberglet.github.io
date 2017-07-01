@@ -1,7 +1,8 @@
 import React from 'react';
-import {TabPanelBase} from 'fancy-tab-panel'
+// import ReactFancyTabPanel from 'fancy-tab-panel/src'
+import ReactFancyTabPanel from 'react-fancy-tab-panel'
 
-
+const TabPanelBase = ReactFancyTabPanel.TabPanelBase
 
 export const ItemTabPanel = {
   title: 'Fancy Tab Panel',

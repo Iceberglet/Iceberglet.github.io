@@ -1,4 +1,4 @@
-import {idGenerator} from 'util'
+import {idGenerator} from './util'
 
 const idGen = idGenerator();
 

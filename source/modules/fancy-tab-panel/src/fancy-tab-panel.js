@@ -1,7 +1,7 @@
 import React from 'react'
 import Measure from 'react-measure'
 import './index.scss'
-import {postpone, arrayToMap} from 'util'
+import {postpone, arrayToMap} from './util'
 import {calculate} from './calculator'
 import {TAB_HEIGHT, PANEL_HEIGHT, MAX_TAB_WIDTH, CROSS_WIDTH, ADD_WIDTH, TAB_ANIMATION_DURATION} from './constants'
 import {TabGhostHandle} from './tab-ghost-handle'
