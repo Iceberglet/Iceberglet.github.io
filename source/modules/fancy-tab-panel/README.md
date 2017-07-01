@@ -10,7 +10,7 @@ Fancy Tab Panel
     const TabPanelExample = ReactFancyTabPanel.TabPanelExample
     ...
       render(){
-        return <TabPanelBase />
+        return <TabPanelExample />
       }
     ...
   ```
