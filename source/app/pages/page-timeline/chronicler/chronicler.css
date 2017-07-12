@@ -4,6 +4,8 @@
   width: 150px;
   left: 0px;
   top: 0px;
+  bottom: 0px;
+
   /*top: -50%; /* Offsetting the chronicler to start at top */
   display: flex;
   flex-direction: column;

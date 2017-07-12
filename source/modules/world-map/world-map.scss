@@ -1,0 +1,41 @@
+.world-map {
+  overflow: hidden;
+  // border: 1px solid lightgray;
+
+  svg {
+
+    transition: 0.3s;
+
+    path.country {
+      transition: 0.3s;
+      stroke: #5a5a5a;
+
+      &.green {
+        fill: lime;
+      }
+
+      &.red {
+        fill: #b47070;
+      }
+
+      &.brown {
+        fill: #936767;
+      }
+
+      &.orange {
+        fill: #cc944e;
+      }
+
+      &.purple {
+        fill: #a77ba7;
+      }
+      // fill: #ececec; //Will use a random color
+
+      // &:hover {
+      //   fill: lime;
+      // }
+    }
+
+  }
+
+}

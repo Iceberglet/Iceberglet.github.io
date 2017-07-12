@@ -1,0 +1,25 @@
+.square-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  color: black;
+  border-radius: 5px;
+  border: 1px solid darkgray;
+  background: lightgray;
+  cursor: pointer;
+
+  .square-icon {
+    transition: 0.2s;
+    font-size: 24px;
+    pointer-events: none;
+  }
+
+  &:hover {
+    color: lightgray;
+    background: black;
+    box-shadow: 0px 0px 10px darkgray;
+  }
+}

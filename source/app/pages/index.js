@@ -4,7 +4,7 @@ import { Gallery } from './page-gallery'
 import { Home } from './page-home'
 import ReactDOM from 'react-dom'
 
-export const Pages = [Home, Gallery, Timeline, ContactMe]
+export const Pages = [Gallery, Timeline, ContactMe]
 
 // Object.keys(Pages).forEach(pg=>{
 //   let p =Pages[pg]
