@@ -24,7 +24,7 @@ const FancyFormContainer = React.createClass({
 export const ItemFancyForm = {
   title: 'Fancy Form',
   boxItem: FancyFormContainer,
-  description: ['A fancy yet elegant solution for form inputs',
+  description: ['A fancy and elegant solution for form inputs',
       'Nothing much to say, since you can see it yourself',
       'See Github link below for API References'
     ],

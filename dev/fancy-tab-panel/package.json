@@ -1,6 +1,6 @@
 {
   "name": "react-fancy-tab-panel",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A chrome-like tab panel with animations",
   "main": "lib/index.js",
   "scripts": {

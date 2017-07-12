@@ -1,5 +1,5 @@
 import moment from 'moment'
-import { idGenerator } from 'util'
+import { idGenerator, camelToDash } from 'utils'
 
 const EventType = function(thumbnail, pinColor){
   this.thumbnail = thumbnail;

@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {registerToMouse, unsubFromMouse} from 'util'
+import {registerToMouse, unsubFromMouse} from 'utils'
 
 const sizeOfNormalCursor = 80
 

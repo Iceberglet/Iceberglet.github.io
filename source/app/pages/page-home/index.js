@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { scrollElement } from 'util'
+import { scrollElement } from 'utils'
 import { ExpandableBox } from 'app/components/expandable-box'
 import './index.scss'
 

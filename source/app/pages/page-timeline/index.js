@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { scrollElement } from 'util'
+import { scrollElement } from 'utils'
 import { Event, EventTypes, Day } from './beans'
 import Chronicler from './chronicler'
 

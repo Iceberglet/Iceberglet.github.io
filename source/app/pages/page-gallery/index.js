@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Items } from './items'
-import { scrollElement } from 'util'
+import { scrollElement } from 'utils'
 import './index.scss'
 
 const style = {

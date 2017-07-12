@@ -2,43 +2,38 @@ var path = require('path');
 module.exports = {
   entry: ['./source/index.js'],
   resolve: {
-    root: [
-      path.resolve('./source/modules')
+    modules: [
+      'node_modules',
+      path.resolve(__dirname, 'source/modules')
     ],
+    // root: [
+    //   path.resolve('./source/modules')
+    // ],
     alias: {
-      app: path.resolve('./source/app'),
-      css: path.resolve('./source/app')
+      app: path.resolve('./source/app')
     },
-    extensions: ['', '.js', '.jsx', '.css','.scss']
+    extensions: ['.js', '.jsx', '.css','.scss']
   },
   output: {
-    path: './resources/',
+    path: path.resolve(__dirname, 'resources'),
     filename: 'bundled.js',
-    libraryTarget: 'var',
+    libraryTarget: 'umd',
     library: 'Reacted'
   },
   devtool: '#inline-source-map',
   module: {
-    loaders: [{
+    rules: [
+      {
         test: /\.less$/,
-        loader: 'style!css!less'
+        use: [{
+            loader: 'style-loader'
+        }, {
+            loader: 'css-loader'
+        }, {
+            loader: 'less-loader'
+        }]
       },
       {
-        test: /\.scss$/,
-        loader: 'style-loader!css!sass!'
-      },
-      {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        query: {
-          presets: ['es2015','react','stage-2'],
-          plugins: ['transform-class-properties']
-        }
-      }, {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader'
-      },{
         test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
@@ -46,8 +41,56 @@ module.exports = {
           presets: ['es2015','react','stage-2'],
           plugins: ['transform-class-properties']
         }
+      },
+      {
+        test: /\.scss$/,
+        use: [{
+            loader: 'style-loader'
+        }, {
+            loader: 'css-loader'
+        }, {
+            loader: 'sass-loader'
+        }]
+      },
+      {
+        test: /\.css$/,
+        use: [{
+            loader: 'style-loader'
+        }, {
+            loader: 'css-loader'
+        }]
       }
-    ]
+    ],
+
+    // loaders: [{
+    //     test: /\.less$/,
+    //     loader: 'style!css!less'
+    //   },
+    //   {
+    //     test: /\.scss$/,
+    //     loader: 'style-loader!css!sass!'
+    //   },
+    //   {
+    //     test: /\.js$/,
+    //     loader: 'babel-loader',
+    //     exclude: /node_modules/,
+    //     query: {
+    //       presets: ['es2015','react','stage-2'],
+    //       plugins: ['transform-class-properties']
+    //     }
+    //   }, {
+    //     test: /\.css$/,
+    //     loader: 'style-loader!css-loader'
+    //   },{
+    //     test: /\.jsx?$/,
+    //     loader: 'babel-loader',
+    //     exclude: /node_modules/,
+    //     query: {
+    //       presets: ['es2015','react','stage-2'],
+    //       plugins: ['transform-class-properties']
+    //     }
+    //   }
+    // ]
   },
   plugins: [
         function() {

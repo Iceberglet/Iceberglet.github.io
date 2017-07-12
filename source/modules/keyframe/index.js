@@ -1,5 +1,5 @@
 import React from 'react'
-import { camelToDash } from 'util'
+import { camelToDash } from 'utils'
 
 const getStyleSheet = () => {
   let res = document.styleSheets[0]
@@ -22,7 +22,7 @@ export const KeyFrame = React.createClass({
     let ruleStrs = []
     let str = `${props.animationName}{`
     Object.keys(props.animationDetails).forEach(percentage=>{
-      let obj = camelToDash(JSON.stringify(props.animationDetails[percentage]).replace(/['"]+/g, ""))
+      let obj = camelToDash(JSON.stringify(props.animationDetails[percentage]).replace(/['"]+/g, ''))
       str += `${percentage} ${obj}`
     })
     str+='}'

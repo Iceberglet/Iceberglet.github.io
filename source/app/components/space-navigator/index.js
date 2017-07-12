@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Scope } from './scope'
 import './space-navigator.scss'
-import {registerToMouse, unsubFromMouse} from 'util'
+import {registerToMouse, unsubFromMouse} from 'utils'
 
 const cursorSize = 80
 

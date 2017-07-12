@@ -2,7 +2,7 @@ import React from 'react'
 // import ReactResizeDetector from 'react-resize-detector'
 import ReactDOM from 'react-dom'
 import { Marking } from './marking'
-import { getTransformStyle } from 'util'
+import { getTransformStyle } from 'utils'
 import './chronicler.css'
 
 export default class Chronicler extends React.Component {

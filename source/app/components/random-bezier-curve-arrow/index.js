@@ -1,5 +1,5 @@
 import React from 'react'
-import { randomBetween } from 'util'
+import { randomBetween } from 'utils'
 import './index.scss'
 
 //offsetting a and b
