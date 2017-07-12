@@ -54,9 +54,9 @@ body * {
   bottom: 0px;
 }
 
-.page::-webkit-scrollbar {
+/*.page::-webkit-scrollbar {
     display: none;
-}
+}*/
 
 .page {
   position: absolute;
@@ -105,9 +105,9 @@ body * {
   left: 20px;
 }
 
-::-webkit-scrollbar {
+/*::-webkit-scrollbar {
   display: none;
-}
+}*/
 
 .no-pointer {
   cursor: none;

@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom'
 import { scrollElement } from 'utils'
 import { Event, EventTypes, Day } from './beans'
 import Chronicler from './chronicler'
-import WorldMapWrapper from 'world-map'
+import WorldMap from 'world-map'
+import Pin from './map/pin'
 
 const style = {
   background: '#daedd8',//'#00005f',
@@ -37,7 +38,9 @@ class PageTimeline extends React.Component {
     return (<div className='page' style={style} ref={'pageDiv'}>
       <Chronicler onSelectEvent={this.onChooseEvent} selectedEventTypes={this.props.selectedEventTypes} events={this.props.events}/>
       <div className='page-content' style={{marginLeft: '150px'}}>
-        <WorldMapWrapper />
+        <WorldMap renderOption={{}}>
+          <Pin x={1372} y={335} />
+        </WorldMap>
       </div>
     </div>)
   }
