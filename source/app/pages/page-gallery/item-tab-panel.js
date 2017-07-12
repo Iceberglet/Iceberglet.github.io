@@ -1,6 +1,6 @@
 import React from 'react';
 // import ReactFancyTabPanel from 'fancy-tab-panel'
-import ReactFancyTabPanel from 'react-fancy-tab-panel'
+import ReactFancyTabPanel from 'fancy-tab-panel'
 
 const TabPanelExample = ReactFancyTabPanel.TabPanelExample
 
