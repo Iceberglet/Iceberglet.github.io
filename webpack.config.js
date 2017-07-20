@@ -6,11 +6,9 @@ module.exports = {
       'node_modules',
       path.resolve(__dirname, 'source/modules')
     ],
-    // root: [
-    //   path.resolve('./source/modules')
-    // ],
     alias: {
-      app: path.resolve('./source/app')
+      app: path.resolve('./source/app'),
+      resources: path.resolve('./resources')
     },
     extensions: ['.js', '.jsx', '.css','.scss']
   },
@@ -47,7 +45,8 @@ module.exports = {
         use: [{
             loader: 'style-loader'
         }, {
-            loader: 'css-loader'
+            loader: 'css-loader',
+            options: { url: false }
         }, {
             loader: 'sass-loader'
         }]
@@ -61,36 +60,6 @@ module.exports = {
         }]
       }
     ],
-
-    // loaders: [{
-    //     test: /\.less$/,
-    //     loader: 'style!css!less'
-    //   },
-    //   {
-    //     test: /\.scss$/,
-    //     loader: 'style-loader!css!sass!'
-    //   },
-    //   {
-    //     test: /\.js$/,
-    //     loader: 'babel-loader',
-    //     exclude: /node_modules/,
-    //     query: {
-    //       presets: ['es2015','react','stage-2'],
-    //       plugins: ['transform-class-properties']
-    //     }
-    //   }, {
-    //     test: /\.css$/,
-    //     loader: 'style-loader!css-loader'
-    //   },{
-    //     test: /\.jsx?$/,
-    //     loader: 'babel-loader',
-    //     exclude: /node_modules/,
-    //     query: {
-    //       presets: ['es2015','react','stage-2'],
-    //       plugins: ['transform-class-properties']
-    //     }
-    //   }
-    // ]
   },
   plugins: [
         function() {

@@ -1,9 +1,28 @@
 .map-pin {
-  circle {
-    fill: red;
+  transition: 0.3s;
+  transform-origin: bottom;
+  cursor: pointer;
+
+  &:hover{
+    transform: scale(1.3, 1.3);
   }
 
   path {
-    fill: white;
+    fill: #5d5d5d;
+    stroke: #303030;
+    stroke-width: 1px;
+  }
+
+  g {
+    circle {
+      fill: red;
+      stroke: black;
+      stroke-width: 1px;
+    }
+
+    path{
+      stroke-width: 0px;
+      fill: white;
+    }
   }
 }

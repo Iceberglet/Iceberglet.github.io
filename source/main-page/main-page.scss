@@ -1,0 +1,98 @@
+$background-splash: white;
+$background-splash-panel: cyan;
+$background-content: yellow;
+
+$enabling-transition: 1s;
+
+.main-page {
+  min-width: 1024px;
+  display: flex;
+  flex-direction: column;
+
+  .top-backdrop {
+    height: 100%;
+    position: relative;
+    transition: $enabling-transition;
+
+    &.active {
+      height: 400px;
+    }
+  }
+
+  .top-backdrop::before{
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: url('./resources/backdrop-1.jpg');
+    filter: blur(2px) grayscale(20%);
+    -webkit-filter: blur(2px) grayscale(20%);
+  }
+
+  .splash {
+    height: 60%;
+    position: absolute;
+    top: 100px;
+    z-index: 999;
+    align-self: center;
+    transition: $enabling-transition;
+    width: 80%;
+
+    &.active {
+      height: 400px;
+    }
+
+    img.avatar {
+      position: relative;
+      transition: 0.3s;
+      height: 100%;
+      filter: grayscale(100%) sepia(0%);
+
+      &:hover{
+        filter: grayscale(0%) sepia(50%);
+      }
+    }
+
+    .splash-panel {
+      position: absolute;
+      top: 0px;
+      width: 60%;
+      transition: 0.4s;
+      background: $background-splash-panel;
+
+      &.splash-left {
+        left: 0px;
+
+        &.enabled {
+
+        }
+      }
+
+      &.splash-right {
+        right: 0px;
+
+        &.enabled {
+
+        }
+      }
+    }
+
+    background: $background-splash;
+  }
+
+  .content {
+    position: relative;
+    height: 0px;
+
+    background: $background-content;
+
+    &.active {
+      padding-top: 100px;
+      min-height: 600px;
+    }
+  }
+
+
+}

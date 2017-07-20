@@ -39,7 +39,13 @@ class PageTimeline extends React.Component {
       <Chronicler onSelectEvent={this.onChooseEvent} selectedEventTypes={this.props.selectedEventTypes} events={this.props.events}/>
       <div className='page-content' style={{marginLeft: '150px'}}>
         <WorldMap renderOption={{}}>
-          <Pin x={1372} y={335} />
+          <Pin x={1372} y={335} key={'afghan'}/>
+          <Pin x={1590} y={390} key={'changsha'}/>
+          <Pin x={1641} y={414} key={'taipei'}/>
+          <Pin x={978} y={242} key={'london'}/>
+          <Pin x={990} y={266} key={'paris'}/>
+          <Pin x={1718} y={350} key={'tokyo'}/>
+          <Pin x={1562} y={563} key={'singapore'}/>
         </WorldMap>
       </div>
     </div>)

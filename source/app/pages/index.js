@@ -3,6 +3,7 @@ import { Timeline } from './page-timeline'
 import { Gallery } from './page-gallery'
 import { Home } from './page-home'
 import ReactDOM from 'react-dom'
+import './index.css'
 
 export const Pages = [Gallery, Timeline, ContactMe]
 

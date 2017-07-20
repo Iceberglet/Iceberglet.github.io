@@ -12,25 +12,26 @@ $transition-time: 0.3s;
     path.country {
       transition: $transition-time;
       stroke: #5a5a5a;
+      fill-opacity: 0.8;
 
       &.green {
-        fill: lime;
+        fill: #c7e999;
       }
 
       &.red {
-        fill: #b47070;
+        fill: #efc2db;
       }
 
       &.brown {
-        fill: #936767;
+        fill: #e9d0b1;
       }
 
       &.orange {
-        fill: #cc944e;
+        fill: #c2e5b0;
       }
 
       &.purple {
-        fill: #a77ba7;
+        fill: #a7e1dc;
       }
       // fill: #ececec; //Will use a random color
 
