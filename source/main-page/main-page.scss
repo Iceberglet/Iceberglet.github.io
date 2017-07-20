@@ -48,34 +48,26 @@ $enabling-transition: 1s;
       position: relative;
       transition: 0.3s;
       height: 100%;
-      filter: grayscale(100%) sepia(0%);
+      filter: grayscale(100%);
 
       &:hover{
-        filter: grayscale(0%) sepia(50%);
+        filter: grayscale(0%);
       }
     }
 
-    .splash-panel {
+
+    .splash-right {
       position: absolute;
       top: 0px;
-      width: 60%;
-      transition: 0.4s;
+      right: 0px;
+      width: 0%;
+      height: 100%;
+      transition: $enabling-transition;
       background: $background-splash-panel;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 20% 100%);
 
-      &.splash-left {
-        left: 0px;
-
-        &.enabled {
-
-        }
-      }
-
-      &.splash-right {
-        right: 0px;
-
-        &.enabled {
-
-        }
+      &.active {
+        width: 76%;
       }
     }
 

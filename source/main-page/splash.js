@@ -11,8 +11,7 @@ export default class Splash extends React.Component {
       <div className='occupy'>
         <img className='avatar' src='resources/avatar-right.jpg'/>
       </div>
-      <div className='splash-panel splash-left'></div>
-      <div className='splash-panel splash-right'></div>
+      <div className={'splash-right ' + (this.props.enabled && 'active')}></div>
     </div>
   }
 }
