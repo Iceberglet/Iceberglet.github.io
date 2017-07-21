@@ -1,8 +1,12 @@
 $background-splash: white;
-$background-splash-panel: cyan;
+$background-splash-panel: #59f0ff;
+$background-splash-panel-below: #4a9bff;
 $background-content: yellow;
 
-$enabling-transition: 1s;
+$enabling-transition: 1.4s;
+
+$splash-icon-size: 44px;
+$splash-icon-size-half: 22px;
 
 .main-page {
   min-width: 1024px;
@@ -32,46 +36,86 @@ $enabling-transition: 1s;
   }
 
   .splash {
-    height: 60%;
+    height: 400px;
     position: absolute;
     top: 100px;
     z-index: 999;
     align-self: center;
     transition: $enabling-transition;
     width: 80%;
+    background: $background-splash;
+    overflow: hidden;
 
     &.active {
-      height: 400px;
+      // height: 400px;
+
+      img.avatar {
+        transform: translate(0%, 0%);
+        filter: grayscale(30%);
+      }
+
+      .right {
+        width: 82%;
+
+        .splash-icon {
+          opacity: 1;
+        }
+      }
     }
 
     img.avatar {
       position: relative;
       transition: 0.3s;
       height: 100%;
+      transform: translate(-16%, 0%);
+      transition: $enabling-transition;
       filter: grayscale(100%);
+    }
 
-      &:hover{
-        filter: grayscale(0%);
+    .bg-right {
+      background: $background-splash-panel;
+      clip-path: polygon(14% 0%, 100% 0%, 100% 100%, 24% 100%);
+
+      &.below {
+        background: $background-splash-panel-below;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 20% 100%);
+      }
+
+      &.belowbelow {
+        background: transparent;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
       }
     }
 
-
-    .splash-right {
+    .right {
       position: absolute;
       top: 0px;
       right: 0px;
       width: 0%;
       height: 100%;
       transition: $enabling-transition;
-      background: $background-splash-panel;
-      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 20% 100%);
 
-      &.active {
-        width: 76%;
+      .splash-icon {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        z-index: 999;
+        left: 16%;
+        top: 20%;
+        width: $splash-icon-size;
+        height: $splash-icon-size;
+        margin-top: -$splash-icon-size-half;
+        margin-left: -$splash-icon-size-half;
+        transition: $enabling-transition;
+
+        font-size: $splash-icon-size-half;
+        background: red;
+        color: white;
+        border-radius: $splash-icon-size-half;
       }
     }
-
-    background: $background-splash;
   }
 
   .content {
