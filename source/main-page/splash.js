@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import {Arrow} from 'arrow'
 
 export default class Splash extends React.Component {
   static propTypes = {
@@ -7,30 +8,25 @@ export default class Splash extends React.Component {
     enabled: React.PropTypes.bool
   }
 
-  // componentWillReceiveProps=(props)=>{
-  //   if(props.enabled){
-  //     this.expandable.forEach(el=>{
-  //       let ele = ReactDOM.findDOMNode(el)
-  //       console.log(ele, ele.style, ele.style.width)
-  //       ele.style.width = '82%'
-  //     })
-  //   }
-  // }
+  state = {
+    position: 'top'
+  }
 
   render(){
-    this.expandable = []
     return <div className={'splash ' + (this.props.enabled && 'active')} onClick={this.props.onEnable}>
       <div className='occupy'>
         <img className='avatar' src='resources/avatar-right.jpg'/>
       </div>
       {/* Somehow by adding the element below it reduces the jaggedness. why? */}
-      <div className='right bg-right belowbelow' ref={(el)=>{this.expandable.push(el)}}></div>
-      <div className='right bg-right below' ref={(el)=>{this.expandable.push(el)}}></div>
-      <div className='right bg-right' ref={(el)=>{this.expandable.push(el)}}>
+      <div className='right bg-right belowbelow'></div>
+      <div className='right bg-right below'></div>
+      <div className={'right bg-right '+ this.state.position}>
         {/* Contents Go Here */}
+        <div className='splash-content'></div>
       </div>
-      <div className='right' ref={(el)=>{this.expandable.push(el)}}>
-        <i className='splash-icon fa fa-arrow-down' />
+      <div className={'right '+this.state.position}>
+        {/*<i className='splash-icon fa fa-angle-down' />*/}
+        <Arrow fontSize={'30px'} className={'splash-icon'} rotation={180}/>
       </div>
     </div>
   }

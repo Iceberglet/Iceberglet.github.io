@@ -1,0 +1,65 @@
+.arrow {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+
+  .main {
+    position: absolute;
+    opacity: 0.5;
+
+    &.enabled {
+      opacity: 1;
+    }
+  }
+
+  .sidekick {
+    position: absolute;
+    // margin-top: -86%;
+    opacity: 0;
+  }
+
+  &:hover{
+    .main.enabled {
+      animation: move 1.3s infinite reverse linear;
+    }
+    .sidekick.enabled {
+      animation: move-offset 1.3s infinite reverse linear;
+    }
+  }
+}
+
+@keyframes move {
+  0%   {
+    transform: translate(0, 0%);
+    opacity: 1;
+  }
+  //moved to the end
+  50% {
+    transform: translate(0, 20%);
+    opacity: 0;
+  }
+  51% {
+    transform: translate(0, -20%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0%);
+    opacity: 1;
+  }
+}
+
+@keyframes move-offset {
+  0%   {
+    transform: translate(0, -20%);
+    opacity: 0;
+  }
+  50%   {
+    transform: translate(0, 0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 20%);
+    opacity: 0;
+  }
+}

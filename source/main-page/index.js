@@ -21,7 +21,7 @@ export default class MainPage extends React.Component {
     return <div className='main-page occupy'>
       <div className={'top-backdrop ' + (this.state.enabled && 'active')} style={{}}></div>
       <Splash onEnable={this.enable} enabled={this.state.enabled}/>
-      <div className={'content' + (this.state.enabled && 'active')} ></div>
+      <div className={'page-content ' + (this.state.enabled && 'active')} ></div>
     </div>
   }
 }
