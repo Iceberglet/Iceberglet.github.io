@@ -1,0 +1,102 @@
+.grid-animation-wrapper {
+  display: inline-block;
+  position: relative;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+
+  .animation-wrapper {
+    position: relative;
+    transform-origin: center;
+  }
+
+  //Droplets animation
+  .grid-animation-exit {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+
+    svg {
+      position: absolute;
+      width: 20%;
+      height: 20%;
+      transform: scale(0,0);
+      transform-origin: center;
+      animation: droplet 200ms;
+      animation-delay: 200ms; //After wrapper exit completes
+
+      path {
+        stroke: gray;
+        stroke-width: 5px;
+      }
+    }
+  }
+}
+
+.animation-wrapper.entering {
+  animation: animation-grid-enter 0.3s;
+  animation-fill-mode: forwards;
+}
+
+.animation-wrapper.exiting {
+  animation: animation-grid-exit 0.2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes animation-grid-exit {
+  0% {
+    transform: scale(1, 1);
+  }
+  70% {
+    transform: scale(1.2, 1.2);
+  }
+  100% {
+    transform: scale(0, 0);
+  }
+}
+
+@keyframes droplet {
+  0% {
+    transform: scale(0.3, 0.3);
+    opacity: 0;
+  }
+  40% {
+    transform: scale(0.8, 0.8);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.3, 1.3);
+    opacity: 0;
+  }
+}
+
+
+@keyframes animation-grid-enter {
+  0% {
+    transform: scale(0, 0);
+  }
+  30% {
+    transform: scale(1.15, 1.15);
+  }
+  // 25% {
+  //   transform: scale(1.2, 1.2);
+  // }
+  // 50% {
+  //   transform: scale(0.8, 0.8);
+  // }
+  // 75% {
+  //   transform: scale(1.05, 1.05);
+  // }
+  100% {
+    transform: scale(1, 1);
+  }
+}

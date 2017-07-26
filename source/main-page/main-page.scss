@@ -1,67 +1,32 @@
 $background-splash: white;
-$background-splash-panel: #59f0ff;
-$background-splash-panel-below: #4a9bff;
-$background-content: yellow;
+$background-content: transparent;
 
 $enabling-transition: 1.4s;
+$splash-content-transition: 0.6s;
 
 $splash-icon-size: 44px;
 $splash-icon-size-half: 22px;
+
+$splash-topbg-height: 300px;
+$splash-offset: 150px;
 
 .main-page {
   min-width: 1024px;
   display: flex;
   flex-direction: column;
+  background: black;
 
-  .top-backdrop {
-    height: 100%;
-    position: relative;
-    transition: $enabling-transition;
-
-    &.active {
-      height: 400px;
-    }
-  }
-
-  .top-backdrop::before{
-    content: '';
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    background: url('./resources/backdrop-1.jpg');
-    filter: blur(2px) grayscale(20%);
-    -webkit-filter: blur(2px) grayscale(20%);
-  }
 
   .splash {
-    height: 400px;
+    height: 80%;
     position: absolute;
-    top: 100px;
     z-index: 999;
     align-self: center;
     transition: $enabling-transition;
+    top: 10%;
     width: 80%;
     background: $background-splash;
     overflow: hidden;
-
-    &.active {
-      // height: 400px;
-
-      img.avatar {
-        transform: translate(0%, 0%);
-        filter: grayscale(30%);
-      }
-
-      .right {
-        width: 82%;
-
-        .splash-icon {
-          opacity: 1;
-        }
-      }
-    }
 
     img.avatar {
       position: relative;
@@ -72,94 +37,23 @@ $splash-icon-size-half: 22px;
       filter: grayscale(100%);
     }
 
-    .bg-right {
-      background: $background-splash-panel;
-      clip-path: polygon(14% 0%, 100% 0%, 100% 100%, 24% 100%);
-
-      &.below {
-        background: $background-splash-panel-below;
-        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 20% 100%);
-      }
-
-      &.belowbelow {
-        background: transparent;
-        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-      }
-    }
-
-    .right {
+    .splash-content-right {
       position: absolute;
       top: 0px;
       right: 0px;
-      width: 0%;
+      width: 80%;
       height: 100%;
-      transition: $enabling-transition;
 
-      &.top {
-        .splash-icon {
-          left: 16%;
-          top: 20%;
-        }
-      }
-
-      &.btm {
-        .splash-icon {
-          left: 22%;
-          top: 80%;
-        }
-        .content {
-          top: -100%;
-        }
-      }
-
-      .splash-content {
-        position: absolute;
-        top: 0%;
-        left: 0%;
-        width: 100%;
-        height: 200%;
-        transition: $enabling-transition;
-        border: 1px solid black;
-      }
-
-      .splash-icon {
-        position: absolute;
-        opacity: 0;
-        z-index: 999;
-        width: $splash-icon-size;
-        height: $splash-icon-size;
-        margin-top: -$splash-icon-size-half;
-        margin-left: -$splash-icon-size-half;
-        transition: $enabling-transition;
-        cursor: pointer;
-        background: #0e0bd1;
-        border-radius: $splash-icon-size-half;
-
-        i {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-          height: 100%;
-          top: 0px;
-          left: 0px;
-        }
+      .test-grid {
+        width: 200px;
+        height: 200px;
+        background: red;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        color: white;
       }
     }
   }
-
-  .page-content {
-    position: relative;
-    height: 0px;
-    transition: $enabling-transition;
-
-    background: $background-content;
-
-    &.active {
-      padding-top: 100px;
-      height: 600px;
-    }
-  }
-
-
 }

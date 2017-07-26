@@ -1,32 +1,42 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {Arrow} from 'arrow'
+import GridAnimation from 'grid-animation'
+import ChainTransitions from 'chain-transitions'
+import PropTypes from 'prop-types'
 
 export default class Splash extends React.Component {
   static propTypes = {
-    onEnable: React.PropTypes.func,  //use to enable everything
-    enabled: React.PropTypes.bool
   }
 
   state = {
-    position: 'top'
+    show: true
+  }
+
+  onTriggerShow = () =>{
+    this.setState({show: !this.state.show})
   }
 
   render(){
-    return <div className={'splash ' + (this.props.enabled && 'active')} onClick={this.props.onEnable}>
+    return <div className={'splash'} onClick={this.onTriggerShow}>
       <div className='occupy'>
         <img className='avatar' src='resources/avatar-right.jpg'/>
       </div>
-      {/* Somehow by adding the element below it reduces the jaggedness. why? */}
-      <div className='right bg-right belowbelow'></div>
-      <div className='right bg-right below'></div>
-      <div className={'right bg-right '+ this.state.position}>
+      {/*<svg className='right bg-right' viewBox='0 0 100 100' preserveAspectRatio='none'>
+        <path d='M 0 0 c 10 26, 19 65, 20 100 H 100 V 0 Z'/>
+        <path d='M 8 0 c 5 26, 18 75, 2 100 H 100 V 0 Z'/>
+        <path d='M 16 0 c 2 20, 10 95, -14 100 H 100 V 0 Z'/>
+      </svg>*/}
+      <div className={'splash-content-right'}>
         {/* Contents Go Here */}
-        <div className='splash-content'></div>
-      </div>
-      <div className={'right '+this.state.position}>
-        {/*<i className='splash-icon fa fa-angle-down' />*/}
-        <Arrow fontSize={'30px'} className={'splash-icon'} rotation={180}/>
+        <ChainTransitions transitionProps={{in:this.state.show, mountOnEnter:true, unmountOnExit:true, appear:true}}
+                          className={'test-grid-container'}>
+          <GridAnimation className='test-grid' key='1'>
+            <div>{'Hello World!'}</div>
+          </GridAnimation>
+          <GridAnimation className='test-grid' key='2'>
+            <div>{'Hello Again!'}</div>
+          </GridAnimation>
+        </ChainTransitions>
       </div>
     </div>
   }
