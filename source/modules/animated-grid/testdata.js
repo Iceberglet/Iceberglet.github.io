@@ -3,6 +3,7 @@ import React from 'react'
 export const TestGrids = {
   Education: {
     colorHue: 120,
+    gridProps: {itemsInRow: 3},
     grids: [...Array(16).keys()].map(idx=>{
       return {
         idx,

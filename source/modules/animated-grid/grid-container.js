@@ -42,7 +42,6 @@ export default class GridContainer extends React.Component {
   }
 
   onClickGridItem = (expandIdx) => {
-    console.log('On Click Grid Item', expandIdx)
     this.setState({expandIdx})
   }
 
@@ -50,7 +49,7 @@ export default class GridContainer extends React.Component {
     let gridData = this.props.data[key]
     return <Transition key={key} in={this.state.defactoGridKey === key} timeout={Constants.GRID_SHOW_HIDE_TIME} mountOnEnter unmountOnExit appear>
       {(status)=>{
-        return <Grid expandIdx={this.state.expandIdx} status={status}>
+        return <Grid expandIdx={this.state.expandIdx} status={status} {...gridData.gridProps}>
           {gridData.grids.map(g=>{
             return <GridItem key={g.idx} thumb={g.thumb}
                           content={g.content}
@@ -63,7 +62,6 @@ export default class GridContainer extends React.Component {
   }
 
   render(){
-    console.log(this.state.expandIdx)
     return <div>{Object.keys(this.props.data).map(this.renderGrid)}</div>
   }
 }
