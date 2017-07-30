@@ -1,6 +1,7 @@
 .grid-animation-wrapper {
   display: inline-block;
   position: relative;
+  perspective: 300px;
   // display: flex;
   // align-items: center;
   // justify-content: center;
@@ -8,64 +9,47 @@
   .animation-wrapper {
     position: relative;
     transform-origin: center;
-  }
-
-  //Droplets animation
-  .grid-animation-exit {
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 0px;
-    left: 0px;
-    height: 100%;
-    width: 100%;
-
-    svg {
-      position: absolute;
-      width: 20%;
-      height: 20%;
-      transform: scale(0,0);
-      transform-origin: center;
-      animation: droplet 200ms;
-      animation-delay: 200ms; //After wrapper exit completes
-
-      path {
-        stroke: gray;
-        stroke-width: 5px;
-      }
-    }
+    transform-style: preserve-3d;
   }
 }
 
 .animation-wrapper.entering {
-  animation: animation-grid-enter 0.3s;
+  animation: animation-grid-enter-rotate 0.3s;
+  animation-timing-function: ease-out;
   animation-fill-mode: forwards;
 }
 
 .animation-wrapper.exiting {
-  animation: animation-grid-exit 0.2s;
+  animation: animation-grid-exit 0.3s;
   animation-fill-mode: forwards;
+}
+
+@keyframes animation-grid-enter-rotate {
+  0% {
+    transform: rotateY(-180deg) scale(0.3, 0.3);
+  }
+  30% {
+    transform: rotateY(-120deg) scale(0.6, 0.6);
+  }
+  100% {
+    transform: rotateY(0deg) scale(1, 1);
+  }
 }
 
 @keyframes animation-grid-exit {
   0% {
     transform: scale(1, 1);
   }
-  70% {
-    transform: scale(1.2, 1.2);
+  50% {
+    transform: scale(1, 0.02);
   }
   100% {
-    transform: scale(0, 0);
+    transform: scale(0, 0.01);
   }
 }
 
 @keyframes droplet {
   0% {
-    transform: scale(0.3, 0.3);
-    opacity: 0;
-  }
-  40% {
     transform: scale(0.8, 0.8);
     opacity: 1;
   }

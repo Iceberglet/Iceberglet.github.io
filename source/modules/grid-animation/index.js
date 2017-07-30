@@ -9,27 +9,13 @@ export default class GridAnimation extends React.Component {
     className: PropTypes.string
   }
 
-  renderExit=(status)=>{
-    if(status === 'exiting'){
-      return <div className='grid-animation-exit'>
-        <svg viewBox='0 0 100 100'>
-          <path d='M 60 60 L 90 90' />
-          <path d='M 40 60 L 10 90' />
-          <path d='M 40 40 L 10 10' />
-          <path d='M 60 40 L 90 10' />
-        </svg>
-      </div>
-    }
-  }
-
   render(){
-    return <Transition {...this.props} timeout={{enter: 300, exit: 400}}>
+    return <Transition {...this.props} timeout={{enter: 300, exit: 300}}>
     {(status)=>{
       return <div className='grid-animation-wrapper'>
         <div className={`animation-wrapper ${status} ${this.props.className}`}>
           {this.props.children}
         </div>
-        {this.renderExit(status)}
       </div>
     }}
     </Transition>

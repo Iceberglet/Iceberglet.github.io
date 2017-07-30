@@ -1,0 +1,103 @@
+$grid-transition-time: 300ms;
+$grid-item-transition-time: 300ms;
+
+$grid-item-flash: 400ms;
+
+.grid {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  cursor: pointer;
+}
+
+.grid-item {
+  position: absolute;
+  transition: $grid-item-transition-time ease-in-out;
+  overflow: hidden;
+  background: black;
+  color: white;
+
+  .grid-item-thumb {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:before{
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 120%;
+      transform: translate(-80%, 0%) rotateZ(-70deg);
+      transform-origin: center;
+      background: none;
+      background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0.45), rgba(255,255,255,0));
+    }
+
+    &:hover:before{
+      animation: flash $grid-item-flash linear;
+    }
+  }
+
+  .grid-item-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.grid-item-enter {
+  transform: rotate3d(1, 1, 0, -180deg) scale(0.5, 0.5);
+  transition: transform $grid-transition-time ease-in;
+
+  &.grid-item-enter-active {
+    transform: rotate3d(1, 1, 0, -180deg) scale(0.5, 0.5);
+  }
+}
+
+.grid-item-exit {
+
+  &.grid-item-exit-active {
+
+  }
+}
+
+//For Selection and all
+.grid-item-transit-enter {
+  opacity: 0;
+  transition: opacity $grid-item-transition-time ease-in;
+
+  &.grid-item-transit-enter-active {
+    opacity: 1;
+  }
+}
+
+.grid-item-transit-exit {
+  opacity: 1;
+  transition: opacity $grid-item-transition-time ease-out;
+
+  &.grid-item-transit-exit-active {
+    opacity: 0;
+  }
+}
+
+@keyframes flash {
+  0% {
+    transform: translate(-80%, 0%) rotateZ(-70deg);
+  }
+  100% {
+    transform: translate(80%, 0%) rotateZ(-70deg);
+  }
+}
+
+@keyframes animation-grid-enter-rotate {
+  0% {
+    transform: rotate3d(1, 1, 0, -180deg) scale(0.5, 0.5);
+  }
+  100% {
+    transform: rotate3d(1, 1, 0, 0deg) scale(1, 1);
+  }
+}

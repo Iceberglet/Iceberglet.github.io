@@ -52,6 +52,7 @@ export const arrayToMap = (arr, keyProvider) => {
 }
 
 export { registerToMouse, unsubFromMouse } from './screen-mouse-listener'
+export * from './color'
 
 export const idGenerator = function(){
   let counter = 0;
