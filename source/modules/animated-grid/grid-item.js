@@ -22,14 +22,14 @@ export default class GridItem extends React.Component {
   render(){
     let {style, isSelected, thumb, content, show, backgroundHue} = this.props
     style.background = this.state.background
-    return <CSSTransition in={true} classNames='grid-item' timeout={Constants.GRID_ENTER_ANI_TIME}
+    return <CSSTransition in={show} classNames='grid-item' timeout={Constants.GRID_ITEM_FLIP_TIME}
                           mountOnEnter unmountOnExit appear>
       <div className='grid-item' style={style} onClick={this.props.onClick}>
-        <CSSTransition in={!isSelected} timeout={Constants.GRID_SELECT_ANI_TIME} classNames='grid-item-transit'
+        <CSSTransition in={!isSelected} timeout={Constants.GRID_ITEM_SELECT_TIME} classNames='grid-item-transit'
                         mountOnEnter unmountOnExit appear>
           <div className='grid-item-thumb'>{thumb}</div>
         </CSSTransition>
-        <CSSTransition in={isSelected} timeout={Constants.GRID_SELECT_ANI_TIME} classNames='grid-item-transit'
+        <CSSTransition in={isSelected} timeout={Constants.GRID_ITEM_SELECT_TIME} classNames='grid-item-transit'
                         mountOnEnter unmountOnExit appear>
           <div className='grid-item-content'>{content}</div>
         </CSSTransition>

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
 
 import {Grid, GridItem} from 'animated-grid'
+import TransitionGroup from 'react-transition-group/TransitionGroup';
+import Transition from 'react-transition-group/Transition';
 
 import GridAnimation from 'grid-animation'
 import ChainTransitions from 'chain-transitions'
@@ -35,14 +37,18 @@ export default class Splash extends React.Component {
         <path d='M 16 0 c 2 20, 10 95, -14 100 H 100 V 0 Z'/>
       </svg>*/}
       <div className={'splash-content-right'}>
-        <Grid expandIdx={this.state.selected}>
-          {[...Array(18).keys()].map(idx=>{
-            return <GridItem key={idx} thumb={<div>{`Thumb ${idx}`}</div>}
-                          content={<div>{`Content ${idx}`}</div>}
-                          onClick={()=>this.onClickGridItem(idx)}
-                          backgroundHue={250}/>
-          })}
-        </Grid>
+          <Transition in={this.state.show} timeout={1000} mountOnEnter unmountOnExit appear>
+            {(status)=>{
+              return <Grid expandIdx={this.state.selected} status={status}>
+                {[...Array(18).keys()].map(idx=>{
+                  return <GridItem key={idx} thumb={<div>{`Thumb ${idx}`}</div>}
+                                content={<div>{`Content ${idx}`}</div>}
+                                onClick={()=>this.onClickGridItem(idx)}
+                                backgroundHue={250}/>
+                })}
+              </Grid>
+            }}
+          </Transition>
 
         {/*<ChainTransitions transitionProps={{in:this.state.show, mountOnEnter:true, unmountOnExit:true, appear:true}}
                           className={'test-grid-container'}>
