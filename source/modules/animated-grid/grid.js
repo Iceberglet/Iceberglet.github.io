@@ -36,6 +36,7 @@ export default class Grid extends React.Component {
 
   componentWillReceiveProps=(props)=>{
     this.processAnimation(props.status)
+    this.setState(this.recalculatePos(this.state.size, props.expandIdx))
   }
 
   componentWillUnmount(){
@@ -43,48 +44,57 @@ export default class Grid extends React.Component {
   }
 
   processAnimation=(status)=>{
-    console.log('process animation:', status)
     if(status !== 'entering' && status !== 'exiting')
       return {};
-    // clearTimeout(this.timeout)
+    if(this.timeout){
+      clearTimeout(this.timeout)
+    }
     let sequence = this.getAnimationSequence();
     let interval = Constants.GRID_ITEM_FLIP_TIME / sequence.length
     let isEnter = status === 'entering'
     //keep adding new indices:
     if(isEnter){
-      console.log('animate-start-add-setState')
-      this.setState({shownIndices: []}, ()=>this.animate(sequence, interval, isEnter))
+      this.setState({shownIndices: [], status}, ()=>this.animate(sequence, interval, isEnter))
     }
     //kick start hiddenIndices removal
     else {
-      console.log('animate-start-remove-setState')
-      this.setState({shownIndices: sequence}, ()=>this.animate(sequence, interval, isEnter))
+      this.setState({shownIndices: sequence, status}, ()=>this.animate(sequence, interval, isEnter))
     }
   }
 
   animate = (sequence, interval, isEnter)=>{
-    console.log('animate:', isEnter)
-    if(isEnter){
-      if(sequence.length === 0){
-        return;
-      }
-      this.setState(s=>{
-        s.shownIndices.push(sequence.shift())
-        return s;
-      }, ()=>{
-        this.timeout = setTimeout(()=>this.animate(sequence, interval, isEnter), interval)
-      })
-    } else {
-      if(this.state.shownIndices.length === 0){
-        return;
-      }
-      this.setState(s=>{
-        s.shownIndices.pop()
-        return s;
-      }, ()=>{
-        this.timeout = setTimeout(()=>this.animate(sequence, interval, isEnter), interval)
-      })
+    if(this.state.status === 'entering' && !isEnter){
+      return;
     }
+    if(this.state.status === 'exiting' && isEnter){
+      return;
+    }
+    this.timeout = setTimeout(()=>{
+      if(isEnter){
+        if(sequence.length === 0){
+          this.setState({status: null})
+          return;
+        }
+        this.setState(s=>{
+          s.shownIndices.push(sequence.shift())
+          return s;
+        }, ()=>{
+          this.animate(sequence, interval, isEnter)
+        })
+      } else {
+        if(this.state.shownIndices.length === 0){
+          this.setState({status: null})
+          return;
+        }
+        this.setState(s=>{
+          s.shownIndices.pop()
+          return s;
+        }, ()=>{
+          this.animate(sequence, interval, isEnter)
+        })
+      }
+    }, interval)
+
   }
 
   getAnimationSequence=()=>{
@@ -103,10 +113,13 @@ export default class Grid extends React.Component {
 
   onContainerResize=(contentRect)=>{
     let {width, height} = contentRect.bounds
+    if(width === this.state.width){
+      return {};
+    }
     let {margin, itemsInRow} = this.props
     //recalculate all the left, top, width, height
     let size = (width - margin) / itemsInRow - margin;
-    this.setState(this.recalculatePos(size, this.props.expandIdx))
+    this.setState({...this.recalculatePos(size, this.props.expandIdx), width})
   }
 
   //Returns the updated state
@@ -139,7 +152,9 @@ export default class Grid extends React.Component {
         })
       }
     }
-    return {size, calculatedPos}
+    //calculate container height:
+    let height = Math.ceil(this.props.children.length / itemsInRow) * (margin + size) - margin;
+    return {size, calculatedPos, height}
   }
 
   renderGridItem=(item, idx)=>{
@@ -160,9 +175,13 @@ export default class Grid extends React.Component {
   }
 
   render(){
+    let gridStyle = {}
+    if(this.state.height){
+      gridStyle.height = this.state.height + 'px'
+    }
     return (<Measure bounds onResize={this.onContainerResize}>
       {({ measureRef }) =>
-        <div className='grid' ref={measureRef} >
+        <div className='grid' ref={measureRef} style={gridStyle}>
           {this.renderCurtain()}
           {this.props.children.map(this.renderGridItem)}
         </div>
