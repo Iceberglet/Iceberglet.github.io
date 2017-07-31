@@ -52,7 +52,7 @@ export default class GridContainer extends React.Component {
         return <Grid expandIdx={this.state.expandIdx} status={status} {...gridData.gridProps}>
           {gridData.grids.map(g=>{
             return <GridItem key={g.idx} thumb={g.thumb}
-                          content={g.content}
+                          content={g.content} itemStyle={g.itemStyle}
                           onClick={()=>this.onClickGridItem(g.idx)}
                           backgroundHue={g.colorHue || gridData.colorHue}/>
           })}

@@ -31,13 +31,9 @@ export default class Grid extends React.Component {
     shownIndices: []
   }
 
-  // componentDidMount=()=>{
-  //   this.setState(this.processAnimation(this.props.status))
-  // }
-
   componentWillReceiveProps=(props)=>{
     this.processAnimation(props.status)
-    this.setState(this.recalculatePos(this.state.size, props.expandIdx))
+    this.setState(this.recalculatePos(this.state.unitWidth, this.state.unitHeight, props.expandIdx))
   }
 
   componentWillUnmount(){
@@ -114,6 +110,7 @@ export default class Grid extends React.Component {
 
   onContainerResize=(contentRect)=>{
     let {width, height} = contentRect.bounds
+    console.log('onContainerResize', width, height)
     if(width === this.state.width){
       return {};
     }
@@ -127,6 +124,7 @@ export default class Grid extends React.Component {
 
   //Returns the updated state
   recalculatePos=(unitWidth, unitHeight, expandIdx)=>{
+    console.log('recalculatePos', unitWidth, unitHeight, expandIdx)
     let {margin, itemsInRow} = this.props
     let calculatedPos = []
     for(let i = 0; i < this.props.children.length; i++){

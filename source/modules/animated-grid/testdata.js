@@ -7,6 +7,7 @@ export const TestGrids = {
     grids: [...Array(16).keys()].map(idx=>{
       return {
         idx,
+        itemStyle: {color: 'black'},
         thumb: <div>{`Education ${idx}`}</div>,
         content: <div>{`Education Content ${idx}`}</div>
       }

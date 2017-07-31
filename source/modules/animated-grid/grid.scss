@@ -4,6 +4,7 @@ $grid-item-transition-time: 300ms;
 $grid-item-flash: 400ms;
 
 .grid {
+  position: relative;
   width: 100%;
   height: 100%;
 
