@@ -1,6 +1,7 @@
 import React from 'react'
 import Splash from './splash'
 import {GridContainer} from 'animated-grid'
+import {GridData} from './grid-data'
 
 import './main-page.scss'
 
@@ -21,7 +22,7 @@ export default class MainPage extends React.Component {
       <div className='central'>
         <Splash onClickAvatar={this.onTriggerShow}/>
         <div className='main-page-grid'>
-          <GridContainer currentGridKey={this.state.currentGridKey}/>
+          <GridContainer data={GridData} currentGridKey={this.state.currentGridKey}/>
         </div>
       </div>
     </div>
