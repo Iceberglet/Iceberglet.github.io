@@ -62,6 +62,6 @@ export default class GridContainer extends React.Component {
   }
 
   render(){
-    return <div>{Object.keys(this.props.data).map(this.renderGrid)}</div>
+    return <div className='grid-container'>{Object.keys(this.props.data).map(this.renderGrid)}</div>
   }
 }

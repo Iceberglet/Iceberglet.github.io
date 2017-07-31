@@ -26,7 +26,8 @@ export default class Grid extends React.Component {
   state = {
     expandIdx: -1,
     calculatedPos: [],
-    size: 0,
+    unitWidth: 0,
+    unitHeight: 0,
     shownIndices: []
   }
 
@@ -116,14 +117,16 @@ export default class Grid extends React.Component {
     if(width === this.state.width){
       return {};
     }
-    let {margin, itemsInRow} = this.props
+    let {margin, itemsInRow, children} = this.props
     //recalculate all the left, top, width, height
-    let size = (width - margin) / itemsInRow - margin;
-    this.setState({...this.recalculatePos(size, this.props.expandIdx), width})
+    let unitWidth = (width - margin) / itemsInRow - margin;
+    let unitHeight = (height + margin) / (Math.ceil(children.length / itemsInRow)) - margin
+    unitHeight = Math.min(unitWidth, unitHeight)
+    this.setState({...this.recalculatePos(unitWidth, unitHeight, this.props.expandIdx), width})
   }
 
   //Returns the updated state
-  recalculatePos=(size, expandIdx)=>{
+  recalculatePos=(unitWidth, unitHeight, expandIdx)=>{
     let {margin, itemsInRow} = this.props
     let calculatedPos = []
     for(let i = 0; i < this.props.children.length; i++){
@@ -143,18 +146,16 @@ export default class Grid extends React.Component {
         let row = Math.floor(i / itemsInRow), col = i % itemsInRow
         calculatedPos.push({
           style: {
-            top: row * (size + margin) + 'px',
-            left: margin + col * (size + margin) + 'px',
-            width: size + 'px',
-            height: size + 'px'
+            top: row * (unitHeight + margin) + 'px',
+            left: margin + col * (unitWidth + margin) + 'px',
+            width: unitWidth + 'px',
+            height: unitHeight + 'px'
           },
           isSelected: false
         })
       }
     }
-    //calculate container height:
-    let height = Math.ceil(this.props.children.length / itemsInRow) * (margin + size) - margin;
-    return {size, calculatedPos, height}
+    return {unitWidth, unitHeight, calculatedPos}
   }
 
   renderGridItem=(item, idx)=>{
@@ -175,13 +176,9 @@ export default class Grid extends React.Component {
   }
 
   render(){
-    let gridStyle = {}
-    if(this.state.height){
-      gridStyle.height = this.state.height + 'px'
-    }
     return (<Measure bounds onResize={this.onContainerResize}>
       {({ measureRef }) =>
-        <div className='grid' ref={measureRef} style={gridStyle}>
+        <div className='grid' ref={measureRef}>
           {this.renderCurtain()}
           {this.props.children.map(this.renderGridItem)}
         </div>
