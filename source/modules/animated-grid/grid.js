@@ -11,6 +11,7 @@ const deepContains = (arr, item)=>{
 export default class Grid extends React.Component {
   static propTypes = {
     itemsInRow: PropTypes.number,
+    noExpand: PropTypes.bool,
     status: PropTypes.string,
     margin: PropTypes.number,
     expandIdx: PropTypes.number,

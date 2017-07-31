@@ -19,7 +19,7 @@ export default class GridContainer extends React.Component {
   }
 
   state = {
-    defactoGridKey: undefined,
+    defactoGridKey: this.props.currentGridKey,
     expandIdx: undefined
   }
 
@@ -42,7 +42,10 @@ export default class GridContainer extends React.Component {
   }
 
   onClickGridItem = (expandIdx) => {
-    this.setState({expandIdx})
+    //an ugly hack...for my imperfectly designed UI
+    if(this.state.defactoGridKey && !this.props.data[this.state.defactoGridKey].gridProps.noExpand){
+      this.setState({expandIdx})
+    }
   }
 
   renderGrid = (key, idx)=>{

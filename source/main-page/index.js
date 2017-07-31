@@ -10,11 +10,11 @@ var i = 0
 export default class MainPage extends React.Component {
 
   state = {
-    currentGridKey: 'Education'
+    currentGridKey: 'Welcome'
   }
 
   onTriggerShow = () =>{
-    this.setState({currentGridKey: ['Education', 'Work', 'Expertise'][(i++)%3] })
+    this.setState({currentGridKey: ['Welcome', 'Education', 'Work', 'Expertise'][(i++)%3] })
   }
 
   render(){
