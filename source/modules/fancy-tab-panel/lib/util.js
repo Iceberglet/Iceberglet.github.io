@@ -38,4 +38,17 @@ var idGenerator = exports.idGenerator = function idGenerator() {
     return counter;
   };
 };
+
+Array.prototype.max = function (f) {
+  var idx = 0,
+      max = f ? f(this[0]) : this[0];
+  for (var i = 1; i < this.length; i++) {
+    var item = f ? f(this[i]) : this[i];
+    if (item > max) {
+      idx = i;
+      max = item;
+    }
+  }
+  return this[idx];
+};
 //# sourceMappingURL=util.js.map

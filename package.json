@@ -48,6 +48,7 @@
     "ajax-request": "^1.2.1",
     "babel-eslint": "^7.2.1",
     "babel-polyfill": "^6.23.0",
+    "detect-browser": "^1.7.1",
     "font-loader": "^0.1.2",
     "highcharts": "5.0.7",
     "immutable": "3.7.6",
