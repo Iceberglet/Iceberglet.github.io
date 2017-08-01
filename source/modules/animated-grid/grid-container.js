@@ -4,6 +4,7 @@ import GridItem from './grid-item'
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import Transition from 'react-transition-group/Transition';
 import {shuffle} from 'utils'
+import Messenger from 'messenger'
 
 import Constants from './constants'
 import {TestGrids} from './testdata'
@@ -22,6 +23,16 @@ export default class GridContainer extends React.Component {
   state = {
     defactoGridKey: this.props.currentGridKey,
     expandIdx: undefined
+  }
+
+  componentDidMount=()=>{
+    this.unsubs = [Messenger.on('grid-detail-off', ()=>{
+      this.setState({expandIdx: undefined})
+    })]
+  }
+
+  componentWillUnmount(){
+    this.unsubs.forEach(unsub=>unsub())
   }
 
   componentWillReceiveProps=(props)=>{

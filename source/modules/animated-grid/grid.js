@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Measure from 'react-measure'
 import './grid.scss'
 import Constants from './constants'
+import Messenger from 'messenger'
 
 const deepContains = (arr, item)=>{
   return arr.filter(subarr=>subarr.indexOf(item) > -1).length > 0
@@ -110,7 +111,6 @@ export default class Grid extends React.Component {
 
   onContainerResize=(contentRect)=>{
     let {width, height} = contentRect.bounds
-    console.log('onContainerResize', width, height)
     if(width === this.state.width){
       return {};
     }
@@ -124,7 +124,6 @@ export default class Grid extends React.Component {
 
   //Returns the updated state
   recalculatePos=(unitWidth, unitHeight, expandIdx)=>{
-    console.log('recalculatePos', unitWidth, unitHeight, expandIdx)
     let {margin, itemsInRow} = this.props
     let calculatedPos = []
     for(let i = 0; i < this.props.children.length; i++){
@@ -167,10 +166,14 @@ export default class Grid extends React.Component {
 
   renderCurtain=()=>{
     if(this.props.expandIdx !== undefined){
-      return <div className='grid-curtain'/>
+      return <div className='grid-curtain' onClick={this.sendRemoveCurtain}/>
     } else {
-      return <div className='grid-curtain hidden'/>
+      return <div className='grid-curtain hidden' onClick={this.sendRemoveCurtain}/>
     }
+  }
+
+  sendRemoveCurtain=()=>{
+    Messenger.send('grid-detail-off')
   }
 
   render(){
