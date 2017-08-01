@@ -3,6 +3,7 @@ import Grid from './grid'
 import GridItem from './grid-item'
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import Transition from 'react-transition-group/Transition';
+import {shuffle} from 'utils'
 
 import Constants from './constants'
 import {TestGrids} from './testdata'
@@ -43,8 +44,12 @@ export default class GridContainer extends React.Component {
 
   onClickGridItem = (expandIdx) => {
     //an ugly hack...for my imperfectly designed UI
-    if(this.state.defactoGridKey && !this.props.data[this.state.defactoGridKey].gridProps.noExpand){
-      this.setState({expandIdx})
+    if(this.state.defactoGridKey){
+      if(!this.props.data[this.state.defactoGridKey].gridProps.onClick){
+        this.setState({expandIdx})
+      }
+      // if(this.props.data[this.state.defactoGridKey].gridProps.onClick === 'shuffle'){
+      // }
     }
   }
 

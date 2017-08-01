@@ -39,6 +39,7 @@ $grid-item-flash: 400ms;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    position: relative;
 
     &:before{
       content: '';

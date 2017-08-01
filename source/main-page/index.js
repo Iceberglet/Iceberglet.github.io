@@ -5,7 +5,7 @@ import {GridData} from './grid-data'
 
 import './main-page.scss'
 
-var i = 0
+var i = 1
 
 export default class MainPage extends React.Component {
 

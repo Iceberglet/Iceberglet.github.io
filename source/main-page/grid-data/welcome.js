@@ -4,7 +4,7 @@ const Message = 'KEEPCALMLIVELONG'
 
 export const Welcome = {
   colorHue: 120,
-  gridProps: {itemsInRow: 4, noExpand: true},
+  gridProps: {itemsInRow: 4, onClick: 'shuffle'},
   grids: Message.split('').map((letter, idx)=>{
     return {
       idx,
