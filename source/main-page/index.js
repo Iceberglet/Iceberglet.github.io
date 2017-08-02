@@ -2,7 +2,6 @@ import React from 'react'
 import Splash from './splash'
 import {GridContainer} from 'animated-grid'
 import {GridData} from './grid-data'
-import {isMobile} from 'utils'
 
 import './main-page.scss'
 
@@ -19,8 +18,7 @@ export default class MainPage extends React.Component {
   }
 
   render(){
-    let style = isMobile()? {minWidth: '600px', minHeight: '320px'} : {}
-    return <div className='main-page' style={style}>
+    return <div className='main-page'>
       <div className='central'>
         <Splash onClickAvatar={this.onTriggerShow}/>
         <div className='main-page-grid'>
