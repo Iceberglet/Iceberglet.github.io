@@ -18,7 +18,7 @@ export default class MainPage extends React.Component {
   }
 
   render(){
-    return <div className='main-page relative-occupy'>
+    return <div className='main-page occupy'>
       <div className='central'>
         <Splash onClickAvatar={this.onTriggerShow}/>
         <div className='main-page-grid'>
