@@ -19,7 +19,7 @@ export default class MainPage extends React.Component {
   }
 
   render(){
-    let style = isMobile? {} : {minWidth: '600px', minHeight: '320px'}
+    let style = isMobile()? {minWidth: '600px', minHeight: '320px'} : {}
     return <div className='main-page' style={style}>
       <div className='central'>
         <Splash onClickAvatar={this.onTriggerShow}/>
