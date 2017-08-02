@@ -12,10 +12,10 @@ $splash-offset: 150px;
 
 .main-page {
   min-width: 1200px;
-  min-height: 600px;
+  min-height: 700px;
   display: flex;
   flex-direction: column;
-  background: black;
+  position: relative;
 
   .central {
     display: flex;
