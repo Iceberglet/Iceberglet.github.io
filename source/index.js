@@ -11,7 +11,7 @@ import MainPage from './main-page'
 // }
 
 let div = document.createElement('div');
-div.className='occupy'
+div.className='relative-occupy'
 document.body.appendChild(div);
 ReactDOM.render(
   <MainPage />,
