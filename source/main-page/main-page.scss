@@ -42,6 +42,7 @@ $top-bar-height: 72px;
     width: 74%;
     display: flex;
     justify-content: center;
+    pointer-events: none;
   }
 
   .top-slogan {
@@ -53,6 +54,23 @@ $top-bar-height: 72px;
     transition: $transition-time;
     overflow-x: visible;
     white-space: nowrap;
+
+    .restore-icon {
+      font-size: 20px;
+      transition: 0.3s;
+      padding: 20px;
+      cursor: pointer;
+      pointer-events: initial;
+      opacity: 0;
+
+      &.active {
+        opacity: 0.6;
+      }
+
+      &:hover {
+        transform: rotate(180deg);
+      }
+    }
 
     &.active {
       top: 0%;

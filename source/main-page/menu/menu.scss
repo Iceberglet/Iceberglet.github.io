@@ -30,6 +30,7 @@ $menu-choice-transition: 0.3s;
     opacity: 0.6;
     cursor: pointer;
     transition: $menu-choice-transition;
+    pointer-events: initial;
 
     i {
       padding-left: 10px;

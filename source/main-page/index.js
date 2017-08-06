@@ -26,6 +26,13 @@ export default class MainPage extends React.Component {
     })
   }
 
+  restore = () => {
+    this.setState({
+      currentMenuItem: null,
+      mainPhase: false
+    })
+  }
+
   render(){
     let a = this.state.currentMenuItem? ' active' : ''
     return <div className='main-page occupy'>
@@ -36,6 +43,7 @@ export default class MainPage extends React.Component {
       <img className='avatar' src='resources/avatar-right.jpg'/>
       <div className={'mid top-slogan' + a}>
         {'a Developer\'s'}
+        <i className={'restore-icon fa fa-refresh' + a} onClick={this.restore}/>
       </div>
       <div className={'mid headers' + a}>
           <Menu onChange={(m)=>{this.setMenu(m)}}/>
