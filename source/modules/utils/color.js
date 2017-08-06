@@ -22,7 +22,7 @@ export const pureHSL = (hue)=>{
   return new HSL(hue, 100, 50)
 }
 
-export const randomHSL = (aroundThisHue, randomRange = 8)=>{
+export const randomHSL = (aroundThisHue, randomRange = 16)=>{
   let ran = Math.random() * 2 * randomRange - 2 * randomRange
   return new HSL(wrapClamp(aroundThisHue + ran, 0, 360), 100 - Math.random()*20, 55 + Math.random()*10);
 }

@@ -22,6 +22,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js?$/,
+        loader: 'unicode-loader'
+      },
+      {
         test: /\.less$/,
         use: [{
             loader: 'style-loader'

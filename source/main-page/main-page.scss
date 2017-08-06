@@ -13,39 +13,85 @@ $splash-offset: 150px;
 .main-page {
   min-width: 1200px;
   min-height: 720px;
-  display: flex;
   flex-direction: column;
-  position: relative;
 
-  .central {
-    display: flex;
+  .filter-bg {
     position: absolute;
-    align-self: center;
-    top: 5%;
-    left: 5%;
-    width: 90%;
-    height: 90%;
+    width: 82%;
+    height: 100%;
+    overflow: hidden;
+    right: 0px;
+    top: 0px;
 
-    .splash {
-      position: relative;
-      flex: 2;
-      transition: $enabling-transition;
-      background: $background-splash;
-      overflow: hidden;
-
-      img.avatar {
-        position: relative;
-        transition: 0.3s;
-        height: 100%;
-        transform: translate(-9%, 0%);
-        transition: $enabling-transition;
-        filter: grayscale(100%);
-      }
+    .filter {
+      background: linear-gradient(130deg, white, white 40%, rgba(0, 0, 0, 0));
     }
 
-    .main-page-grid {
-      flex: 3;
-      position: relative;
+    img {
+      position: absolute;
+      height: 100%;
+      top: 0px;
+      right: 0px;
+      filter: grayscale(100%);
     }
   }
+
+  img.avatar {
+    position: absolute;
+    height: 100%;
+    width: auto;
+    transform: translate(-9%, 0%);
+    opacity: 0.8;
+
+    filter: grayscale(100%);
+  }
+
+  .mid {
+    padding-left: 26%;
+    width: 74%;
+    display: flex;
+    justify-content: center;
+
+  }
+
+  .top-slogan {
+    position: absolute;
+    align-items: flex-end;
+    font-size: 50px;
+    top: 20%;
+    height: 14%;
+  }
+
+  .headers {
+    position: absolute;
+    align-items: center;
+    top: 36%;
+    height: 10%;
+    background: rgba(0,0,0,0.2);
+    background: linear-gradient(45deg, rgba(0,0,0,0.15), rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.3));
+  }
+
+  // .central {
+  //   display: flex;
+  //   position: absolute;
+  //   align-self: center;
+  //   top: 5%;
+  //   left: 5%;
+  //   width: 90%;
+  //   height: 90%;
+  //
+  //   .splash {
+  //     position: relative;
+  //     flex: 2;
+  //     transition: $enabling-transition;
+  //     background: $background-splash;
+  //     overflow: hidden;
+  //
+  //   }
+  //
+  //   .main-page-grid {
+  //     flex: 3;
+  //     position: relative;
+  //   }
+  // }
 }

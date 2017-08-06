@@ -37,6 +37,7 @@ $grid-item-flash: 400ms;
   overflow: hidden;
   background: black;
   color: white;
+  backface-visibility: hidden;
 
   .grid-item-thumb {
     width: 100%;
