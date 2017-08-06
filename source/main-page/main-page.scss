@@ -1,4 +1,5 @@
 $transition-time: 1000ms;
+$top-bar-height: 72px;
 
 .main-page {
   min-width: 1200px;
@@ -45,14 +46,21 @@ $transition-time: 1000ms;
 
   .top-slogan {
     position: absolute;
-    align-items: flex-end;
+    align-items: center;
     font-size: 50px;
-    top: 20%;
-    height: 14%;
+    top: 26%;
+    height: 8%;
     transition: $transition-time;
+    overflow-x: visible;
+    white-space: nowrap;
 
     &.active {
-      opacity: 0;
+      top: 0%;
+      height: $top-bar-height;
+      width: 15%;
+      padding-left: 2%;
+      // width: auto;
+      font-size: 32px;
     }
   }
 
@@ -68,7 +76,7 @@ $transition-time: 1000ms;
 
     &.active {
       top: 0%;
-      height: 72px;
+      height: $top-bar-height;
     }
   }
 

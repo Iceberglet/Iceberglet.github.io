@@ -34,9 +34,9 @@ export default class MainPage extends React.Component {
         <div className='filter occupy'/>
       </div>
       <img className='avatar' src='resources/avatar-right.jpg'/>
-      {this.state.mainPhase || <div className={'mid top-slogan' + a}>
+      <div className={'mid top-slogan' + a}>
         {'a Developer\'s'}
-      </div>}
+      </div>
       <div className={'mid headers' + a}>
           <Menu onChange={(m)=>{this.setMenu(m)}}/>
       </div>

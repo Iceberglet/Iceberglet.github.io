@@ -29,13 +29,22 @@ class MenuItem extends React.Component {
     onHover: PropTypes.func,
     onClick: PropTypes.func
   }
+
+  manualTrigger=()=>{
+    if(this._manualTrigger){
+      this._manualTrigger()
+    }
+  }
+
   render(){
-    return <Measure bounds onResize={this.props.onResize} offset>
-      {({ measureRef }) =>
-        <div className='menu-item' ref={measureRef} onMouseEnter={this.props.onHover} onClick={this.props.onClick}>
+    return <Measure onResize={this.props.onResize} offset>
+      {({ measureRef, measure }) => {
+        this._manualTrigger = measure
+        return <div className='menu-item' ref={measureRef} onMouseEnter={this.props.onHover} onClick={this.props.onClick}>
           <div className='menu-title no-select'>{this.props.title}</div>
           <i className={`menu-icon fa fa-${this.props.iconClass} ${this.props.iconClass}`}/>
         </div>
+        }
       }
     </Measure>
   }
@@ -63,7 +72,6 @@ export default class Menu extends React.Component {
   }
 
   onItemClick=(m)=>{
-    console.log(m)
     this.props.onChange(m)
   }
 
@@ -83,13 +91,22 @@ export default class Menu extends React.Component {
     }
   }
 
+  remeasure=()=>{
+    if(this._items){
+      this._items.forEach(i=>i.manualTrigger())
+    }
+  }
+
   render(){
-    return <div className='menu-container'>
-      <div className='floater' style={this.computeFloaterStyle()}/>
-      {MenuInfos.map((menu, idx)=>{
-        return <MenuItem {...menu} key={menu.title} onResize={(bound)=>{this.onItemResize(bound, idx)}}
-                          onHover={()=>this.onItemHover(idx)} onClick={()=>this.onItemClick(menu.title)}/>
-      })}
-    </div>
+    this._items = []
+    return <Measure onResize={this.remeasure}>
+        {({ measureRef }) => <div className='menu-container' ref={measureRef}>
+          <div className='floater' style={this.computeFloaterStyle()}/>
+          {MenuInfos.map((menu, idx)=><MenuItem {...menu} key={menu.title} onResize={(bound)=>{this.onItemResize(bound, idx)}}
+                              onHover={()=>this.onItemHover(idx)} onClick={()=>this.onItemClick(menu.title)}
+                              ref={(item)=>{item && (this._items[idx] = item)}}/>)}
+          </div>
+        }
+    </Measure>
   }
 }
