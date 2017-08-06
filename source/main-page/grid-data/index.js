@@ -6,5 +6,5 @@ import {Welcome} from './welcome'
 import './index.scss'
 
 export const GridData = {
-  Education, Work, Expertise, Welcome
+  Education, 'Work Exp' : Work, Expertise, Welcome
 }

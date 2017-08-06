@@ -1,14 +1,4 @@
-$background-splash: white;
-$background-content: transparent;
-
-$enabling-transition: 1.4s;
-$splash-content-transition: 0.6s;
-
-$splash-icon-size: 44px;
-$splash-icon-size-half: 22px;
-
-$splash-topbg-height: 300px;
-$splash-offset: 150px;
+$transition-time: 1000ms;
 
 .main-page {
   min-width: 1200px;
@@ -51,7 +41,6 @@ $splash-offset: 150px;
     width: 74%;
     display: flex;
     justify-content: center;
-
   }
 
   .top-slogan {
@@ -60,6 +49,11 @@ $splash-offset: 150px;
     font-size: 50px;
     top: 20%;
     height: 14%;
+    transition: $transition-time;
+
+    &.active {
+      opacity: 0;
+    }
   }
 
   .headers {
@@ -67,8 +61,23 @@ $splash-offset: 150px;
     align-items: center;
     top: 36%;
     height: 10%;
+    min-height: 72px;
     background: rgba(0,0,0,0.2);
     background: linear-gradient(45deg, rgba(0,0,0,0.15), rgba(0,0,0,0.3) 30%, rgba(0,0,0,0.3));
+    transition: $transition-time;
+
+    &.active {
+      top: 0%;
+      height: 72px;
+    }
+  }
+
+  .main-page-grid {
+    position: absolute;
+    top: 16%;
+    left: 24%;
+    width: 60%;
+    height: 70%;
   }
 
   // .central {

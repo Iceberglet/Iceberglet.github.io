@@ -30,7 +30,7 @@ class MenuItem extends React.Component {
     onClick: PropTypes.func
   }
   render(){
-    return <Measure bounds onResize={this.props.onResize}>
+    return <Measure bounds onResize={this.props.onResize} offset>
       {({ measureRef }) =>
         <div className='menu-item' ref={measureRef} onMouseEnter={this.props.onHover} onClick={this.props.onClick}>
           <div className='menu-title no-select'>{this.props.title}</div>
@@ -42,6 +42,10 @@ class MenuItem extends React.Component {
 }
 
 export default class Menu extends React.Component {
+  static propTypes = {
+    onChange: PropTypes.func
+  }
+
   state = {
     hovered: null,
     floater: []
@@ -49,7 +53,7 @@ export default class Menu extends React.Component {
 
   onItemResize=(content, idx)=>{
     this.setState(s=>{
-      s.floater[idx] = content.bounds
+      s.floater[idx] = content.offset
       return s
     })
   }
@@ -58,8 +62,9 @@ export default class Menu extends React.Component {
     this.setState({hovered: idx})
   }
 
-  onItemClick=(idx)=>{
-    console.log(idx)
+  onItemClick=(m)=>{
+    console.log(m)
+    this.props.onChange(m)
   }
 
   computeFloaterStyle=()=>{
@@ -83,7 +88,7 @@ export default class Menu extends React.Component {
       <div className='floater' style={this.computeFloaterStyle()}/>
       {MenuInfos.map((menu, idx)=>{
         return <MenuItem {...menu} key={menu.title} onResize={(bound)=>{this.onItemResize(bound, idx)}}
-                          onHover={()=>this.onItemHover(idx)} onClick={()=>this.onItemClick(idx)}/>
+                          onHover={()=>this.onItemHover(idx)} onClick={()=>this.onItemClick(menu.title)}/>
       })}
     </div>
   }
