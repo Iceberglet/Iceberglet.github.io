@@ -39,6 +39,7 @@ $grid-item-flash: 400ms;
   color: white;
   backface-visibility: hidden;
   filter: grayscale(100%);
+  opacity: 0.85;
 
   .grid-item-thumb {
     width: 100%;
