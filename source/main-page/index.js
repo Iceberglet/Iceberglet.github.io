@@ -1,6 +1,7 @@
 import React from 'react'
-import Splash from './splash'
 import Menu from './menu'
+import ContactBar from './contact-bar'
+import Notificator from './notification-system'
 import {GridContainer} from 'animated-grid'
 import {GridData} from './grid-data'
 
@@ -36,6 +37,7 @@ export default class MainPage extends React.Component {
   render(){
     let a = this.state.currentMenuItem? ' active' : ''
     return <div className='main-page occupy'>
+      <Notificator />
       <div className='filter-bg'>
         <img src='resources/bg.jpg'/>
         <div className='filter occupy'/>
@@ -48,6 +50,10 @@ export default class MainPage extends React.Component {
       <div className={'mid headers' + a}>
           <Menu onChange={(m)=>{this.setMenu(m)}}/>
       </div>
+      <div className={'mid contact-bar-container' + a}>
+          <ContactBar />
+      </div>
+
       {this.state.mainPhase && <div className='main-page-grid'>
         <GridContainer data={GridData} currentGridKey={this.state.currentMenuItem}/>
       </div>}

@@ -51,6 +51,7 @@ $top-bar-height: 72px;
     font-size: 50px;
     top: 26%;
     height: 8%;
+    color: #533131;
     transition: $transition-time;
     overflow-x: visible;
     white-space: nowrap;
@@ -95,6 +96,18 @@ $top-bar-height: 72px;
     &.active {
       top: 0%;
       height: $top-bar-height;
+    }
+  }
+
+  .contact-bar-container {
+    position: absolute;
+    top: 48%;
+    height: 5%;
+    min-height: 36px;
+    transition: $transition-time;
+
+    &.active {
+      top: $top-bar-height;
     }
   }
 
