@@ -26,3 +26,8 @@ export const randomHSL = (aroundThisHue, randomRange = 16)=>{
   let ran = Math.random() * 2 * randomRange - 2 * randomRange
   return new HSL(wrapClamp(aroundThisHue + ran, 0, 360), 100 - Math.random()*20, 55 + Math.random()*10);
 }
+
+export const randomGray = (aroundThisHue, randomRange = 16)=>{
+  let ran = Math.random() * 2 * randomRange - 2 * randomRange
+  return new HSL(wrapClamp(aroundThisHue + ran, 0, 360), 0, 55 + Math.random()*10);
+}

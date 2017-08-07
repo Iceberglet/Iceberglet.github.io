@@ -2,6 +2,7 @@ import React from 'react'
 
 export const Education = {
   colorHue: 120,
+  gridProps: {},
   grids: [
     {
       idx: 0,
