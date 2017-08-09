@@ -20,7 +20,7 @@ export default class Grid extends React.Component {
 
   static defaultProps = {
     itemsInRow: 4,
-    margin: 5,
+    margin: 10,
     expandedHeight: 500
   }
 

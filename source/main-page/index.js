@@ -34,7 +34,7 @@ export default class MainPage extends React.Component {
     let a = this.state.currentMenuItem? ' active' : '', b = this.state.gray? ' gray-100': ' gray-50'
     return <div className='main-page occupy'>
       <Notificator />
-      <div className='filter-bg'>
+      <div className={'filter-bg' + b}>
         <img src='resources/bg.jpg'/>
         <div className='filter occupy'/>
       </div>

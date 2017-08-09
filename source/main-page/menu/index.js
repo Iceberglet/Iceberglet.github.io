@@ -9,6 +9,10 @@ const BORDER = 3;
 
 const MenuInfos = [
   {
+    title: 'Card',
+    iconClass: 'id-card'
+  },
+  {
     title: 'Expertise',
     iconClass: 'magic'
   },
