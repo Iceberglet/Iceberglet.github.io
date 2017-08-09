@@ -27,7 +27,7 @@ $menu-choice-transition: 0.3s;
     align-items: center;
     justify-content: center;
     padding: 6px 18px;
-    opacity: 0.6;
+    opacity: 0.75;
     cursor: pointer;
     transition: $menu-choice-transition;
     pointer-events: initial;
@@ -36,7 +36,7 @@ $menu-choice-transition: 0.3s;
       padding-left: 10px;
     }
 
-    &:hover {
+    &:hover, &.active {
       opacity: 1;
       text-shadow: 0px 0px 15px $text-color;
     }

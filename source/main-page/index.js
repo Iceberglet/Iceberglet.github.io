@@ -13,37 +13,38 @@ export default class MainPage extends React.Component {
 
   state = {
     currentMenuItem: null,
-    mainPhase: false
+    gray: true
   }
 
   setMenu = (menu)=>{
-    let nextPhase = !this.state.currentMenuItem
-    this.setState({currentMenuItem:menu}, ()=>{
-      if(nextPhase){
-        setTimeout(()=>{
-          this.setState({mainPhase: true})
-        }, MAIN_MENU_SHIFT)
-      }
+    this.setState({
+      currentMenuItem: menu,
+      gray: false
     })
   }
 
   restore = () => {
     this.setState({
       currentMenuItem: null,
-      mainPhase: false
+      gray: true
     })
   }
 
   render(){
-    let a = this.state.currentMenuItem? ' active' : ''
+    let a = this.state.currentMenuItem? ' active' : '', b = this.state.gray? ' gray-100': ' gray-70'
     return <div className='main-page occupy'>
       <Notificator />
       <div className='filter-bg'>
         <img src='resources/bg.jpg'/>
         <div className='filter occupy'/>
       </div>
-      <img className='avatar' src='resources/avatar-right.jpg'/>
-      <div className={'mid top-slogan' + a}>
+      <img className={'avatar' + b} src='resources/avatar-right.jpg'/>
+
+      {<div className={'main-page-grid' + b}>
+        <GridContainer data={GridData} currentGridKey={this.state.currentMenuItem}/>
+      </div>}
+
+      <div className={'mid top-slogan' + a + b}>
         {'a Developer\'s'}
         <i className={'restore-icon fa fa-refresh' + a} onClick={this.restore}/>
       </div>
@@ -54,9 +55,6 @@ export default class MainPage extends React.Component {
           <ContactBar />
       </div>
 
-      {this.state.mainPhase && <div className='main-page-grid'>
-        <GridContainer data={GridData} currentGridKey={this.state.currentMenuItem}/>
-      </div>}
       {/*
 
 

@@ -17,7 +17,7 @@ export default class GridContainer extends React.Component {
 
   static defaultProps = {
     data: TestGrids,
-    currentGridKey: 'Education'
+    currentGridKey: null
   }
 
   state = {
@@ -38,7 +38,7 @@ export default class GridContainer extends React.Component {
   componentWillReceiveProps=(props)=>{
     //If there is a change of key
     let {defactoGridKey} = this.state
-    if(defactoGridKey !== undefined && defactoGridKey !== props.currentGridKey){
+    if(defactoGridKey && defactoGridKey !== props.currentGridKey){
       clearTimeout(this.timeout)
       this.setState({
         defactoGridKey: undefined,

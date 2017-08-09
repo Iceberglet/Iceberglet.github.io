@@ -27,7 +27,8 @@ class MenuItem extends React.Component {
     title: PropTypes.string,
     onResize: PropTypes.func,
     onHover: PropTypes.func,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    chosen: PropTypes.bool
   }
 
   manualTrigger=()=>{
@@ -40,7 +41,8 @@ class MenuItem extends React.Component {
     return <Measure onResize={this.props.onResize} offset>
       {({ measureRef, measure }) => {
         this._manualTrigger = measure
-        return <div className='menu-item' ref={measureRef} onMouseEnter={this.props.onHover} onClick={this.props.onClick}>
+        return <div className={'menu-item ' + (this.props.chosen && 'active')} ref={measureRef}
+                    onMouseEnter={this.props.onHover} onClick={this.props.onClick}>
           <div className='menu-title no-select'>{this.props.title}</div>
           <i className={`menu-icon fa fa-${this.props.iconClass} ${this.props.iconClass}`}/>
         </div>
@@ -73,6 +75,13 @@ export default class Menu extends React.Component {
 
   onItemClick=(m)=>{
     this.props.onChange(m)
+    this.setState({active: m})
+  }
+
+  remeasure=()=>{
+    if(this._items){
+      this._items.forEach(i=>i.manualTrigger())
+    }
   }
 
   computeFloaterStyle=()=>{
@@ -91,18 +100,13 @@ export default class Menu extends React.Component {
     }
   }
 
-  remeasure=()=>{
-    if(this._items){
-      this._items.forEach(i=>i.manualTrigger())
-    }
-  }
-
   render(){
     this._items = []
     return <Measure onResize={this.remeasure}>
         {({ measureRef }) => <div className='menu-container' ref={measureRef}>
           <div className='floater' style={this.computeFloaterStyle()}/>
-          {MenuInfos.map((menu, idx)=><MenuItem {...menu} key={menu.title} onResize={(bound)=>{this.onItemResize(bound, idx)}}
+          {MenuInfos.map((menu, idx)=><MenuItem {...menu} key={menu.title} chosen={this.state.active===menu.title}
+                              onResize={(bound)=>{this.onItemResize(bound, idx)}}
                               onHover={()=>this.onItemHover(idx)} onClick={()=>this.onItemClick(menu.title)}
                               ref={(item)=>{item && (this._items[idx] = item)}}/>)}
           </div>

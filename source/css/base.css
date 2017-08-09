@@ -55,3 +55,11 @@ body * {
 .no-pointer {
   cursor: none;
 }
+
+.gray-70 {
+  filter: grayscale(70%);
+}
+
+.gray-100 {
+  filter: grayscale(100%);
+}

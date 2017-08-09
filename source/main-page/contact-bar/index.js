@@ -41,11 +41,11 @@ export default class ContactBar extends React.Component {
   render(){
       return <div className='contact-bar'>
         <ReactTooltip place='top' effect='solid'/>
-        <i className='info-icon fa fa-envelope-o fa-fw' onClick={()=>this.copy('dragoon.cm@hotmail.com')} data-tip='Click to copy my email' />
-        <i className='info-icon fa fa-phone-square fa-fw' onClick={()=>this.copy('+65 82288168')} data-tip='Click to copy my phone no.' />
-        <a className='info-icon fa fa-linkedin-square fa-fw' href='https://www.linkedin.com/in/chen-min-nus-paristech' data-tip='Go to my linkedIn'/>
-        <a className='info-icon fa fa-facebook-square fa-fw' href='https://www.facebook.com/min.chen.7146' data-tip='Go to my Facebook'/>
-        <a className='info-icon fa fa-github fa-fw' href='https://github.com/Iceberglet' data-tip='Go to my Github'/>
+        <i className='info-icon fa fa-envelope-o fa-fw' onClick={()=>this.copy('dragoon.cm@hotmail.com')} data-tip={'Click to copy a developer\'s email'} />
+        <i className='info-icon fa fa-phone-square fa-fw' onClick={()=>this.copy('+65 82288168')} data-tip={'Click to copy a developer\'s phone no.'} />
+        <a className='info-icon fa fa-linkedin-square fa-fw' href='https://www.linkedin.com/in/chen-min-nus-paristech' data-tip={'Go to a developer\'s linkedIn'}/>
+        <a className='info-icon fa fa-facebook-square fa-fw' href='https://www.facebook.com/min.chen.7146' data-tip={'Go to a developer\'s Facebook'}/>
+        <a className='info-icon fa fa-github fa-fw' href='https://github.com/Iceberglet' data-tip={'Go to a developer\'s Github'}/>
       </div>
   }
 }

@@ -11,7 +11,7 @@ const style = {
     success: {
       borderTop: 'none',
       color: 'white',
-      backgroundColor: 'darkgray'
+      backgroundColor: '#623c3c'
     }
   }
 }
