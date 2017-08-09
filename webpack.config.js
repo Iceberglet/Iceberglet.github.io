@@ -18,7 +18,7 @@ module.exports = {
     libraryTarget: 'umd',
     library: 'Reacted'
   },
-  devtool: 'eval-source-map', //'#inline-source-map',
+  devtool: '#inline-source-map',
   module: {
     rules: [
       {
