@@ -56,8 +56,8 @@ body * {
   cursor: none;
 }
 
-.gray-70 {
-  filter: grayscale(70%);
+.gray-50 {
+  filter: grayscale(50%);
 }
 
 .gray-100 {

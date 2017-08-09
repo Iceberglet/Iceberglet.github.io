@@ -31,7 +31,7 @@ export default class MainPage extends React.Component {
   }
 
   render(){
-    let a = this.state.currentMenuItem? ' active' : '', b = this.state.gray? ' gray-100': ' gray-70'
+    let a = this.state.currentMenuItem? ' active' : '', b = this.state.gray? ' gray-100': ' gray-50'
     return <div className='main-page occupy'>
       <Notificator />
       <div className='filter-bg'>
