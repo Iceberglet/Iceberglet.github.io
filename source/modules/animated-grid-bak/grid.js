@@ -20,7 +20,7 @@ export default class Grid extends React.Component {
 
   static defaultProps = {
     itemsInRow: 4,
-    margin: 5,
+    margin: 10,
     expandedHeight: 500
   }
 
@@ -135,7 +135,11 @@ export default class Grid extends React.Component {
             left: Constants.EXPANDED_MARGIN_PREC + '%',
             width: (100 - 2 * Constants.EXPANDED_MARGIN_PREC) + '%',
             height: (100 - 2 * Constants.EXPANDED_MARGIN_PREC) + '%',
-            zIndex: 999
+            zIndex: 999,
+            opacity: 1,
+            background: 'white',
+            borderRadius: '5%',
+            color: 'black'
           },
           isSelected: true
         })

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import Measure from 'react-measure'
 import './grid.scss'
 import Constants from './constants'
-import Messenger from 'messenger'
 
 const deepContains = (arr, item)=>{
   return arr.filter(subarr=>subarr.indexOf(item) > -1).length > 0
@@ -14,7 +13,7 @@ export default class Grid extends React.Component {
     itemsInRow: PropTypes.number,
     status: PropTypes.string,
     margin: PropTypes.number,
-    expandIdx: PropTypes.number,
+    // expandIdx: PropTypes.number,
     children: PropTypes.node.isRequired  //a list of GridItem elements
   }
 
@@ -25,7 +24,7 @@ export default class Grid extends React.Component {
   }
 
   state = {
-    expandIdx: -1,
+    expandIdx: undefined,
     calculatedPos: [],
     unitWidth: 0,
     unitHeight: 0,
@@ -34,7 +33,7 @@ export default class Grid extends React.Component {
 
   componentWillReceiveProps=(props)=>{
     this.processAnimation(props.status)
-    this.setState(this.recalculatePos(this.state.unitWidth, this.state.unitHeight, props.expandIdx))
+    this.setState(this.recalculatePos(this.state.unitWidth, this.state.unitHeight, this.state.expandIdx))
   }
 
   componentWillUnmount(){
@@ -119,7 +118,7 @@ export default class Grid extends React.Component {
     let unitWidth = (width - margin) / itemsInRow - margin;
     let unitHeight = (height + margin) / (Math.ceil(children.length / itemsInRow)) - margin
     unitHeight = Math.min(unitWidth, unitHeight)
-    this.setState({...this.recalculatePos(unitWidth, unitHeight, this.props.expandIdx), width})
+    this.setState({...this.recalculatePos(unitWidth, unitHeight, this.state.expandIdx), width})
   }
 
   //Returns the updated state
@@ -159,25 +158,33 @@ export default class Grid extends React.Component {
     return {unitWidth, unitHeight, calculatedPos}
   }
 
+  sendRemoveCurtain=()=>{
+    this.setState({
+      expandIdx: undefined
+    }, ()=>this.setState(this.recalculatePos(this.state.unitWidth, this.state.unitHeight, this.state.expandIdx)))
+  }
+
+  onClickGridItem(idx){
+    this.setState({
+      expandIdx: idx
+    }, ()=>this.setState(this.recalculatePos(this.state.unitWidth, this.state.unitHeight, this.state.expandIdx)))
+  }
+
   renderGridItem=(item, idx)=>{
     if(!this.state.calculatedPos[idx]){
       return null;
     }
     let props = this.state.calculatedPos[idx]
     props.show = deepContains(this.state.shownIndices, idx)
-    return React.cloneElement(item, props)
+    return React.cloneElement(item, {...props, onClick: ()=>this.onClickGridItem(idx)})
   }
 
   renderCurtain=()=>{
-    if(this.props.expandIdx !== undefined){
+    if(this.state.expandIdx !== undefined){
       return <div className='grid-curtain' onClick={this.sendRemoveCurtain}/>
     } else {
       return <div className='grid-curtain hidden' onClick={this.sendRemoveCurtain}/>
     }
-  }
-
-  sendRemoveCurtain=()=>{
-    Messenger.send('grid-detail-off')
   }
 
   render(){

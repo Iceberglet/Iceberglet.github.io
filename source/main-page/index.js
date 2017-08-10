@@ -2,6 +2,7 @@ import React from 'react'
 import Menu from './menu'
 import ContactBar from './contact-bar'
 import Notificator from './notification-system'
+import ContentSwitcher from 'content-switcher'
 import {GridContainer} from 'animated-grid'
 import {GridData} from './grid-data'
 
@@ -41,7 +42,11 @@ export default class MainPage extends React.Component {
       <img className={'avatar' + b} src='resources/avatar-right.jpg'/>
 
       {<div className={'main-page-grid' + b}>
-        <GridContainer data={GridData} currentGridKey={this.state.currentMenuItem}/>
+        <ContentSwitcher currentKey = {this.state.currentMenuItem}>
+          {Object.keys(GridData).map(k=>{
+            return <GridContainer gridData={GridData[k]} contentKey={k}/>
+          })}
+        </ContentSwitcher>
       </div>}
 
       <div className={'mid top-slogan' + a + b}>

@@ -50,9 +50,9 @@ export const Expertise = {
     content: <div>{'Hibernate'}</div>
   },{
     //...database,
-    thumb: <div>{'JPA'}</div>,
-    content: <div>{'JPA'}</div>
-  },{
+  //   thumb: <div>{'JPA'}</div>,
+  //   content: <div>{'JPA'}</div>
+  // },{
     //...database,
     thumb: <img className='school-emblem' src='resources/icon-expertise/mongoDB.png'></img>,
     content: <div>{'MongoDB'}</div>

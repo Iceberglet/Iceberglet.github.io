@@ -6,23 +6,23 @@ import {randomHSL} from 'utils'
 
 export default class GridItem extends React.Component {
   static propTypes = {
-    style: PropTypes.object,
-    itemStyle: PropTypes.object,
+    style: PropTypes.object,        //This one is for position calculation
+    itemStyle: PropTypes.object,    //This one is for grid-container fed-in styles
     show: PropTypes.bool, //Used to animate entry & exit of this grid item
     isSelected: PropTypes.bool,
     thumb: PropTypes.node.isRequired,
     content: PropTypes.node.isRequired,
-    backgroundHue: PropTypes.number,
+    // backgroundHue: PropTypes.number,
     onClick: PropTypes.func
   }
 
-  state = {
-    background: randomHSL(this.props.backgroundHue || 0).toString()
-  }
+  // state = {
+  //   background: 'transparent'//randomHSL(this.props.backgroundHue || 0, 0.85).toString()
+  // }
 
   render(){
     let {style, isSelected, thumb, content, show, backgroundHue, itemStyle} = this.props
-    style.background = this.state.background
+    // style.background = this.state.background
     return <CSSTransition in={show} classNames='grid-item' timeout={Constants.GRID_ITEM_FLIP_TIME}
                           mountOnEnter unmountOnExit appear>
       <div className='grid-item' style={{...style, ...itemStyle}} onClick={this.props.onClick}>
