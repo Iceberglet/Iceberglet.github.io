@@ -1,0 +1,65 @@
+$transition-time: 500ms;
+$flashy-time: 250ms;
+
+.name-card {
+
+  .name-card-item {
+    display: flex;
+    padding-bottom: 10px;
+    font-size: 18px;
+
+    &:hover {
+      .item-title {
+        text-shadow: 0px 0px 5px darkgray;
+      }
+    }
+
+    .item-title {
+      flex: 1;
+      font-weight: bold;
+      text-align: right;
+      padding: 4px;
+      transition: $flashy-time;
+      cursor: pointer;
+      // pointer-events: initial;
+    }
+
+    .item-content {
+      flex: 2;
+
+      .item-content-row {
+        padding: 4px;
+        transition: $flashy-time;
+        cursor: pointer;
+        // pointer-events: initial;
+
+        &:hover {
+          text-shadow: 0px 0px 2px #6c7eff;
+          color: #3a4fe8;
+        }
+      }
+    }
+  }
+}
+
+.name-card-item-enter {
+  opacity: 0;
+  transform: translate(-17%, 0%);
+  transition: $transition-time;
+
+  &.name-card-item-enter-active {
+    opacity: 1;
+    transform: translate(0%, 0%);
+  }
+}
+
+.name-card-item-exit {
+  opacity: 1;
+  transform: translate(0%, 0%);
+  transition: $transition-time;
+
+  &.name-card-item-exit-active {
+    opacity: 0;
+    transform: translate(-17%, 0%);
+  }
+}

@@ -3,6 +3,7 @@ import Menu from './menu'
 import ContactBar from './contact-bar'
 import Notificator from './notification-system'
 import ContentSwitcher from 'content-switcher'
+import NameCard from './name-card'
 import {GridContainer} from 'animated-grid'
 import {GridData} from './grid-data'
 
@@ -43,9 +44,12 @@ export default class MainPage extends React.Component {
 
       {<div className={'main-page-grid' + b}>
         <ContentSwitcher currentKey = {this.state.currentMenuItem}>
-          {Object.keys(GridData).map(k=>{
-            return <GridContainer gridData={GridData[k]} contentKey={k}/>
-          })}
+          {[
+            ...Object.keys(GridData).map(k=>{
+              return <GridContainer key={k} gridData={GridData[k]} contentKey={k}/>
+              }),
+            <NameCard key={'Card'} contentKey={'Card'}/>
+          ]}
         </ContentSwitcher>
       </div>}
 

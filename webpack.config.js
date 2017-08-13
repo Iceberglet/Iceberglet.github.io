@@ -18,13 +18,13 @@ module.exports = {
     libraryTarget: 'umd',
     library: 'Reacted'
   },
-  devtool: '#inline-source-map',
+  devtool: 'eval-source-map', //'#inline-source-map',
   module: {
     rules: [
-      {
-        test: /\.js?$/,
-        loader: 'unicode-loader'
-      },
+      // {
+      //   test: /\.js?$/,
+      //   loader: 'unicode-loader'
+      // },
       {
         test: /\.less$/,
         use: [{
