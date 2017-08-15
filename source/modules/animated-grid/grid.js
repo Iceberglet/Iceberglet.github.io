@@ -176,7 +176,7 @@ export default class Grid extends React.Component {
     }
     let props = this.state.calculatedPos[idx]
     props.show = deepContains(this.state.shownIndices, idx)
-    return React.cloneElement(item, {...props, onClick: ()=>this.onClickGridItem(idx)})
+    return React.cloneElement(item, props/*{...props, onClick: ()=>this.onClickGridItem(idx)}*/)
   }
 
   renderCurtain=()=>{

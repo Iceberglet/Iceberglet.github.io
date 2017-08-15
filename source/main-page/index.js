@@ -4,6 +4,7 @@ import ContactBar from './contact-bar'
 import Notificator from './notification-system'
 import ContentSwitcher from 'content-switcher'
 import NameCard from './name-card'
+import EducationPage from './education-page'
 import {GridContainer} from 'animated-grid'
 import {GridData} from './grid-data'
 
@@ -45,10 +46,11 @@ export default class MainPage extends React.Component {
       {<div className={'main-page-grid' + b}>
         <ContentSwitcher currentKey = {this.state.currentMenuItem}>
           {[
-            ...Object.keys(GridData).map(k=>{
+            ...['Work Exp', 'Expertise'].map(k=>{
               return <GridContainer key={k} gridData={GridData[k]} contentKey={k}/>
               }),
-            <NameCard key={'Card'} contentKey={'Card'}/>
+            <NameCard key={'Card'} contentKey={'Card'}/>,
+            <EducationPage key={'Education'} contentKey={'Education'} />
           ]}
         </ContentSwitcher>
       </div>}
@@ -58,7 +60,7 @@ export default class MainPage extends React.Component {
         <i className={'restore-icon fa fa-refresh' + a} onClick={this.restore}/>
       </div>
       <div className={'mid headers' + a}>
-          <Menu onChange={(m)=>{this.setMenu(m)}}/>
+          <Menu onChange={(m)=>{this.setMenu(m)}} isActive={this.state.currentMenuItem}/>
       </div>
       <div className={'mid contact-bar-container' + a}>
           <ContactBar />

@@ -58,7 +58,8 @@ class MenuItem extends React.Component {
 
 export default class Menu extends React.Component {
   static propTypes = {
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    isActive: PropTypes.string
   }
 
   state = {
@@ -109,7 +110,7 @@ export default class Menu extends React.Component {
     return <Measure onResize={this.remeasure}>
         {({ measureRef }) => <div className='menu-container' ref={measureRef}>
           <div className='floater' style={this.computeFloaterStyle()}/>
-          {MenuInfos.map((menu, idx)=><MenuItem {...menu} key={menu.title} chosen={this.state.active===menu.title}
+          {MenuInfos.map((menu, idx)=><MenuItem {...menu} key={menu.title} chosen={this.props.isActive && this.state.active===menu.title}
                               onResize={(bound)=>{this.onItemResize(bound, idx)}}
                               onHover={()=>this.onItemHover(idx)} onClick={()=>this.onItemClick(menu.title)}
                               ref={(item)=>{item && (this._items[idx] = item)}}/>)}

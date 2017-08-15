@@ -9,7 +9,9 @@ import {TestGrids} from './testdata'
 export default class GridContainer extends React.Component {
   static propTypes = {
     contentKey: PropTypes.string,
-    gridData: PropTypes.object
+    gridData: PropTypes.object,
+    status: PropTypes.string,
+    onClickGridItem: PropTypes.func
   }
 
   state = {
@@ -19,7 +21,7 @@ export default class GridContainer extends React.Component {
     let {contentKey, gridData, status} = this.props
     return <Grid key={contentKey} contentKey={contentKey} status={status} {...gridData.gridProps}>
         {gridData.grids.map(g=>{
-          return <GridItem key={g.idx} {...g} onClick={()=>this.onClickGridItem(g.idx)}/>
+          return <GridItem key={g.idx} {...g} onClick={()=>this.props.onClickGridItem && this.props.onClickGridItem(g.idx)}/>
         })}
       </Grid>
   }
