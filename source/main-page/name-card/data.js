@@ -1,4 +1,5 @@
 import React from 'react'
+import {copyToClipboard} from 'utils'
 
 export const NameCardData = [
   //personal info
@@ -7,8 +8,12 @@ export const NameCardData = [
       content: ['Chen Min']
     },
     {
-      title: 'A developer comes from',
-      content: ['China']
+      title: 'A developer has nationality',
+      content: ['Chinese']
+    },
+    {
+      title: 'A developer is currently based at',
+      content: ['Singapore']
     },
     {
       title: 'A developer speaks',
@@ -17,6 +22,14 @@ export const NameCardData = [
     {
       title: 'A developer likes',
       content: ['Cook, Read, Ski, Video Games, 9GaG']
+    },
+    {
+      title: 'A developer\'s Email',
+      content: [<div onClick={()=>copyToClipboard('dragoon.cm@hotmail.com')}>{'dragoon.cm@hotmail.com (Click to Copy)'}</div>]
+    },
+    {
+      title: 'A developer\'s CV',
+      content: [<i className='fa fa-file-pdf-o' style={{color: 'red', fontSize: '24px'}} onClick={()=>window.open('./resources/Chen Min CV.pdf')}/>]
     },
   //professional aspirations
     {
