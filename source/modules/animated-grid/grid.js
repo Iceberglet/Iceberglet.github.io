@@ -26,8 +26,8 @@ export default class Grid extends React.Component {
   state = {
     expandIdx: undefined,
     calculatedPos: [],
-    unitWidth: 0,
-    unitHeight: 0,
+    unitWidth: 120,
+    unitHeight: 120,
     shownIndices: []
   }
 

@@ -1,10 +1,11 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Transition from 'react-transition-group/Transition'
 
 export default class ContentSwitcher extends React.Component {
   static propTypes = {
-    currentKey: React.PropTypes.string,
-    animationTime: React.PropTypes.number
+    currentKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    animationTime: PropTypes.number
   }
   static defaultProps = {
     animationTime: 1000,
