@@ -19,7 +19,7 @@ class TabContent extends React.Component {
   render(){
     return <CSSTransition in={this.props.status === 'enterting' || this.props.status ==='entered'} classNames='animated-tab' timeout={TAB_TRANSITION_TIME}
                           mountOnEnter unmountOnExit appear>
-      <div>{this.props.content}</div>
+      <div className='occupy'>{this.props.content}</div>
     </CSSTransition>
   }
 }
@@ -33,6 +33,7 @@ export default class AnimatedTabs extends React.Component {
   }
 
   state = {
+    show: false,
     shownIcons: [],
     remaining: [],
     selectedTabIdx: -1
@@ -47,11 +48,14 @@ export default class AnimatedTabs extends React.Component {
     if(status === 'entering'){
       this.setState({
         shownIcons: [],
+        show: true,
         remaining: [...Array(this.props.tabs.length).keys()]
       }, this.processEnter)
     }
     if(status === 'exiting'){
-      this.processExit()
+      this.setState({
+        show: false
+      }, this.processExit)
     }
   }
 
@@ -91,7 +95,7 @@ export default class AnimatedTabs extends React.Component {
   }
 
   renderDefaultContent=()=>{
-    return <div>{'Default Content LOLILOL'}</div>
+    return <div className='occupy center'>{'If You See This, You Need to Select Something Above :)'}</div>
   }
 
   render(){
@@ -99,7 +103,7 @@ export default class AnimatedTabs extends React.Component {
       <div className='icon-rack'>
         {this.props.tabs.map((t, i)=>this.renderIcon(t.icon, i))}
       </div>
-      <div className='tab-content'>
+      <div className={'tab-content ' + (this.state.show || 'hidden')}>
         <ContentSwitcher currentKey = {this.state.selectedTabIdx} animationTime={TAB_TRANSITION_TIME}>
           {[
             <TabContent key={-1} content={this.renderDefaultContent()} contentKey={-1} />,
