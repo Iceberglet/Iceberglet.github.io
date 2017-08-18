@@ -19,6 +19,9 @@
   }
 }
 
+.shake-hor-hover:hover {
+  animation: shake-hor 0.1s 3;
+}
 
 @keyframes shake-hor {
   0% {

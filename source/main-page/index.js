@@ -12,12 +12,14 @@ import {GridData} from './grid-data'
 import './main-page.scss'
 
 const MAIN_MENU_SHIFT = 1000;
+const ClassList = ['helvetica', 'monospace']
 
 export default class MainPage extends React.Component {
 
   state = {
     currentMenuItem: null,
-    gray: true
+    gray: true,
+    currentClass: 0
   }
 
   setMenu = (menu)=>{
@@ -34,9 +36,15 @@ export default class MainPage extends React.Component {
     })
   }
 
+  rotateFontClass = ()=>{
+    this.setState({
+      currentClass: (this.state.currentClass + 1 ) % ClassList.length
+    })
+  }
+
   render(){
     let a = this.state.currentMenuItem? ' active' : '', b = this.state.gray? ' gray-100': ' gray-50'
-    return <div className='main-page occupy'>
+    return <div className={'main-page occupy ' + ClassList[this.state.currentClass]}>
       <Notificator />
       {<div className={'filter-bg'}>
         <img src='resources/bg.jpg'/>
@@ -65,6 +73,9 @@ export default class MainPage extends React.Component {
       <div className={'mid contact-bar-container' + a}>
           <ContactBar />
       </div>
+      <i className='fa fa-font shake-hor-hover'
+          style={{position: 'fixed', cursor: 'pointer', fontSize: '20px', top: '10px', right: '10px', color: 'red'}}
+          onClick={this.rotateFontClass}/>
 
       {/*
 
