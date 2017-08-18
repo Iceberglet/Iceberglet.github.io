@@ -79,7 +79,7 @@ const Tabs = [
     )
   },
   {
-    icon: 'resources/icon-work/anz.png',
+    icon: 'resources/icon-work/anz-logo.png',
     content: fabricateLeaf(
       [{
         title: 'Company Name',
