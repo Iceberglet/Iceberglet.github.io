@@ -42,7 +42,10 @@ $tab-transition: 300ms;
         position: absolute;
         width: 0%;
         height: 100%;
-        border-bottom: 4px solid blue;
+
+        border-bottom: 2px solid gray;
+        border-radius: 13%;
+
         transform-origin: center;
         background: none;
         margin-bottom: -5px;

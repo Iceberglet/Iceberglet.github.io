@@ -5,6 +5,7 @@ import Notificator from './notification-system'
 import ContentSwitcher from 'content-switcher'
 import NameCard from './name-card'
 import EducationPage from './education-page'
+import WorkExp from './work-exp'
 import {GridContainer} from 'animated-grid'
 import {GridData} from './grid-data'
 
@@ -46,10 +47,9 @@ export default class MainPage extends React.Component {
       {<div className={'main-page-grid' + b}>
         <ContentSwitcher currentKey = {this.state.currentMenuItem}>
           {[
-            ...['Work Exp', 'Expertise'].map(k=>{
-              return <GridContainer key={k} gridData={GridData[k]} contentKey={k}/>
-              }),
+            <GridContainer key={'Expertise'} gridData={GridData['Expertise']} contentKey={'Expertise'}/>,
             <NameCard key={'Card'} contentKey={'Card'}/>,
+            <WorkExp key={'Work Exp'} contentKey={'Work Exp'} />,
             <EducationPage key={'Education'} contentKey={'Education'} />
           ]}
         </ContentSwitcher>

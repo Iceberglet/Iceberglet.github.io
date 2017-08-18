@@ -63,12 +63,12 @@ export default class AnimatedTabs extends React.Component {
     if(this.state.remaining.length === 0){
       return;
     }
-    this.setState(s=>{
-      s.shownIcons.push(s.remaining.shift())
-      return s;
-    }, ()=>{
-      this.timeout = setTimeout(this.processEnter, ANIMATION_TIME / this.props.tabs.length)
-    })
+    this.timeout = setTimeout(()=>{
+      this.setState(s=>{
+        s.shownIcons.push(s.remaining.shift())
+        return s;
+      }, this.processEnter)
+    }, ANIMATION_TIME / this.props.tabs.length)
   }
 
   processExit = ()=>{
@@ -95,7 +95,7 @@ export default class AnimatedTabs extends React.Component {
   }
 
   renderDefaultContent=()=>{
-    return <div className='occupy center'>{'If You See This, You Need to Select Something Above :)'}</div>
+    return <div className='occupy center' style={{height: '50%'}}>{'If You See This, You Need to Select Something Above :)'}</div>
   }
 
   render(){
