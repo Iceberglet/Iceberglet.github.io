@@ -96,7 +96,7 @@ const Tabs = [
     })
   },
   {
-    icon: 'resources/icon-school/nus.jpg',
+    icon: 'resources/icon-school/nus_logo.png',
     content: fabricateLeaf({
       imgUrl: 'resources/icon-school/image_nus.jpg',
       contentList: [{

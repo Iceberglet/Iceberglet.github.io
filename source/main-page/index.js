@@ -74,7 +74,7 @@ export default class MainPage extends React.Component {
           <ContactBar />
       </div>
       <i className='fa fa-font shake-hor-hover'
-          style={{position: 'fixed', cursor: 'pointer', fontSize: '20px', top: '10px', right: '10px', color: 'red'}}
+          style={{position: 'fixed', cursor: 'pointer', fontSize: '20px', top: '10px', right: '10px', color: 'blue'}}
           onClick={this.rotateFontClass}/>
 
       {/*

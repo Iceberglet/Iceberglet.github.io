@@ -44,7 +44,8 @@
       // max-height: 100%;
       min-height: 100%;
       min-width: 100%;
-      border: 5px solid red;
+      border: 5px solid rgba(5, 235, 255, 0.8);
+      box-shadow: 0px 0px 20px rgb(5, 235, 255);
       position: relative;
 
       img {

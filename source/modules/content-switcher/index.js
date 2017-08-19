@@ -38,7 +38,7 @@ export default class ContentSwitcher extends React.Component {
         this.processRemove();
       }
     } else {
-      console.log(`Currently in ${this.status}. Only updating queued key to ${props.currentKey}`)
+      // console.log(`Currently in ${this.status}. Only updating queued key to ${props.currentKey}`)
     }
   }
 
@@ -57,7 +57,7 @@ export default class ContentSwitcher extends React.Component {
     this.setState({
       actualKey: undefined
     }, ()=>{
-      setTimeout(this.processAdd, this.props.animationTime)
+      this.timeout = setTimeout(this.processAdd, this.props.animationTime)
     })
   }
 
@@ -68,8 +68,12 @@ export default class ContentSwitcher extends React.Component {
       expandIdx: undefined
     }, ()=>{
       this.keyQueued = undefined
-      setTimeout(this.processRemove, this.props.animationTime)
+      this.timeout = setTimeout(this.processRemove, this.props.animationTime)
     })
+  }
+
+  componentWillUnmount = ()=>{
+    clearTimeout(this.timeout)
   }
 
   renderChild = (child, idx)=>{
