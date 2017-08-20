@@ -47,10 +47,10 @@ export default class MainPage extends React.Component {
     return <div className={'main-page occupy ' + ClassList[this.state.currentClass]}>
       <Notificator />
       {<div className={'filter-bg'}>
-        <img src='resources/bg.jpg'/>
-        <div className='filter occupy'/>
+        <img className='no-select' src='resources/bg.jpg'/>
+        <div className='no-select filter occupy'/>
       </div>}
-      <img className={'avatar' + b} src='resources/avatar-right.jpg'/>
+      <img className={'no-select avatar' + b} src='resources/avatar-right.jpg'/>
 
       {<div className={'main-page-grid' + b}>
         <ContentSwitcher currentKey = {this.state.currentMenuItem}>

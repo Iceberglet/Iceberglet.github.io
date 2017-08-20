@@ -4,12 +4,12 @@ $menu-choice-transition: 0.3s;
 .menu-container {
   position: relative;
   width: 60%;
-  height: 72px;
+  height: 100%;
   align-items: center;
   justify-content: space-around;
   display: flex;
   color: $text-color;
-  font-size: 24px;
+  font-size: 21px;
 
   .floater {
     position: absolute;
@@ -17,7 +17,7 @@ $menu-choice-transition: 0.3s;
     left: 0px;
     right: 0px;
     opacity: 0;
-    border: 3px solid lightgray;
+    border-bottom: 2px solid #e2e2e2;
     transition: $menu-choice-transition;
     pointer-events: none;
   }
@@ -26,6 +26,7 @@ $menu-choice-transition: 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 40%;
     padding: 6px 18px;
     opacity: 0.75;
     cursor: pointer;

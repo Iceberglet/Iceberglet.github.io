@@ -1,5 +1,5 @@
 $transition-time: 1000ms;
-$top-bar-height: 60px;
+$top-bar-height: 50px;
 
 .main-page {
   min-width: 1200px;
@@ -109,15 +109,16 @@ $top-bar-height: 60px;
 
     &.active {
       top: $top-bar-height;
+      margin-top: 8px;
     }
   }
 
   .main-page-grid {
     position: absolute;
-    top: 16%;
+    top: 12%;
     left: 24%;
     width: 60%;
-    height: 70%;
+    height: 80%;
     transition: $transition-time;
   }
 

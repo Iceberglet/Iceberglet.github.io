@@ -90,7 +90,7 @@ export default class AnimatedTabs extends React.Component {
   renderIcon = (iconUrl, idx)=>{
     let a = this.state.shownIcons.indexOf(idx) > -1? ' shown' : ''
     return <div key={idx} className={'tab-icon' + a} onClick={()=>this.onSelectTab(idx)}>
-      <img src={iconUrl}/>
+      <img className='no-select' src={iconUrl}/>
     </div>
   }
 

@@ -32,6 +32,7 @@ class MenuItem extends React.Component {
     onResize: PropTypes.func,
     onHover: PropTypes.func,
     onClick: PropTypes.func,
+    onMouseLeave: PropTypes.func,
     chosen: PropTypes.bool
   }
 
@@ -46,7 +47,7 @@ class MenuItem extends React.Component {
       {({ measureRef, measure }) => {
         this._manualTrigger = measure
         return <div className={'menu-item ' + (this.props.chosen && 'active')} ref={measureRef}
-                    onMouseEnter={this.props.onHover} onClick={this.props.onClick}>
+                    onMouseEnter={this.props.onHover} onClick={this.props.onClick} onMouseLeave={this.props.onMouseLeave}>
           <div className='menu-title no-select'>{this.props.title}</div>
           <i className={`menu-icon fa fa-${this.props.iconClass} ${this.props.iconClass}`}/>
         </div>
@@ -59,12 +60,18 @@ class MenuItem extends React.Component {
 export default class Menu extends React.Component {
   static propTypes = {
     onChange: PropTypes.func,
-    isActive: PropTypes.string
+    isActive: PropTypes.string,
+    menuInfo: PropTypes.array
+  }
+
+  static defaultProps = {
+    menuInfo: MenuInfos
   }
 
   state = {
     hovered: null,
-    floater: []
+    floater: [],
+    active: null
   }
 
   onItemResize=(content, idx)=>{
@@ -75,12 +82,20 @@ export default class Menu extends React.Component {
   }
 
   onItemHover=(idx)=>{
-    this.setState({hovered: idx})
+    this.setState({
+      hovered: idx
+    })
   }
 
-  onItemClick=(m)=>{
-    this.props.onChange(m)
-    this.setState({active: m})
+  restore=()=>{
+    this.state.active && this.setState({
+      hovered: this.state.active
+    })
+  }
+
+  onItemClick=(idx)=>{
+    this.props.onChange(this.props.menuInfo[idx].title)
+    this.setState({active: idx})
   }
 
   remeasure=()=>{
@@ -102,6 +117,7 @@ export default class Menu extends React.Component {
       }
     } else {
       return {}
+      // return {top: '0px', left: '0px', width: '100%', height: '100%'}
     }
   }
 
@@ -110,9 +126,10 @@ export default class Menu extends React.Component {
     return <Measure onResize={this.remeasure}>
         {({ measureRef }) => <div className='menu-container' ref={measureRef}>
           <div className='floater' style={this.computeFloaterStyle()}/>
-          {MenuInfos.map((menu, idx)=><MenuItem {...menu} key={menu.title} chosen={this.props.isActive && this.state.active===menu.title}
+          {this.props.menuInfo.map((menu, idx)=><MenuItem {...menu} key={menu.title} chosen={this.props.isActive && this.state.active===idx}
                               onResize={(bound)=>{this.onItemResize(bound, idx)}}
-                              onHover={()=>this.onItemHover(idx)} onClick={()=>this.onItemClick(menu.title)}
+                              onHover={()=>this.onItemHover(idx)} onClick={()=>this.onItemClick(idx)}
+                              onMouseLeave={this.restore}
                               ref={(item)=>{item && (this._items[idx] = item)}}/>)}
           </div>
         }
