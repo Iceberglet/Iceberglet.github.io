@@ -122,6 +122,26 @@ $top-bar-height: 50px;
     transition: $transition-time;
   }
 
+  .stamp {
+    position: absolute;
+    bottom: 15%;
+    right: 0%;
+    transform: scale(0.6, 0.6) rotate(-22deg);
+    opacity: 0.5;
+    transition: 0.3s;
+    cursor: pointer;
+    pointer-events: initial;
+
+    &:hover:not(.active) {
+      opacity: 1;
+    }
+
+    &.active {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
   // .central {
   //   display: flex;
   //   position: absolute;

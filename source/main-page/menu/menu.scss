@@ -17,7 +17,8 @@ $menu-choice-transition: 0.3s;
     left: 0px;
     right: 0px;
     opacity: 0;
-    border-bottom: 2px solid #e2e2e2;
+    // border-bottom: 2px solid #e2e2e2;
+    border: 2px solid #e2e2e2;
     transition: $menu-choice-transition;
     pointer-events: none;
   }

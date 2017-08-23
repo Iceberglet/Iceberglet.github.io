@@ -70,6 +70,9 @@ export default class MainPage extends React.Component {
       <div className={'mid headers' + a}>
           <Menu onChange={(m)=>{this.setMenu(m)}} isActive={this.state.currentMenuItem}/>
       </div>
+      <div className={'stamp' + a}>
+        <img src='resources/made_with_react.png' onClick={()=>window.open('https://github.com/Iceberglet/Iceberglet.github.io')}/>
+      </div>
       <div className={'mid contact-bar-container' + a}>
           <ContactBar />
       </div>
