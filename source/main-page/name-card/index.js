@@ -19,7 +19,7 @@ class NameCardItem extends React.Component {
     return <CSSTransition in={this.props.show} classNames='name-card-item' timeout={ANIMATION_TIME}
                           mountOnEnter unmountOnExit appear>
       <div className='name-card-item'>
-        <div className='item-title'>{this.props.title + ' :'}</div>
+        <div className='item-title'>{this.props.title}</div>
         <div className='item-content'>
           {this.props.content.map((c, i)=><div key={i} className='item-content-row'>{c}</div>)}
         </div>
@@ -81,7 +81,7 @@ export default class NameCard extends React.Component {
   }
 
   render(){
-    return <div className='name-card'>
+    return <div className='name-card occupy' style={{overflow: 'auto'}}>
       {NameCardData.map((d, i)=>{
         return <NameCardItem key={d.title} title={d.title} content={d.content} show={this.state.shown.indexOf(i)>-1}/>
       })}

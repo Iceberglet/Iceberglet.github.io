@@ -29,7 +29,7 @@ export const NameCardData = [
     },
     {
       title: 'A developer\'s CV',
-      content: [<i className='fa fa-file-pdf-o' style={{color: 'red', fontSize: '24px'}} onClick={()=>window.open('./resources/Chen Min CV.pdf')}/>]
+      content: [<i className='fa fa-file-pdf-o' style={{color: 'red', fontSize: '22px', marginLeft: '5px'}} onClick={()=>window.open('./resources/Chen Min CV.pdf')}/>]
     },
   //professional aspirations
     {
