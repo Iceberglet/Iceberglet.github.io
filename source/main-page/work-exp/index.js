@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import AnimatedTabs from 'animated-tabs'
+import {load} from 'image-loader'
 
 const ANIMATION_TIME = 500;
 
@@ -111,6 +112,8 @@ const Tabs = [
     )
   }
 ]
+
+load(Tabs.map(t=>t.icon))
 
 export default class WorkExp extends React.Component {
   static propTypes = {

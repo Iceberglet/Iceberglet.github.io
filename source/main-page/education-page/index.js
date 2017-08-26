@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import AnimatedTabs from 'animated-tabs'
+import {load} from 'image-loader'
 
 import './index.scss'
 
@@ -28,6 +29,7 @@ const fabricateLeaf = ({contentList, imgUrl})=>{
 const Tabs = [
   {
     icon: 'resources/icon-school/changsha_yizhong.jpg',
+    img: 'resources/icon-school/image_yizhong.jpg',
     content: fabricateLeaf({
       imgUrl: 'resources/icon-school/image_yizhong.jpg',
       contentList: [{
@@ -51,6 +53,7 @@ const Tabs = [
   },
   {
     icon: 'resources/icon-school/Maris_Stella_High_School_Crest.png',
+    img: 'resources/icon-school/image_marist.jpg',
     content: fabricateLeaf({
       imgUrl: 'resources/icon-school/image_marist.jpg',
       contentList: [{
@@ -76,6 +79,7 @@ const Tabs = [
   },
   {
     icon: 'resources/icon-school/Raffles Institution.png',
+    img: 'resources/icon-school/image_ri.jpg',
     content: fabricateLeaf({
       imgUrl: 'resources/icon-school/image_ri.jpg',
       contentList: [{
@@ -97,6 +101,7 @@ const Tabs = [
   },
   {
     icon: 'resources/icon-school/nus_logo.png',
+    img: 'resources/icon-school/image_nus.jpg',
     content: fabricateLeaf({
       imgUrl: 'resources/icon-school/image_nus.jpg',
       contentList: [{
@@ -120,6 +125,7 @@ const Tabs = [
   },
   {
     icon: 'resources/icon-school/Mines_ParisTech_logo.svg.png',
+    img: 'resources/icon-school/image_mines.png',
     content: fabricateLeaf({
       imgUrl: 'resources/icon-school/image_mines.png',
       contentList: [{
@@ -143,6 +149,7 @@ const Tabs = [
   },
   {
     icon: 'resources/icon-school/Technical University of Munich.png',
+    img: 'resources/icon-school/image_tum.jpg',
     content: fabricateLeaf({
       imgUrl: 'resources/icon-school/image_tum.jpg',
       contentList: [{
@@ -166,6 +173,7 @@ const Tabs = [
   },
   {
     icon: 'resources/icon-school/University of Chemistry and Technology Prague.png',
+    img: 'resources/icon-school/image_uct.jpg',
     content: fabricateLeaf({
       imgUrl: 'resources/icon-school/image_uct.jpg',
       contentList: [{
@@ -189,6 +197,9 @@ const Tabs = [
     })
   }
 ]
+
+load(Tabs.map(t=>t.icon))
+load(Tabs.map(t=>t.img))
 
 export default class EducationPage extends React.Component {
   static propTypes = {

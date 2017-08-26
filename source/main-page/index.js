@@ -8,6 +8,7 @@ import EducationPage from './education-page'
 import WorkExp from './work-exp'
 import {GridContainer} from 'animated-grid'
 import {GridData} from './grid-data'
+import ImageLoader from 'image-loader'
 
 import './main-page.scss'
 
@@ -46,6 +47,7 @@ export default class MainPage extends React.Component {
     let a = this.state.currentMenuItem? ' active' : '', b = this.state.gray? ' gray-100': ' gray-50'
     return <div className={'main-page occupy ' + ClassList[this.state.currentClass]}>
       <Notificator />
+      <ImageLoader />
       {<div className={'filter-bg'}>
         <img className='no-select' src='resources/bg.jpg'/>
         <div className='no-select filter occupy'/>

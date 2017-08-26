@@ -1,4 +1,5 @@
 import React from 'react'
+import {load} from 'image-loader'
 
 // const frontEnd = {colorHue: 60, itemStyle: {color: 'black', fontSize: '23px'}}
 // const database = {colorHue: 130, itemStyle: {color: 'black', fontSize: '23px'}}
@@ -106,3 +107,5 @@ export const Expertise = {
     content: <div>{'Blender'}</div>
   }].shuffle().map((x, y)=>{x['idx']=y; return x;})
 }
+
+load(Expertise.grids.map(t=>t.thumb))

@@ -1,4 +1,3 @@
-import {Education} from './education'
 import {Expertise} from './expertise'
 import {Welcome} from './welcome'
 
