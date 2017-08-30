@@ -4,36 +4,45 @@ import {copyToClipboard} from 'utils'
 export const NameCardData = [
   //personal info
     {
-      title: 'A developer has a name',
+      title: 'This developer has a name',
       content: ['Chen Min']
     },
     {
-      title: 'A developer has nationality',
+      title: 'This developer has nationality',
       content: ['Chinese']
     },
     {
-      title: 'A developer is currently based at',
+      title: 'This developer is currently based at',
       content: ['Singapore']
     },
     {
-      title: 'A developer speaks',
+      title: 'This developer writes',
+      content: ['Java, JavaScript, C, C#, C++, Python, PHP, SQL, HTML5, CSS3',
+                'SpringFramework, Camel, Hibernate, ReactJS, NodeJS, SCSS, MathNet, TensorFlow']
+    },
+    {
+      title: 'This developer is good at',
+      content: ['Structural Design & Architecture, Workflow Design, Performance Optimization, Project Management']
+    },
+    {
+      title: 'This developer speaks',
       content: ['Mandarin, English, French, (a bit) Japanese']
     },
     {
-      title: 'A developer likes',
+      title: 'This developer likes',
       content: ['Cook, Read, Ski, Video Games, 9GaG']
     },
     {
-      title: 'A developer\'s Email',
+      title: 'This developer\'s Email',
       content: [<div onClick={()=>copyToClipboard('dragoon.cm@hotmail.com')}>{'dragoon.cm@hotmail.com (Click to Copy)'}</div>]
     },
     {
-      title: 'A developer\'s CV',
+      title: 'This developer\'s CV',
       content: [<i className='fa fa-file-pdf-o' style={{color: 'red', fontSize: '22px', marginLeft: '5px'}} onClick={()=>window.open('./resources/Chen Min CV.pdf')}/>]
     },
   //professional aspirations
     {
-      title: 'A developer loves to hear',
+      title: 'This developer loves to hear',
       content: [
         'I hear there is this awesome framework, let\'s try it out!',
         'There is this challenging project, maybe you can do it?',

@@ -115,7 +115,7 @@ export default class Grid extends React.Component {
     }
     let {margin, itemsInRow, children} = this.props
     //recalculate all the left, top, width, height
-    let unitWidth = (width - margin) / itemsInRow - margin;
+    let unitWidth = (width + margin) / itemsInRow - margin;
     let unitHeight = (height + margin) / (Math.ceil(children.length / itemsInRow)) - margin
     unitHeight = Math.min(unitWidth, unitHeight)
     this.setState({...this.recalculatePos(unitWidth, unitHeight, this.state.expandIdx), width})
@@ -147,7 +147,7 @@ export default class Grid extends React.Component {
         calculatedPos.push({
           style: {
             top: row * (unitHeight + margin) + 'px',
-            left: margin + col * (unitWidth + margin) + 'px',
+            left: col * (unitWidth + margin) + 'px',
             width: unitWidth + 'px',
             height: unitHeight + 'px'
           },

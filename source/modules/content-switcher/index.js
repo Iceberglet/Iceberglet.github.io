@@ -5,7 +5,8 @@ import Transition from 'react-transition-group/Transition'
 export default class ContentSwitcher extends React.Component {
   static propTypes = {
     currentKey: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    animationTime: PropTypes.number
+    animationTime: PropTypes.number,
+    containerClassName: PropTypes.string
   }
   static defaultProps = {
     animationTime: 1000,
@@ -86,7 +87,7 @@ export default class ContentSwitcher extends React.Component {
   }
 
   render(){
-    return <div className='occupy'>{
+    return <div className={this.props.containerClassName || 'occupy'}>{
       this.props.children.map? this.props.children.map(this.renderChild) : this.renderChild(this.props.children)
     }</div>
   }

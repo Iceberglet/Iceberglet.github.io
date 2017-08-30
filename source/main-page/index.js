@@ -54,8 +54,8 @@ export default class MainPage extends React.Component {
       </div>}
       <img className={'no-select avatar' + b} src='resources/avatar-right.jpg'/>
 
-      {<div className={'main-page-grid' + b}>
-        <ContentSwitcher currentKey = {this.state.currentMenuItem}>
+      {<div className={'main-page-grid' + b + a}>
+        <ContentSwitcher currentKey = {this.state.currentMenuItem} containerClassName={'main-page-grid-inner'}>
           {[
             <GridContainer key={'Expertise'} gridData={GridData['Expertise']} contentKey={'Expertise'}/>,
             <NameCard key={'Card'} contentKey={'Card'}/>,
@@ -72,14 +72,14 @@ export default class MainPage extends React.Component {
       <div className={'mid headers' + a}>
           <Menu onChange={(m)=>{this.setMenu(m)}} isActive={this.state.currentMenuItem}/>
       </div>
-      <div className={'stamp' + a}>
-        <img src='resources/made_with_react.png' onClick={()=>window.open('https://github.com/Iceberglet/Iceberglet.github.io')}/>
-      </div>
       <div className={'mid contact-bar-container' + a}>
           <ContactBar />
       </div>
+      <div className={'stamp' + a}>
+        <img src='resources/made_with_react.png' onClick={()=>window.open('https://github.com/Iceberglet/Iceberglet.github.io')}/>
+      </div>
       <i className='fa fa-font shake-hor-hover'
-          style={{position: 'fixed', cursor: 'pointer', fontSize: '20px', top: '10px', right: '10px', color: 'blue'}}
+          style={{position: 'fixed', cursor: 'pointer', fontSize: '20px', top: '10px', right: '10px', color: '#6ad246'}}
           onClick={this.rotateFontClass}/>
 
       {/*
