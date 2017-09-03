@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require('webpack');
 module.exports = {
   entry: ['./source/index.js'],
   resolve: {
@@ -18,7 +19,7 @@ module.exports = {
     libraryTarget: 'umd',
     library: 'Reacted'
   },
-  devtool: 'eval-source-map', //'#inline-source-map',
+  // devtool: 'eval-source-map', //'#inline-source-map',
   module: {
     rules: [
       // {
@@ -71,6 +72,12 @@ module.exports = {
                 console.log('\nTimeStamp ' + new Date());
                 callback();
             })
-        }
+        },
+        new webpack.DefinePlugin({
+          'process.env': {
+            NODE_ENV: JSON.stringify('production')
+          }
+        }),
+        new webpack.optimize.UglifyJsPlugin()
   ]
 }
